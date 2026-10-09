@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Events | AlumniPortal</title>
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background: #f5f7fb;
+
+    color: #172033;
+}
+
+
+
+
+nav {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background: white;
+
+    border-bottom:
+        1px solid #e5e7eb;
+
+    padding:
+        15px 6%;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 22px;
+
+    font-weight: 800;
+}
+
+
+.logo-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+}
+
+
+.nav-links a {
+
+    text-decoration: none;
+
+    color: #374151;
+
+    padding:
+        10px 13px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.nav-links a:hover {
+
+    background: #eef2ff;
+
+    color: #667eea;
+}
+
+
+.nav-links a.active {
+
+    background: #667eea;
+
+    color: white;
+}
+
+
+
+.hero {
+
+    padding:
+        80px 20px 100px;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #667eea,
+            #764ba2
+        );
+}
+
+
+.hero-badge {
+
+    display: inline-block;
+
+    background:
+        rgba(255,255,255,.15);
+
+    padding:
+        8px 17px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(38px, 6vw, 58px);
+
+    margin-bottom: 15px;
+}
+
+
+.hero h1 span {
+
+    color: #ddd6fe;
+}
+
+
+.hero p {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    opacity: .9;
+}
+
+
+
+
+.stats {
+
+    max-width: 950px;
+
+    margin:
+        -45px auto 55px;
+
+    padding: 0 20px;
+
+    position: relative;
+}
+
+
+.stats-inner {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.09);
+}
+
+
+.stat {
+
+    text-align: center;
+
+    border-right:
+        1px solid #e5e7eb;
+}
+
+
+.stat:last-child {
+
+    border: none;
+}
+
+
+.stat h2 {
+
+    color: #667eea;
+
+    font-size: 30px;
+}
+
+
+.stat p {
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+
+
+.container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding:
+        0 25px 80px;
+}
+
+
+
+.section {
+
+    margin-bottom: 60px;
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+
+.section-heading h2 {
+
+    font-size: 29px;
+}
+
+
+.section-heading p {
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+
+.event-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+
+
+
+.event-card {
+
+    background: white;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e5e7eb;
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.05);
+
+    transition:
+        .3s ease;
+}
+
+
+.event-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,.10);
+}
+
+
+.event-bar {
+
+    height: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #667eea,
+            #764ba2
+        );
+}
+
+
+.event-content {
+
+    padding: 27px;
+
+    position: relative;
+}
+
+
+
+
+.date-box {
+
+    position: absolute;
+
+    right: 25px;
+
+    top: 25px;
+
+    width: 58px;
+
+    background: #f1f3ff;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+
+.date-month {
+
+    display: block;
+
+    background: #667eea;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    padding: 5px;
+}
+
+
+.date-day {
+
+    display: block;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    padding: 5px;
+
+}
+
+
+
+
+.category {
+
+    display: inline-block;
+
+    background: #eef2ff;
+
+    color: #5969d8;
+
+    padding:
+        6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 16px;
+}
+
+
+.event-title {
+
+    font-size: 21px;
+
+    padding-right: 75px;
+
+    margin-bottom: 10px;
+}
+
+
+.description {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+
+
+
+.details {
+
+    border-top:
+        1px solid #edf0f4;
+
+    border-bottom:
+        1px solid #edf0f4;
+
+    padding:
+        15px 0;
+
+    display: grid;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+}
+
+
+.detail {
+
+    display: flex;
+
+    gap: 9px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+
+
+.event-bottom {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+}
+
+
+.seats {
+
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+
+.register-btn {
+
+    text-decoration: none;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    padding:
+        11px 18px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    transition: .25s;
+}
+
+
+.register-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 7px 18px
+        rgba(102,126,234,.3);
+}
+
+
+.completed-section {
+
+    opacity: .82;
+}
+
+
+.completed-card {
+
+    filter: grayscale(.15);
+}
+
+
+.completed-label {
+
+    display: inline-block;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    padding:
+        6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 16px;
+}
+
+
+.completed-btn {
+
+    background: #e5e7eb;
+
+    color: #64748b;
+
+    padding:
+        11px 18px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+
+.empty {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+
+.empty-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 12px;
+}
+
+
+
+footer {
+
+    background: #111827;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 40px 20px;
+}
+
+
+footer p {
+
+    color: #9ca3af;
+
+    font-size: 13px;
+
+    margin-top: 7px;
+}
+
+
+
+@media(max-width: 900px) {
+
+    nav {
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .event-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media(max-width: 600px) {
+
+    .stats-inner {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .stat {
+
+        border-right: none;
+
+        border-bottom:
+            1px solid #e5e7eb;
+
+        padding-bottom: 15px;
+    }
+
+    .stat:last-child {
+
+        border-bottom: none;
+    }
+
+    .event-bottom {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            A
+        </div>
+
+        AlumniPortal
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            🏠 Home
+        </a>
+
+        <a href="{% url 'about' %}">
+            ✨ About
+        </a>
+
+        <a href="{% url 'directory' %}">
+            👥 Alumni
+        </a>
+
+        <a href="{% url 'scholarships' %}">
+            🎓 Scholarships
+        </a>
+
+        <a href="{% url 'events' %}"
+           class="active">
+            📅 Events
+        </a>
+
+        <a href="{% url 'jobs' %}">
+            💼 Careers
+        </a>
+
+        <a href="{% url 'mentorship' %}">
+            🤝 Mentorship
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<section class="hero">
+
+    <div class="hero-badge">
+        ✨ ALUMNI COMMUNITY
+    </div>
+
+
+    <h1>
+        Events &
+        <span>Experiences</span>
+    </h1>
+
+
+    <p>
+
+        Discover upcoming reunions, career events,
+        webinars, networking sessions and community
+        activities.
+
+    </p>
+
+</section>
+
+
+
+
+<div class="stats">
+
+    <div class="stats-inner">
+
+        <div class="stat">
+
+            <h2>
+                {{ upcoming_count }}
+            </h2>
+
+            <p>
+                Upcoming Events
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                {{ completed_count }}
+            </h2>
+
+            <p>
+                Completed Events
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h2>
+                {{ total_events }}
+            </h2>
+
+            <p>
+                Total Events
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                🚀 Upcoming Events
+            </h2>
+
+            <p>
+                Register for events happening soon.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    {% if upcoming_events %}
+
+    <div class="event-grid">
+
+
+        {% for event in upcoming_events %}
+
+        <div class="event-card">
+
+
+            <div class="event-bar"></div>
+
+
+            <div class="event-content">
+
+
+                <!-- DATE -->
+
+                <div class="date-box">
+
+                    <span class="date-month">
+
+                        {{ event.event_date|date:"M" }}
+
+                    </span>
+
+                    <span class="date-day">
+
+                        {{ event.event_date|date:"d" }}
+
+                    </span>
+
+                </div>
+
+
+               
+
+                <div class="category">
+
+                    {{ event.get_category_display }}
+
+                </div>
+
+
+               
+
+                <h2 class="event-title">
+
+                    {{ event.title }}
+
+                </h2>
+
+
+                
+
+                <p class="description">
+
+                    {{ event.description }}
+
+                </p>
+
+
+               
+
+                <div class="details">
+
+
+                    <div class="detail">
+
+                        📅
+
+                        {{ event.event_date|date:"d M Y" }}
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        🕐
+
+                        {{ event.start_time|time:"g:i A" }}
+
+                        -
+
+                        {{ event.end_time|time:"g:i A" }}
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        {% if event.is_online %}
+
+                            🌐 Online Event
+
+                        {% else %}
+
+                            📍 {{ event.location }}
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BOTTOM -->
+
+                <div class="event-bottom">
+
+
+                    <div class="seats">
+
+                        👥
+
+                        {{ event.seats_available }}
+
+                        seats available
+
+                    </div>
+
+
+                   
+
+                    <a
+
+                        href="{% url 'event_register' event.id %}"
+
+                        class="register-btn"
+
+                    >
+
+                        Register Now →
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <div class="empty">
+
+        <div class="empty-icon">
+            📅
+        </div>
+
+        <h2>
+            No Upcoming Events
+        </h2>
+
+        <p>
+            New alumni events will appear here.
+        </p>
+
+    </div>
+
+
+    {% endif %}
+
+</section>
+
+
+
+
+<section class="section completed-section">
+
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                📚 Completed Events
+            </h2>
+
+            <p>
+                Events that have already taken place.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    {% if completed_events %}
+
+
+    <div class="event-grid">
+
+
+        {% for event in completed_events %}
+
+
+        <div class="event-card completed-card">
+
+
+            <div class="event-bar"></div>
+
+
+            <div class="event-content">
+
+
+                <div class="completed-label">
+
+                    ✓ EVENT COMPLETED
+
+                </div>
+
+
+                <div class="date-box">
+
+                    <span class="date-month">
+
+                        {{ event.event_date|date:"M" }}
+
+                    </span>
+
+                    <span class="date-day">
+
+                        {{ event.event_date|date:"d" }}
+
+                    </span>
+
+                </div>
+
+
+                <div class="category">
+
+                    {{ event.get_category_display }}
+
+                </div>
+
+
+                <h2 class="event-title">
+
+                    {{ event.title }}
+
+                </h2>
+
+
+                <p class="description">
+
+                    {{ event.description }}
+
+                </p>
+
+
+                <div class="details">
+
+
+                    <div class="detail">
+
+                        📅
+
+                        {{ event.event_date|date:"d M Y" }}
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        🕐
+
+                        {{ event.start_time|time:"g:i A" }}
+
+                        -
+
+                        {{ event.end_time|time:"g:i A" }}
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        {% if event.is_online %}
+
+                            🌐 Online Event
+
+                        {% else %}
+
+                            📍 {{ event.location }}
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="event-bottom">
+
+                    <div class="seats">
+
+                        ✓ Registration Closed
+
+                    </div>
+
+
+                    <span class="completed-btn">
+
+                        Completed
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <div class="empty">
+
+        <div class="empty-icon">
+            🎉
+        </div>
+
+        <h2>
+            No Completed Events Yet
+        </h2>
+
+    </div>
+
+
+    {% endif %}
+
+
+</section>
+
+
+</div>
+
+
+
+
+<footer>
+
+    <h3>
+        AI&ML AlumniPortal
+    </h3>
+
+    <p>
+        📍 Sacred Heart College · Tirupattur · Tamil Nadu
+    </p>
+
+    <p>
+        Connecting alumni, creating opportunities.
+    </p>
+
+    <p>
+        © 2026  AI&ML AlumniPortal. All rights reserved.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

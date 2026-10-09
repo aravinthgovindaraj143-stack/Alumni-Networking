@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jobs | Alumni Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #172033;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 70px 25px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .heading h1 {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .heading span {
+            color: #2563eb;
+        }
+
+        .heading p {
+            color: #64748b;
+        }
+
+        .jobs {
+            display: grid;
+            gap: 20px;
+        }
+
+        .job {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .job h2 {
+            margin-bottom: 8px;
+        }
+
+        .job p {
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 10px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .button {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        footer {
+            margin-top: 60px;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        @media(max-width:700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+                display: inline-block;
+            }
+
+            .job {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        Alumni Portal
+    </div>
+
+    <div>
+
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'directory' %}">Directory</a>
+        <a href="{% url 'scholarships' %}">Scholarships</a>
+        <a href="{% url 'events' %}">Events</a>
+        <a href="{% url 'jobs' %}">Jobs</a>
+        <a href="{% url 'mentorship' %}">Mentorship</a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>
+            Career <span>Opportunities</span>
+        </h1>
+
+        <p>
+            Find jobs and career opportunities shared by the alumni community.
+        </p>
+
+    </div>
+
+    <div class="jobs">
+
+        <div class="job">
+
+            <div>
+
+                <h2>
+                    Software Developer
+                </h2>
+
+                <p>
+                    Company: Company Name
+                </p>
+
+                <p>
+                    Location: Chennai
+                </p>
+
+                <span class="tag">
+                    Full Time
+                </span>
+
+            </div>
+
+            <a href="#" class="button">
+                Apply
+            </a>
+
+        </div>
+
+
+        <div class="job">
+
+            <div>
+
+                <h2>
+                    Web Developer
+                </h2>
+
+                <p>
+                    Company: Company Name
+                </p>
+
+                <p>
+                    Location: Bengaluru
+                </p>
+
+                <span class="tag">
+                    Full Time
+                </span>
+
+            </div>
+
+            <a href="#" class="button">
+                Apply
+            </a>
+
+        </div>
+
+
+        <div class="job">
+
+            <div>
+
+                <h2>
+                    Data Analyst
+                </h2>
+
+                <p>
+                    Company: Company Name
+                </p>
+
+                <p>
+                    Location: Hyderabad
+                </p>
+
+                <span class="tag">
+                    Full Time
+                </span>
+
+            </div>
+
+            <a href="#" class="button">
+                Apply
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Alumni Portal. All rights reserved.
+</footer>
+
+</body>
+</html>

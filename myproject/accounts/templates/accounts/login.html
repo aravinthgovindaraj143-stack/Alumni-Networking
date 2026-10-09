@@ -1,0 +1,1511 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Alumni Portal | Login</title>
+
+
+    <style>
+
+        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                #090a16;
+
+            color: #ffffff;
+
+            overflow-x: hidden;
+        }
+
+
+        .login-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(114, 76, 255, 0.20),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(0, 224, 201, 0.12),
+                    transparent 35%
+                ),
+
+                #090a16;
+        }
+
+
+        /* =====================================================
+           LEFT SIDE
+           ===================================================== */
+
+        .left-panel {
+
+            width: 56%;
+
+            min-height: 100vh;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                55px
+                65px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    #17112e 0%,
+                    #24174d 45%,
+                    #0c2431 100%
+                );
+        }
+
+
+        /* Decorative circles */
+
+        .left-panel::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 550px;
+            height: 550px;
+
+            border-radius: 50%;
+
+            top: -250px;
+            right: -180px;
+
+            background:
+                rgba(131, 91, 255, 0.22);
+
+            filter: blur(2px);
+
+        }
+
+
+        .left-panel::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            bottom: -200px;
+            left: -180px;
+
+            background:
+                rgba(0, 225, 201, 0.10);
+
+        }
+
+
+       
+
+        .brand {
+
+            position: relative;
+
+            z-index: 5;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+
+        .brand-icon {
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid rgba(255,255,255,0.15);
+
+            backdrop-filter: blur(10px);
+        }
+
+
+        .brand-title {
+
+            font-size: 20px;
+
+            font-weight: 750;
+
+            letter-spacing: -0.3px;
+        }
+
+
+        .brand-subtitle {
+
+            margin-top: 3px;
+
+            font-size: 10px;
+
+            letter-spacing: 2.2px;
+
+            color:
+                rgba(255,255,255,0.58);
+
+            text-transform: uppercase;
+        }
+
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 5;
+
+            max-width: 700px;
+
+            margin-top: 20px;
+        }
+
+
+        .hero-content h1 {
+
+            font-size:
+                clamp(42px, 5vw, 70px);
+
+            line-height: 1.03;
+
+            letter-spacing: -3px;
+
+            font-weight: 800;
+
+            margin-bottom: 22px;
+        }
+
+
+        .hero-content h1 span {
+
+            display: block;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a98cff,
+                    #5fe9db
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .hero-content p {
+
+            max-width: 620px;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(255,255,255,0.68);
+
+            margin-bottom: 30px;
+        }
+
+
+       
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                10px
+                16px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border:
+                1px solid rgba(255,255,255,0.13);
+
+            color:
+                rgba(255,255,255,0.80);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        .badge-dot {
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #5fe9db;
+
+            box-shadow:
+                0 0 12px #5fe9db;
+        }
+
+
+        
+        .stats {
+
+            position: relative;
+
+            z-index: 5;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 13px;
+
+            margin-top: 35px;
+
+            max-width: 720px;
+        }
+
+
+        .stat-card {
+
+            min-height: 125px;
+
+            padding: 21px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,0.075);
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(15px);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        .stat-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            background:
+                rgba(255,255,255,0.11);
+        }
+
+
+        .stat-icon {
+
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            margin-bottom: 13px;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            font-size: 15px;
+        }
+
+
+        .stat-number {
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            line-height: 1;
+
+            margin-bottom: 7px;
+        }
+
+
+        .stat-label {
+
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,0.57);
+        }
+
+
+
+        .left-footer {
+
+            position: relative;
+
+            z-index: 5;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color:
+                rgba(255,255,255,0.55);
+
+            font-size: 11px;
+        }
+
+
+        .status {
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #5fe9db;
+
+            box-shadow:
+                0 0 10px #5fe9db;
+        }
+
+
+       
+
+        .right-panel {
+
+            width: 44%;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 40px;
+
+            background:
+                #f7f8fc;
+
+            color: #171827;
+
+            position: relative;
+        }
+
+
+
+        .home-button {
+
+            position: absolute;
+
+            top: 30px;
+            right: 38px;
+
+            text-decoration: none;
+
+            color: #38394a;
+
+            font-size: 12px;
+
+            font-weight: 650;
+
+            padding:
+                11px
+                17px;
+
+            border-radius: 50px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #e4e5ec;
+
+            box-shadow:
+                0 5px 20px rgba(20,20,50,0.06);
+
+            transition: 0.25s ease;
+        }
+
+
+        .home-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                #9b83ff;
+
+            color:
+                #7255e8;
+        }
+
+
+
+        .login-box {
+
+            width: 100%;
+
+            max-width: 455px;
+
+            padding:
+                35px 20px;
+        }
+
+
+        .welcome {
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            color:
+                #7255e8;
+
+            margin-bottom: 11px;
+
+            text-transform: uppercase;
+        }
+
+
+        .login-box h2 {
+
+            font-size: 42px;
+
+            line-height: 1.05;
+
+            letter-spacing: -1.8px;
+
+            margin-bottom: 11px;
+
+            color: #171827;
+        }
+
+
+        .description {
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            color:
+                #77798a;
+
+            margin-bottom: 30px;
+        }
+
+
+       
+
+        .messages {
+
+            margin-bottom: 18px;
+        }
+
+
+        .message {
+
+            padding:
+                12px 14px;
+
+            border-radius: 10px;
+
+            background:
+                #fff0f0;
+
+            color:
+                #bd3d4a;
+
+            border:
+                1px solid #ffd5d5;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+        }
+
+
+
+        .form-group {
+
+            margin-bottom: 21px;
+        }
+
+
+        .form-label-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 9px;
+        }
+
+
+        .form-label {
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color:
+                #424356;
+
+            text-transform: uppercase;
+        }
+
+
+        .forgot {
+
+            font-size: 11px;
+
+            font-weight: 650;
+
+            text-decoration: none;
+
+            color:
+                #7255e8;
+        }
+
+
+        .forgot:hover {
+
+            text-decoration: underline;
+        }
+
+
+      
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 15px;
+
+            color:
+                #9b9cac;
+
+            pointer-events: none;
+        }
+
+
+        .form-input {
+
+            width: 100%;
+
+            height: 51px;
+
+            border-radius: 11px;
+
+            border:
+                1px solid #dedfe7;
+
+            background: #ffffff;
+
+            padding:
+                0 45px 0 43px;
+
+            outline: none;
+
+            color: #222331;
+
+            font-size: 13px;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .form-input::placeholder {
+
+            color:
+                #a8a9b4;
+        }
+
+
+        .form-input:focus {
+
+            border-color:
+                #866cff;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(134,108,255,0.10);
+        }
+
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            color:
+                #8c8d9a;
+
+            font-size: 15px;
+
+            padding: 5px;
+        }
+
+
+        .password-toggle:hover {
+
+            color:
+                #7255e8;
+        }
+
+
+
+        .sign-button {
+
+            width: 100%;
+
+            height: 53px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            letter-spacing: 0.2px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #7051e8,
+                    #8b68f5
+                );
+
+            box-shadow:
+                0 12px 25px
+                rgba(112,81,232,0.25);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .sign-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 16px 30px
+                rgba(112,81,232,0.32);
+        }
+
+
+        .sign-button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        .sign-button.loading {
+
+            opacity: 0.75;
+
+            pointer-events: none;
+        }
+
+
+
+        .login-footer {
+
+            margin-top: 32px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color:
+                #a0a1ad;
+        }
+
+
+        .login-footer a {
+
+            color:
+                #7255e8;
+
+            text-decoration: none;
+
+            font-weight: 650;
+        }
+
+
+
+        @media (max-width: 1000px) {
+
+            .left-panel {
+
+                width: 50%;
+
+                padding:
+                    40px;
+            }
+
+
+            .right-panel {
+
+                width: 50%;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 47px;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .login-page {
+
+                flex-direction: column;
+            }
+
+
+            .left-panel {
+
+                width: 100%;
+
+                min-height: auto;
+
+                padding:
+                    35px 25px 40px;
+            }
+
+
+            .right-panel {
+
+                width: 100%;
+
+                min-height: 600px;
+
+                padding:
+                    25px;
+            }
+
+
+            .stats {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+
+            .home-button {
+
+                top: 20px;
+                right: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero-content h1 {
+
+                font-size: 39px;
+
+                letter-spacing: -1.8px;
+            }
+
+
+            .hero-content p {
+
+                font-size: 14px;
+            }
+
+
+            .stats {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .stat-card {
+
+                min-height: 95px;
+            }
+
+
+            .login-box {
+
+                padding:
+                    45px 5px;
+            }
+
+
+            .login-box h2 {
+
+                font-size: 36px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-page">
+
+
+
+
+    <section class="left-panel">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎓
+            </div>
+
+            <div>
+
+                <div class="brand-title">
+                    Alumni Portal
+                </div>
+
+                <div class="brand-subtitle">
+                    Unified Community Access
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero-content">
+
+            <div class="badge">
+
+                <span class="badge-dot"></span>
+
+                Smart alumni community platform
+
+            </div>
+
+
+            <h1>
+
+                One community.
+
+                <span>
+                    Endless connections.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Connect with alumni, discover career opportunities,
+                participate in events, build professional relationships,
+                and grow together through one secure platform.
+
+            </p>
+
+
+
+            <div class="stats">
+
+
+                <!-- ACTIVE MEMBERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <div
+                        class="stat-number counter"
+                        data-target="{{ active_members|default:0 }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Active members
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL MEMBERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎓
+                    </div>
+
+                    <div
+                        class="stat-number counter"
+                        data-target="{{ total_members|default:0 }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Registered alumni
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN SESSIONS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✨
+                    </div>
+
+                    <div
+                        class="stat-number counter"
+                        data-target="{{ total_logins|default:0 }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Successful logins
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="left-footer">
+
+            <span class="status"></span>
+
+            Alumni network is online
+
+        </div>
+
+
+    </section>
+
+
+
+    
+
+    <section class="right-panel">
+
+
+        
+
+        <a
+            href="{% url 'home' %}"
+            class="home-button"
+        >
+            ← Go to Home
+        </a>
+
+
+      
+
+        <div class="login-box">
+
+
+            <div class="welcome">
+                Welcome back
+            </div>
+
+
+            <h2>
+                Sign in
+            </h2>
+
+
+            <p class="description">
+
+                Enter your username and password
+                to access your alumni dashboard.
+
+            </p>
+
+
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+
+                        <div class="message">
+
+                            {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <form
+                method="POST"
+                action="{% url 'login' %}"
+                id="loginForm"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <div class="form-label-row">
+
+                        <label
+                            class="form-label"
+                            for="username"
+                        >
+                            Username
+                        </label>
+
+                    </div>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="form-input"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <div class="form-label-row">
+
+                        <label
+                            class="form-label"
+                            for="password"
+                        >
+                            Password
+                        </label>
+
+
+                        <a
+                            href="#"
+                            class="forgot"
+                            onclick="forgotPassword(event)"
+                        >
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                            onclick="togglePassword()"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                
+
+                <button
+                    type="submit"
+                    class="sign-button"
+                    id="signButton"
+                >
+
+                    Sign in
+                    <span style="margin-left:6px;">
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            
+
+            <div class="login-footer">
+
+                © 2026 Alumni Portal
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+
+
+
+    function togglePassword() {
+
+        const password =
+            document.getElementById("password");
+
+        const toggle =
+            document.getElementById("passwordToggle");
+
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            toggle.textContent = "🙈";
+
+            toggle.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+        } else {
+
+            password.type = "password";
+
+            toggle.textContent = "👁";
+
+            toggle.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+        }
+
+    }
+
+
+
+    
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const counters =
+                document.querySelectorAll(".counter");
+
+
+            counters.forEach(
+                function (counter) {
+
+                    const target =
+                        parseInt(
+                            counter.getAttribute(
+                                "data-target"
+                            )
+                        ) || 0;
+
+
+                    let current = 0;
+
+
+                    if (target === 0) {
+
+                        counter.textContent = "0";
+
+                        return;
+
+                    }
+
+
+                    const duration = 900;
+
+                    const steps = 40;
+
+                    const increment =
+                        target / steps;
+
+
+                    const interval =
+                        duration / steps;
+
+
+                    const timer =
+                        setInterval(
+                            function () {
+
+                                current += increment;
+
+
+                                if (
+                                    current >= target
+                                ) {
+
+                                    current = target;
+
+                                    clearInterval(timer);
+
+                                }
+
+
+                                counter.textContent =
+                                    Math.floor(current);
+
+                            },
+                            interval
+                        );
+
+                }
+            );
+
+        }
+    );
+
+
+
+ 
+
+    document
+        .getElementById("loginForm")
+        .addEventListener(
+            "submit",
+            function () {
+
+                const button =
+                    document.getElementById(
+                        "signButton"
+                    );
+
+
+                button.classList.add(
+                    "loading"
+                );
+
+
+                button.innerHTML =
+                    "Signing in...";
+
+            }
+        );
+
+
+
+
+    function forgotPassword(event) {
+
+        event.preventDefault();
+
+        alert(
+            "Please contact your Alumni Portal administrator to reset your password."
+        );
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

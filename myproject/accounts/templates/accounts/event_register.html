@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Event Registration | AlumniPortal</title>
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f7fb,
+            #eef2ff
+        );
+
+    color: #172033;
+
+    min-height: 100vh;
+}
+
+
+
+
+.header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+
+    padding:
+        60px 20px;
+
+    text-align: center;
+}
+
+
+.header h1 {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+
+.header p {
+
+    opacity: .9;
+
+    font-size: 15px;
+}
+
+
+
+
+.container {
+
+    max-width: 900px;
+
+    margin:
+        -35px auto 70px;
+
+    padding:
+        0 20px;
+
+    position: relative;
+}
+
+
+
+
+.event-summary {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.08);
+
+    margin-bottom: 25px;
+}
+
+
+.event-summary h2 {
+
+    font-size: 23px;
+
+    margin-bottom: 12px;
+}
+
+
+.event-info {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+
+.info {
+
+    background: #f8f9ff;
+
+    padding: 13px;
+
+    border-radius: 12px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+
+
+.form-card {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.08);
+}
+
+
+.form-card h2 {
+
+    margin-bottom: 8px;
+
+    font-size: 25px;
+}
+
+
+.form-card > p {
+
+    color: #64748b;
+
+    margin-bottom: 30px;
+
+    font-size: 14px;
+}
+
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.form-group.full {
+
+    grid-column:
+        span 2;
+}
+
+
+label {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: #374151;
+}
+
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding:
+        13px 14px;
+
+    border:
+        1px solid #dfe3eb;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    background: white;
+
+    transition: .2s;
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color: #667eea;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(102,126,234,.10);
+}
+
+
+textarea {
+
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+
+.lunch-box {
+
+    margin-top: 25px;
+
+    background:
+        #f8f9ff;
+
+    border:
+        1px solid #e8eaf3;
+
+    border-radius: 16px;
+
+    padding: 20px;
+}
+
+
+.lunch-box h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+
+.lunch-box p {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-bottom: 15px;
+}
+
+
+.radio-group {
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.radio-option {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    background: white;
+
+    padding:
+        10px 14px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid #e5e7eb;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.radio-option input {
+
+    width: auto;
+}
+
+
+
+.submit-btn {
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+
+.submit-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 9px 25px
+        rgba(102,126,234,.30);
+}
+
+
+.back {
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #667eea;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+
+@media(max-width: 700px) {
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+
+        grid-column:
+            span 1;
+    }
+
+    .event-info {
+
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+
+        padding: 23px;
+    }
+
+    .header h1 {
+
+        font-size: 30px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+
+<section class="header">
+
+    <h1>
+        Event Registration
+    </h1>
+
+    <p>
+        Reserve your place and join the alumni community.
+    </p>
+
+</section>
+
+
+<div class="container">
+
+
+
+<div class="event-summary">
+
+    <h2>
+        {{ event.title }}
+    </h2>
+
+
+    <div class="event-info">
+
+
+        <div class="info">
+
+            📅
+
+            {{ event.event_date|date:"d M Y" }}
+
+        </div>
+
+
+        <div class="info">
+
+            🕐
+
+            {{ event.start_time|time:"g:i A" }}
+
+            -
+
+            {{ event.end_time|time:"g:i A" }}
+
+        </div>
+
+
+        <div class="info">
+
+            {% if event.is_online %}
+
+                🌐 Online
+
+            {% else %}
+
+                📍 {{ event.location }}
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="form-card">
+
+
+    <h2>
+        👤 Your Details
+    </h2>
+
+
+    <p>
+        Please provide your details to register for
+        <strong>{{ event.title }}</strong>.
+    </p>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <div class="form-grid">
+
+
+            
+
+            <div class="form-group">
+
+                <label>
+                    Full Name *
+                </label>
+
+                <input
+                    type="text"
+                    name="full_name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+            
+
+            <div class="form-group">
+
+                <label>
+                    Register Number *
+                </label>
+
+                <input
+                    type="text"
+                    name="register_number"
+                    placeholder="Example: BU241937"
+                    required
+                >
+
+            </div>
+
+
+           
+
+            <div class="form-group">
+
+                <label>
+                    Email Address *
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    required
+                >
+
+            </div>
+
+
+            
+
+            <div class="form-group">
+
+                <label>
+                    Mobile Number *
+                </label>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter mobile number"
+                    required
+                >
+
+            </div>
+
+
+          
+
+            <div class="form-group">
+
+                <label>
+                    Attendance *
+                </label>
+
+                <select
+                    name="attendance"
+                    id="attendance"
+                >
+
+                    {% if event.is_online %}
+
+                    <option value="Online">
+                        Online
+                    </option>
+
+                    {% else %}
+
+                    <option value="In Person">
+                        In Person
+                    </option>
+
+                    {% endif %}
+
+                </select>
+
+            </div>
+
+
+      
+
+            <div class="form-group">
+
+                <label>
+                    Number of Guests
+                </label>
+
+                <input
+                    type="number"
+                    name="guests"
+                    value="0"
+                    min="0"
+                    max="10"
+                >
+
+            </div>
+
+
+            
+
+            <div class="form-group">
+
+                <label>
+                    Food Preference
+                </label>
+
+                <select name="food_preference">
+
+                    <option value="Vegetarian">
+                        Vegetarian
+                    </option>
+
+                    <option value="Non-Vegetarian">
+                        Non-Vegetarian
+                    </option>
+
+                    <option value="Jain">
+                        Jain
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Special Requirements
+                </label>
+
+                <input
+                    type="text"
+                    name="special_requirements"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+        </div>
+
+
+      
+
+        {% if not event.is_online %}
+
+        <div class="lunch-box">
+
+            <h3>
+                🍱 Lunch Requirement
+            </h3>
+
+            <p>
+                Will you require lunch during the event?
+            </p>
+
+
+            <div class="radio-group">
+
+
+                <label class="radio-option">
+
+                    <input
+                        type="radio"
+                        name="lunch_required"
+                        value="Yes"
+                        checked
+                    >
+
+                    Yes, I need lunch
+
+                </label>
+
+
+                <label class="radio-option">
+
+                    <input
+                        type="radio"
+                        name="lunch_required"
+                        value="No"
+                    >
+
+                    No, thank you
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <input
+            type="hidden"
+            name="lunch_required"
+            value="No"
+        >
+
+        {% endif %}
+
+
+
+        <button
+            type="submit"
+            class="submit-btn"
+        >
+
+            ✓ Confirm Event Registration
+
+        </button>
+
+
+    </form>
+
+
+    <a
+        href="{% url 'events' %}"
+        class="back"
+    >
+
+        ← Back to Events
+
+    </a>
+
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>

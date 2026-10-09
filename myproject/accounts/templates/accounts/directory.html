@@ -1,0 +1,593 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Alumni Directory | AlumniPortal</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 78px;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #374151;
+    padding: 11px 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: #667eea;
+    color: white;
+}
+
+/* ================= HEADER ================= */
+
+.page-header {
+    text-align: center;
+    padding: 70px 20px 45px;
+    background:
+        radial-gradient(circle at top left, rgba(102,126,234,.15), transparent 35%),
+        radial-gradient(circle at top right, rgba(118,75,162,.13), transparent 35%),
+        #f8f9ff;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.page-header h1 span {
+    color: #667eea;
+}
+
+.page-header p {
+    color: #6b7280;
+    font-size: 17px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-area {
+    max-width: 850px;
+    margin: -25px auto 45px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.search-box {
+    background: white;
+    padding: 12px;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.08);
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 15px;
+    font-size: 15px;
+}
+
+/* ================= DIRECTORY ================= */
+
+.directory-container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 0 25px 80px;
+}
+
+.result-info {
+    margin-bottom: 22px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 25px;
+}
+
+/* ================= CARD ================= */
+
+.alumni-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #e8eaf0;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    transition: .3s ease;
+}
+
+.alumni-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.11);
+}
+
+.card-top {
+    height: 105px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    position: relative;
+}
+
+.avatar {
+    position: absolute;
+    bottom: -35px;
+    left: 25px;
+
+    width: 72px;
+    height: 72px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    color: #667eea;
+
+    border: 5px solid white;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+.card-body {
+    padding: 50px 25px 25px;
+}
+
+.alumni-name {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.alumni-position {
+    color: #667eea;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.info-row strong {
+    color: #374151;
+}
+
+/* ================= BUTTONS ================= */
+
+.card-actions {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn {
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 8px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.btn-profile {
+    background: #667eea;
+    color: white;
+    grid-column: span 2;
+}
+
+.btn-profile:hover {
+    background: #5367d8;
+}
+
+.btn-similar {
+    background: #eef2ff;
+    color: #5367d8;
+}
+
+.btn-recommended {
+    background: #fff7ed;
+    color: #c76a13;
+}
+
+.btn-similar:hover,
+.btn-recommended:hover {
+    transform: translateY(-2px);
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+    text-align: center;
+    padding: 70px 20px;
+    color: #6b7280;
+}
+
+.empty-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #111827;
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+footer p {
+    color: #9ca3af;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 800px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .alumni-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">A</div>
+        AlumniPortal
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            🏠 Home
+        </a>
+
+        <a href="{% url 'about' %}">
+            ✨ About
+        </a>
+
+        <a href="{% url 'directory' %}" class="active">
+            👥 Alumni
+        </a>
+
+        <a href="{% url 'scholarships' %}">
+            🎓 Scholarships
+        </a>
+
+        <a href="{% url 'events' %}">
+            📅 Events
+        </a>
+
+        <a href="{% url 'jobs' %}">
+            💼 Careers
+        </a>
+
+        <a href="{% url 'mentorship' %}">
+            🤝 Mentorship
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HEADER ================= -->
+
+<section class="page-header">
+
+    <h1>
+        Alumni <span>Directory</span>
+    </h1>
+
+    <p>
+        Connect with our alumni community and discover valuable professional connections.
+    </p>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-area">
+
+    <div class="search-box">
+
+        🔍
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by name, company, position or batch..."
+        >
+
+    </div>
+
+</div>
+
+
+<!-- ================= ALUMNI ================= -->
+
+<section class="directory-container">
+
+    <div class="result-info">
+        <span id="resultCount">
+            {{ alumni|length }} alumni found
+        </span>
+    </div>
+
+
+    <div class="alumni-grid" id="alumniGrid">
+
+        {% for alumnus in alumni %}
+
+        <div
+            class="alumni-card"
+            data-search="
+                {{ alumnus.full_name }}
+                {{ alumnus.company }}
+                {{ alumnus.position }}
+                {{ alumnus.batch }}
+                {{ alumnus.register_number }}
+            "
+        >
+
+            <div class="card-top">
+
+                <div class="avatar">
+                    {{ alumnus.full_name|first|upper }}
+                </div>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div class="alumni-name">
+                    {{ alumnus.full_name }}
+                </div>
+
+                <div class="alumni-position">
+                    {{ alumnus.position }}
+                </div>
+
+
+                <div class="info-row">
+                    🏢
+                    <span>
+                        <strong>{{ alumnus.company }}</strong>
+                    </span>
+                </div>
+
+
+                <div class="info-row">
+                    🎓
+                    <span>
+                        Batch <strong>{{ alumnus.batch }}</strong>
+                    </span>
+                </div>
+
+
+                <div class="info-row">
+                    🆔
+                    <span>
+                        {{ alumnus.register_number }}
+                    </span>
+                </div>
+
+
+                <div class="card-actions">
+
+                    <!-- PROFILE -->
+
+                    <a
+                        href="{% url 'alumni_profile' alumnus.register_number %}"
+                        class="btn btn-profile"
+                    >
+                        View Profile →
+                    </a>
+
+
+                    <!-- SIMILAR -->
+
+                    <a
+                        href="{% url 'similar_alumni' alumnus.register_number %}"
+                        class="btn btn-similar"
+                    >
+                        👥 Similar Alumni
+                    </a>
+
+
+                    <!-- RECOMMENDED -->
+
+                    <a
+                        href="{% url 'recommended_alumni' alumnus.register_number %}"
+                        class="btn btn-recommended"
+                    >
+                        ⭐ Recommended
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                👥
+            </div>
+
+            <h2>No alumni found</h2>
+
+            <p>
+                Alumni records will appear here once they are added.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <h3>AlumniPortal</h3>
+
+    <p>
+        Sacred Heart College · Tirupattur · Tamil Nadu
+    </p>
+
+    <p>
+        Connecting alumni, creating opportunities.
+    </p>
+
+</footer>
+
+
+<!-- ================= SEARCH SCRIPT ================= -->
+
+<script>
+
+const searchInput = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".alumni-card");
+const resultCount = document.getElementById("resultCount");
+
+searchInput.addEventListener("input", function () {
+
+    const searchValue = this.value.toLowerCase().trim();
+
+    let visible = 0;
+
+    cards.forEach(card => {
+
+        const content =
+            card.dataset.search.toLowerCase();
+
+        if (content.includes(searchValue)) {
+
+            card.style.display = "block";
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    resultCount.innerText =
+        visible + " alumni found";
+
+});
+
+</script>
+
+</body>
+
+</html>

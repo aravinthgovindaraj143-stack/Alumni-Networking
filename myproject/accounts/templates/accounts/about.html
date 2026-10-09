@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | Alumni Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            color: #172033;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #374151;
+            margin-left: 22px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            color: #64748b;
+            font-size: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Alumni Portal</div>
+
+    <div>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'directory' %}">Directory</a>
+        <a href="{% url 'scholarships' %}">Scholarships</a>
+        <a href="{% url 'events' %}">Events</a>
+        <a href="{% url 'jobs' %}">Jobs</a>
+        <a href="{% url 'mentorship' %}">Mentorship</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>About <span>Alumni Portal</span></h1>
+        <p>One Community, Many Journeys</p>
+    </div>
+
+    <div class="card">
+        <h2>Our Community</h2>
+
+        <p>
+            The Alumni Portal is designed to connect graduates,
+            foster professional relationships and build a lifelong
+            alumni community.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Our Purpose</h2>
+
+        <p>
+            Our platform helps alumni reconnect with classmates,
+            discover career opportunities, participate in events,
+            find mentors and contribute to the growth of the
+            alumni community.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Stay Connected</h2>
+
+        <p>
+            Start by creating your profile and exploring the alumni
+            directory to unlock opportunities and meaningful
+            connections.
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Alumni Portal. All rights reserved.
+</footer>
+
+</body>
+</html>

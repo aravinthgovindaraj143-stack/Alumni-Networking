@@ -1,0 +1,1651 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Portal | Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: #f5f7ff;
+            color: #18213b;
+            overflow-x: hidden;
+            transition: background .3s ease, color .3s ease;
+        }
+
+        /* ==================== DARK MODE ==================== */
+        body.dark-mode {
+            background: #070b18;
+            color: #f8faff;
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(9, 13, 30, .94);
+            border-color: rgba(120, 238, 229, .15);
+            box-shadow: 0 10px 35px rgba(0,0,0,.35);
+        }
+
+        body.dark-mode .logo,
+        body.dark-mode .hero h1,
+        body.dark-mode .feature-card h3,
+        body.dark-mode .stat-box h2,
+        body.dark-mode .section-heading h2,
+        body.dark-mode .center-heading h2,
+        body.dark-mode .story-intro h2,
+        body.dark-mode .story-card h3,
+        body.dark-mode .footer-brand,
+        body.dark-mode .footer-title {
+            color: #fff;
+        }
+
+        body.dark-mode .nav-links {
+            background: #11182c;
+            border-color: #2d3650;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #cbd2e7;
+        }
+
+        body.dark-mode .nav-links a:hover,
+        body.dark-mode .nav-links a.active {
+            color: #fff;
+        }
+
+        body.dark-mode .nav-links a.active {
+            background: linear-gradient(135deg, rgba(114,87,237,.32), rgba(22,189,181,.20));
+        }
+
+        body.dark-mode .login-link {
+            color: #e5e9f7;
+        }
+
+        body.dark-mode .theme-button,
+        body.dark-mode .secondary-button {
+            background: #151c31;
+            color: #fff;
+            border-color: #38425e;
+        }
+
+        body.dark-mode .hero {
+            background:
+                radial-gradient(circle at 15% 30%, rgba(114,87,237,.30), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(22,189,181,.20), transparent 30%),
+                #080c18;
+        }
+
+        body.dark-mode .hero p,
+        body.dark-mode .feature-card p,
+        body.dark-mode .stat-box p,
+        body.dark-mode .section-heading p,
+        body.dark-mode .center-heading p,
+        body.dark-mode .story-intro p,
+        body.dark-mode .story-card p,
+        body.dark-mode .story-card span,
+        body.dark-mode .mini-stat span,
+        body.dark-mode .footer-grid p,
+        body.dark-mode .footer-grid a,
+        body.dark-mode .footer-bottom {
+            color: #bcc5d9;
+        }
+
+        body.dark-mode .hero-badge,
+        body.dark-mode .section-badge {
+            background: #151c31;
+            color: #dce2f2;
+            border-color: #343e5a;
+        }
+
+        body.dark-mode .feature-section,
+        body.dark-mode .opportunity-section,
+        body.dark-mode .cta-section {
+            background: #0b1020;
+        }
+
+        body.dark-mode .impact-section,
+        body.dark-mode .story-section {
+            background: #080c18;
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .impact-card,
+        body.dark-mode .opportunity-card,
+        body.dark-mode .story-card {
+            background: #12192d;
+            border-color: #2d3752;
+        }
+
+        body.dark-mode .stat-box,
+        body.dark-mode .opportunity-item,
+        body.dark-mode .mini-stat {
+            background: #171f35;
+            border-color: #303a57;
+        }
+
+        body.dark-mode .card-top {
+            background: #12192d;
+        }
+
+        body.dark-mode .opportunity-item h3 {
+            color: #fff;
+        }
+
+        body.dark-mode .opportunity-item p {
+            color: #c2cadc;
+        }
+
+        body.dark-mode .location {
+            color: #79e8df;
+        }
+
+        body.dark-mode .small-label {
+            color: #e0e5f5;
+            border-color: #3a4563;
+            background: #171f35;
+        }
+
+        body.dark-mode .card-link,
+        body.dark-mode .location-link {
+            color: #79e8df !important;
+        }
+
+        body.dark-mode footer {
+            background: #070b18;
+            border-color: #293149;
+        }
+
+        body.dark-mode .footer-bottom {
+            border-color: #2a334b;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            min-height: 78px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 5.5%;
+            background: rgba(255,255,255,.90);
+            border: 1px solid rgba(220,225,238,.8);
+            border-radius: 0 0 20px 20px;
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            box-shadow: 0 8px 30px rgba(40,48,90,.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #17213f;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 850;
+            white-space: nowrap;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            color: white;
+            background: linear-gradient(135deg, #7257ed, #16c8bd);
+            box-shadow: 0 8px 24px rgba(114,87,237,.30);
+            font-size: 20px;
+            transition: .3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(-5deg) scale(1.08);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            border-radius: 15px;
+            background: rgba(245,247,253,.80);
+            border: 1px solid #e6e9f1;
+        }
+
+        .nav-links a {
+            color: #4b5369;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 750;
+            padding: 9px 13px;
+            border-radius: 10px;
+            transition: .25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #684bea;
+            background: rgba(114,87,237,.08);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            color: #fff;
+            background: linear-gradient(135deg, #7257ed, #5c49d9);
+            box-shadow: 0 6px 16px rgba(114,87,237,.25);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid #dce0eb;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            transition: .25s ease;
+        }
+
+        .theme-button:hover {
+            transform: rotate(12deg) scale(1.05);
+            border-color: #7257ed;
+            box-shadow: 0 6px 18px rgba(114,87,237,.15);
+        }
+
+        .login-link,
+        .join-button {
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 750;
+            transition: .25s ease;
+            white-space: nowrap;
+        }
+
+        .login-link {
+            color: #343b52;
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+
+        .login-link:hover {
+            color: #684bea;
+            background: rgba(114,87,237,.08);
+        }
+
+        .join-button {
+            color: white;
+            padding: 11px 17px;
+            background: linear-gradient(135deg, #252b48, #171d35);
+            font-size: 12px;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(23,29,53,.16);
+        }
+
+        .join-button:hover {
+            background: linear-gradient(135deg, #7257ed, #16bdb5);
+            transform: translateY(-2px);
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 590px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 95px 20px;
+            background:
+                radial-gradient(circle at 15% 30%, rgba(114,87,237,.14), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(22,189,181,.14), transparent 30%),
+                #f7f9ff;
+        }
+
+        .hero-content {
+            max-width: 950px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 17px;
+            border-radius: 50px;
+            background: rgba(255,255,255,.95);
+            border: 1px solid #dfe3ef;
+            color: #454c61;
+            font-size: 13px;
+            font-weight: 750;
+            margin-bottom: 27px;
+            box-shadow: 0 7px 25px rgba(31,40,75,.05);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #12bdb3;
+            box-shadow: 0 0 13px rgba(18,189,179,.85);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 5.5vw, 76px);
+            line-height: 1.04;
+            letter-spacing: -3.5px;
+            color: #121c3b;
+            margin-bottom: 27px;
+            font-weight: 850;
+        }
+
+        .hero h1 .name {
+            background: linear-gradient(90deg, #704fea, #0ca9a2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 780px;
+            margin: 0 auto 34px;
+            color: #59627a;
+            font-size: 17px;
+            line-height: 1.85;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button,
+        .secondary-button,
+        .cta-button {
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 11px;
+            font-weight: 800;
+            transition: .25s ease;
+        }
+
+        .primary-button {
+            color: white;
+            background: linear-gradient(100deg, #7257ed, #16bdb5);
+            padding: 16px 27px;
+            font-size: 14px;
+            box-shadow: 0 13px 30px rgba(95,82,220,.25);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 38px rgba(95,82,220,.34);
+        }
+
+        .secondary-button {
+            color: #333b54;
+            background: white;
+            border: 1px solid #d9deeb;
+            padding: 16px 27px;
+            font-size: 14px;
+        }
+
+        .secondary-button:hover {
+            border-color: #7257ed;
+            color: #7257ed;
+            transform: translateY(-2px);
+        }
+
+        /* ==================== COMMON SECTIONS ==================== */
+        .feature-section,
+        .impact-section,
+        .opportunity-section,
+        .story-section,
+        .cta-section {
+            padding: 85px 7%;
+        }
+
+        .feature-section,
+        .opportunity-section,
+        .cta-section {
+            background: #fff;
+        }
+
+        .impact-section,
+        .story-section {
+            background: #f6f8fd;
+        }
+
+        .feature-grid,
+        .opportunity-container,
+        .impact-container,
+        .story-container,
+        .cta,
+        .footer-grid,
+        .footer-bottom {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* ==================== FEATURES ==================== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border: 1px solid #dfe3ed;
+            border-radius: 20px;
+            background: #fff;
+            transition: transform .25s, box-shadow .25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 45px rgba(27,35,70,.10);
+        }
+
+        .feature-icon {
+            width: 47px;
+            height: 47px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #ece9ff;
+            color: #684bea;
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #1a2442;
+            font-size: 18px;
+            margin-bottom: 11px;
+            font-weight: 800;
+        }
+
+        .feature-card p {
+            color: #626b82;
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        /* ==================== IMPACT ==================== */
+        .section-badge {
+            display: inline-block;
+            padding: 9px 14px;
+            border-radius: 50px;
+            background: #fff;
+            border: 1px solid #dfe3eb;
+            color: #555e74;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 27px;
+        }
+
+        .section-heading h2,
+        .center-heading h2,
+        .story-intro h2 {
+            color: #18233f;
+            font-weight: 850;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            letter-spacing: -1.2px;
+        }
+
+        .section-heading p {
+            color: #737d94;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .impact-card {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 22px;
+            border: 1px solid #dfe3ed;
+            border-radius: 21px;
+            background: white;
+            box-shadow: 0 15px 45px rgba(28,38,75,.05);
+        }
+
+        .stat-box {
+            padding: 25px;
+            border-radius: 15px;
+            background: #f8f9fd;
+            border: 1px solid #e4e7ef;
+        }
+
+        .stat-box h2 {
+            color: #172444;
+            font-size: 32px;
+            margin-bottom: 7px;
+            font-weight: 850;
+        }
+
+        .stat-box p {
+            color: #6d768b;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+        /* ==================== OPPORTUNITIES ==================== */
+        .center-heading {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .center-heading h2 {
+            font-size: 35px;
+            margin-bottom: 11px;
+        }
+
+        .center-heading p {
+            color: #707990;
+            font-size: 14px;
+        }
+
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .opportunity-card {
+            padding: 24px;
+            border: 1px solid #dfe3ed;
+            border-radius: 19px;
+            background: #fff;
+            min-height: 350px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(26,35,70,.05);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 17px;
+            position: relative;
+            z-index: 5;
+            background: #fff;
+            padding-bottom: 5px;
+        }
+
+        .small-label {
+            padding: 8px 12px;
+            border: 1px solid #dfe3eb;
+            border-radius: 50px;
+            font-size: 11px;
+            color: #4f586e;
+            background: #fafbfe;
+            font-weight: 750;
+        }
+
+        .card-link {
+            color: #684bea;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .opportunity-window {
+            height: 255px;
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .opportunity-track {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: slowUp 18s linear infinite;
+        }
+
+        .opportunity-card:hover .opportunity-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes slowUp {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+
+        .opportunity-item {
+            padding: 15px;
+            border: 1px solid #e3e6ef;
+            border-radius: 12px;
+            background: #fafbfe;
+            flex-shrink: 0;
+            min-height: 78px;
+            transition: .25s;
+        }
+
+        .opportunity-item:hover {
+            border-color: #c8c0ff;
+            transform: translateX(3px);
+            background: #f8f6ff;
+        }
+
+        .opportunity-item h3 {
+            color: #242e4b;
+            font-size: 14px;
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+
+        .opportunity-item p {
+            color: #737c91;
+            font-size: 11px;
+            line-height: 1.55;
+        }
+
+        .location {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 7px;
+            padding: 4px 9px;
+            border-radius: 7px;
+            color: #5d48d7;
+            background: #efedff;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .location::before {
+            content: "📍";
+            margin-right: 4px;
+        }
+
+        /* ==================== STORIES ==================== */
+        .story-container {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 25px;
+        }
+
+        .story-intro {
+            padding: 30px;
+        }
+
+        .story-intro h2 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 17px;
+        }
+
+        .story-intro p {
+            color: #687188;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .story-stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 27px;
+        }
+
+        .mini-stat {
+            padding: 18px;
+            background: white;
+            border: 1px solid #dfe3ed;
+            border-radius: 13px;
+            min-width: 125px;
+        }
+
+        .mini-stat strong {
+            display: block;
+            color: #202b4d;
+            font-size: 25px;
+            font-weight: 850;
+        }
+
+        .mini-stat span {
+            color: #777f93;
+            font-size: 11px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .story-card {
+            padding: 27px;
+            border: 1px solid #dfe3ed;
+            border-radius: 18px;
+            background: white;
+        }
+
+        .quote {
+            color: #7257ed;
+            font-size: 32px;
+            margin-bottom: 11px;
+        }
+
+        .story-card p {
+            color: #656e83;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 21px;
+        }
+
+        .story-card h3 {
+            color: #202a48;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .story-card span {
+            color: #858da0;
+            font-size: 11px;
+        }
+
+        /* ==================== CTA ==================== */
+        .cta {
+            padding: 43px;
+            border-radius: 23px;
+            background: linear-gradient(110deg, #111932, #3a2364);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            box-shadow: 0 18px 45px rgba(26,31,69,.16);
+        }
+
+        .cta h2 {
+            font-size: 29px;
+            margin-bottom: 9px;
+            font-weight: 850;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,.78);
+            font-size: 13px;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: white;
+            color: #252b44;
+            padding: 15px 23px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: #eafffa;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: #f6f8fc;
+            border-top: 1px solid #dfe3eb;
+            padding: 60px 7% 27px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+            gap: 45px;
+        }
+
+        .footer-brand {
+            color: #1b2542;
+            font-size: 19px;
+            font-weight: 850;
+            margin-bottom: 14px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #6e778b;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .footer-grid a {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 9px;
+        }
+
+        .footer-grid a:hover {
+            color: #684bea;
+        }
+
+        .footer-title {
+            color: #29334e;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .college-location {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .college-location p {
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .college-name {
+            color: #303951 !important;
+            font-size: 13px !important;
+            font-weight: 800;
+            margin-bottom: 3px !important;
+        }
+
+        .department {
+            color: #684bea !important;
+            font-size: 12px !important;
+            font-weight: 700;
+        }
+
+        .location-link {
+            display: inline-flex !important;
+            align-items: center;
+            width: fit-content;
+            margin-top: 10px !important;
+            padding: 8px 12px;
+            border-radius: 9px;
+            background: rgba(114,87,237,.08);
+            border: 1px solid rgba(114,87,237,.15);
+            color: #684bea !important;
+            font-size: 11px !important;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .location-link:hover {
+            transform: translateY(-2px);
+            background: rgba(114,87,237,.14);
+            box-shadow: 0 7px 18px rgba(114,87,237,.12);
+        }
+
+        .footer-bottom {
+            margin-top: 42px;
+            padding-top: 21px;
+            border-top: 1px solid #dfe3ea;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            color: #858da0;
+            font-size: 11px;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1150px) {
+            .nav-links a {
+                padding: 8px 9px;
+                font-size: 11px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .story-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-card {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 10px 18px;
+                min-height: 70px;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 39px;
+                height: 39px;
+            }
+
+            .login-link {
+                display: none;
+            }
+
+            .join-button {
+                padding: 10px 13px;
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 530px;
+                padding: 70px 20px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .hero p {
+                font-size: 14px;
+                line-height: 1.75;
+            }
+
+            .feature-section,
+            .impact-section,
+            .opportunity-section,
+            .story-section,
+            .cta-section {
+                padding: 58px 20px;
+            }
+
+            .feature-grid,
+            .impact-card,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-heading h2,
+            .center-heading h2,
+            .story-intro h2 {
+                font-size: 28px;
+            }
+
+            .opportunity-window {
+                height: 260px;
+            }
+
+            .cta {
+                padding: 30px;
+            }
+
+            .cta h2 {
+                font-size: 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+
+        <a href="{% url 'home' %}" class="logo">
+            <span class="logo-icon">🎓</span>
+            AlumniPortal
+        </a>
+
+        <div class="nav-links">
+            <a href="{% url 'home' %}" class="active">🏠 Home</a>
+            <a href="{% url 'about' %}">ℹ️ About</a>
+            <a href="{% url 'directory' %}">👥 Directory</a>
+            <a href="{% url 'scholarships' %}">🎓 Scholarships</a>
+            <a href="{% url 'events' %}">📅 Events</a>
+            <a href="{% url 'jobs' %}">💼 Jobs</a>
+            <a href="{% url 'mentorship' %}">🤝 Mentorship</a>
+        </div>
+
+        <div class="nav-right">
+
+            <button
+                type="button"
+                class="theme-button"
+                id="themeButton"
+                onclick="toggleTheme()"
+                title="Change theme"
+                aria-label="Change theme"
+            >🌙</button>
+
+            {% if alumni %}
+                <a href="{% url 'logout' %}" class="login-link">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-link">→ Login</a>
+            {% endif %}
+
+            <a href="{% url 'register' %}" class="join-button">
+                Join Network →
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                One Community · Many Journeys
+            </div>
+
+            <h1>
+                Welcome Home,
+                <span class="name">{{ display_name|default:"Alumni" }}</span>
+            </h1>
+
+            <p>
+                Reconnect with classmates, expand your professional network,
+                discover opportunities, and give back to the community that
+                shaped your journey.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'register' %}" class="primary-button">
+                    Create Profile →
+                </a>
+
+                <a href="{% url 'directory' %}" class="secondary-button">
+                    Browse Directory
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== FEATURES ==================== -->
+    <section class="feature-section">
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Alumni Directory</h3>
+                <p>
+                    Find your classmates and connect with professionals in
+                    your field.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Events & Reunions</h3>
+                <p>
+                    Stay updated on upcoming campus events, webinars and
+                    reunions.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Career Opportunities</h3>
+                <p>
+                    Access job listings, referrals and professional
+                    opportunities.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Give Back</h3>
+                <p>
+                    Support the next generation through mentorship and
+                    community initiatives.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== IMPACT ==================== -->
+    <section class="impact-section">
+        <div class="impact-container">
+
+            <span class="section-badge">📊 Community Impact Snapshot</span>
+
+            <div class="section-heading">
+                <h2>Real growth across the alumni ecosystem</h2>
+                <p>Updated for 2026 Alumni Cycle</p>
+            </div>
+
+            <div class="impact-card">
+
+                <div class="stat-box">
+                    <h2>{{ active_alumni|default:"0" }}</h2>
+                    <p>Active Alumni</p>
+                </div>
+
+                <div class="stat-box">
+                    <h2>{{ mentor_sessions|default:"0" }}</h2>
+                    <p>Mentor Sessions</p>
+                </div>
+
+                <div class="stat-box">
+                    <h2>{{ total_alumni|default:"0" }}</h2>
+                    <p>Alumni Connected</p>
+                </div>
+
+                <div class="stat-box">
+                    <h2>{{ opportunities_shared|default:"0" }}</h2>
+                    <p>Opportunities Shared</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== OPPORTUNITIES ==================== -->
+    <section class="opportunity-section">
+        <div class="opportunity-container">
+
+            <div class="center-heading">
+                <span class="section-badge">🔴 Live Opportunity Streams</span>
+                <h2>Explore Events, Find Jobs, Get Mentorship</h2>
+                <p>
+                    Opportunities are continuously updated for our alumni
+                    community.
+                </p>
+            </div>
+
+            <div class="opportunity-grid">
+
+                <!-- EVENTS -->
+                <div class="opportunity-card">
+                    <div class="card-top">
+                        <span class="small-label">📅 Events</span>
+                        <a href="{% url 'events' %}" class="card-link">
+                            View All →
+                        </a>
+                    </div>
+
+                    <div class="opportunity-window">
+                        <div class="opportunity-track">
+
+                            <div class="opportunity-item">
+                                <h3>Annual Alumni Meet</h3>
+                                <p>Saturday · 5:30 PM</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Startup Founder Panel</h3>
+                                <p>Sunday · 11:00 AM</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Tech Career Meetup</h3>
+                                <p>Friday · 6:30 PM</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Alumni Networking Evening</h3>
+                                <p>Saturday · 4:00 PM</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <!-- DUPLICATE FOR SMOOTH LOOP -->
+                            <div class="opportunity-item">
+                                <h3>Annual Alumni Meet</h3>
+                                <p>Saturday · 5:30 PM</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Startup Founder Panel</h3>
+                                <p>Sunday · 11:00 AM</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Tech Career Meetup</h3>
+                                <p>Friday · 6:30 PM</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Alumni Networking Evening</h3>
+                                <p>Saturday · 4:00 PM</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JOBS -->
+                <div class="opportunity-card">
+                    <div class="card-top">
+                        <span class="small-label">💼 Jobs</span>
+                        <a href="{% url 'jobs' %}" class="card-link">
+                            Browse Jobs →
+                        </a>
+                    </div>
+
+                    <div class="opportunity-window">
+                        <div class="opportunity-track">
+
+                            <div class="opportunity-item">
+                                <h3>Python Developer</h3>
+                                <p>TechNova · Full Time</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Frontend Engineer</h3>
+                                <p>PixelNest Labs · Full Time</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>UX Design Intern</h3>
+                                <p>BlueOrbit · Internship</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Data Engineer</h3>
+                                <p>InsightGrid · Full Time</p>
+                                <span class="location">Remote</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Java Developer</h3>
+                                <p>CodeWave Technologies · Full Time</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Software Engineer</h3>
+                                <p>TechSphere · Full Time</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Machine Learning Intern</h3>
+                                <p>AIWorks · Internship</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Backend Developer</h3>
+                                <p>CloudStack · Full Time</p>
+                                <span class="location">Coimbatore</span>
+                            </div>
+
+                            <!-- DUPLICATE FOR SMOOTH LOOP -->
+                            <div class="opportunity-item">
+                                <h3>Python Developer</h3>
+                                <p>TechNova · Full Time</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Frontend Engineer</h3>
+                                <p>PixelNest Labs · Full Time</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>UX Design Intern</h3>
+                                <p>BlueOrbit · Internship</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Data Engineer</h3>
+                                <p>InsightGrid · Full Time</p>
+                                <span class="location">Remote</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Java Developer</h3>
+                                <p>CodeWave Technologies · Full Time</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Software Engineer</h3>
+                                <p>TechSphere · Full Time</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Machine Learning Intern</h3>
+                                <p>AIWorks · Internship</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Backend Developer</h3>
+                                <p>CloudStack · Full Time</p>
+                                <span class="location">Coimbatore</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENTORSHIP -->
+                <div class="opportunity-card">
+                    <div class="card-top">
+                        <span class="small-label">🤝 Mentorship</span>
+                        <a href="{% url 'mentorship' %}" class="card-link">
+                            Join Program →
+                        </a>
+                    </div>
+
+                    <div class="opportunity-window">
+                        <div class="opportunity-track">
+
+                            <div class="opportunity-item">
+                                <h3>Data Engineering & Analytics</h3>
+                                <p>Career guidance</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>System Design</h3>
+                                <p>Backend career guidance</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Career Growth</h3>
+                                <p>Product and technology</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>AI & Machine Learning</h3>
+                                <p>Industry mentor session</p>
+                                <span class="location">Remote</span>
+                            </div>
+
+                            <!-- DUPLICATE FOR SMOOTH LOOP -->
+                            <div class="opportunity-item">
+                                <h3>Data Engineering & Analytics</h3>
+                                <p>Career guidance</p>
+                                <span class="location">Chennai</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>System Design</h3>
+                                <p>Backend career guidance</p>
+                                <span class="location">Bengaluru</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>Career Growth</h3>
+                                <p>Product and technology</p>
+                                <span class="location">Hyderabad</span>
+                            </div>
+
+                            <div class="opportunity-item">
+                                <h3>AI & Machine Learning</h3>
+                                <p>Industry mentor session</p>
+                                <span class="location">Remote</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ALUMNI STORIES ==================== -->
+    <section class="story-section">
+        <div class="story-container">
+
+            <div class="story-intro">
+                <span class="section-badge">⭐ Voices Of Alumni</span>
+
+                <h2>Real stories with measurable outcomes</h2>
+
+                <p>
+                    From mentorship guidance to career referrals, alumni
+                    continue to create meaningful progress together.
+                </p>
+
+                <div class="story-stats">
+                    <div class="mini-stat">
+                        <strong>89%</strong>
+                        <span>Positive outcomes</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>2</strong>
+                        <span>Stories shared</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-grid">
+
+                <div class="story-card">
+                    <div class="quote">“</div>
+
+                    <p>
+                        The mentorship program gave me clarity, confidence
+                        and direct guidance from seniors in my target domain.
+                    </p>
+
+                    <h3>Nitin Raj</h3>
+                    <span>Software Engineer</span>
+                </div>
+
+                <div class="story-card">
+                    <div class="quote">“</div>
+
+                    <p>
+                        I reconnected with my batchmates after several years
+                        and found my current role through the alumni network.
+                    </p>
+
+                    <h3>Ritika Singh</h3>
+                    <span>Product Manager</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA ==================== -->
+    <section class="cta-section">
+        <div class="cta">
+
+            <div>
+                <h2>Find your people, your mentors, your next step.</h2>
+                <p>
+                    Start by creating your profile and exploring the alumni
+                    directory.
+                </p>
+            </div>
+
+            <div class="cta-actions">
+                <a href="{% url 'register' %}" class="cta-button">
+                    Create Profile →
+                </a>
+
+                <a href="{% url 'directory' %}" class="cta-button">
+                    Browse Directory
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+                <div class="footer-brand">🎓 AlumniPortal</div>
+
+                <p>
+                    Connecting graduates, fostering growth and building a
+                    lifelong community of excellence.
+                </p>
+            </div>
+
+            <div>
+                <div class="footer-title">Quick Links</div>
+
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'about' %}">About Us</a>
+                <a href="{% url 'directory' %}">Alumni Directory</a>
+                <a href="{% url 'register' %}">Join Network</a>
+            </div>
+
+            <div>
+                <div class="footer-title">Opportunities</div>
+
+                <a href="{% url 'jobs' %}">Job Board</a>
+                <a href="{% url 'mentorship' %}">Mentorship Program</a>
+                <a href="{% url 'scholarships' %}">Scholarships</a>
+                <a href="{% url 'events' %}">Events</a>
+            </div>
+
+            <div class="college-location">
+                <div class="footer-title">📍 College Location</div>
+
+                <p class="college-name">Sacred Heart College</p>
+                <p>Tirupattur</p>
+                <p>Tamil Nadu, India</p>
+
+                <p class="department">
+                    📚 Department of Artificial Intelligence & Machine Learning
+                </p>
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=Sacred+Heart+College+Tirupattur"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="location-link"
+                >
+                    📍 View College Location →
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 Alumni Portal. All rights reserved.</span>
+            <span>📍 Sacred Heart College · Tirupattur · Tamil Nadu</span>
+        </div>
+
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.getElementById("themeButton");
+
+            body.classList.toggle("dark-mode");
+
+            if (body.classList.contains("dark-mode")) {
+                button.textContent = "☀️";
+                localStorage.setItem("alumniTheme", "dark");
+            } else {
+                button.textContent = "🌙";
+                localStorage.setItem("alumniTheme", "light");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedTheme = localStorage.getItem("alumniTheme");
+            const button = document.getElementById("themeButton");
+
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                button.textContent = "☀️";
+            } else {
+                button.textContent = "🌙";
+            }
+        });
+    </script>
+
+</body>
+</html>

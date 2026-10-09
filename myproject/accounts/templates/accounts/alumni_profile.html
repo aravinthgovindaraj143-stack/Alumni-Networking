@@ -1,0 +1,676 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>{{ alumnus.full_name }} | Alumni Profile</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+
+
+.navbar {
+    height: 75px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #374151;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    background: #667eea;
+    color: white;
+}
+
+
+
+.profile-hero {
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,.20),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
+    color: white;
+
+    text-align: center;
+
+    padding: 65px 20px 90px;
+}
+
+.profile-avatar {
+
+    width: 110px;
+    height: 110px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #667eea;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 42px;
+    font-weight: 800;
+
+    border: 6px solid rgba(255,255,255,.6);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.20);
+}
+
+.profile-hero h1 {
+
+    margin-top: 20px;
+
+    font-size: 34px;
+}
+
+.profile-hero p {
+
+    margin-top: 8px;
+
+    opacity: .9;
+
+    font-size: 17px;
+}
+
+
+
+.container {
+
+    max-width: 1050px;
+
+    margin: -45px auto 80px;
+
+    padding: 0 20px;
+
+    position: relative;
+}
+
+
+.profile-card {
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.08);
+}
+
+
+
+.section-title {
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    margin-bottom: 25px;
+}
+
+
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.info-box {
+
+    padding: 20px;
+
+    background: #f8f9ff;
+
+    border-radius: 16px;
+
+    border: 1px solid #edf0f7;
+}
+
+.info-label {
+
+    color: #8a93a5;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+    margin-bottom: 7px;
+
+    font-weight: 700;
+}
+
+.info-value {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: #273044;
+
+    word-break: break-word;
+}
+
+
+
+.actions {
+
+    margin-top: 35px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.btn {
+
+    text-decoration: none;
+
+    text-align: center;
+
+    padding: 14px 12px;
+
+    border-radius: 13px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.btn:hover {
+
+    transform: translateY(-3px);
+}
+
+.back {
+
+    background: #f1f3f9;
+
+    color: #374151;
+}
+
+.similar {
+
+    background: #eef2ff;
+
+    color: #5367d8;
+}
+
+.recommended {
+
+    background: #fff7ed;
+
+    color: #d97706;
+}
+
+
+
+.smart-section {
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8f9ff,
+            #fff8f1
+        );
+
+    border: 1px solid #ececf4;
+}
+
+.smart-section h3 {
+
+    margin-bottom: 8px;
+
+    font-size: 18px;
+}
+
+.smart-section p {
+
+    color: #6b7280;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+
+
+footer {
+
+    background: #111827;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 35px 20px;
+}
+
+footer p {
+
+    color: #9ca3af;
+
+    margin-top: 8px;
+
+    font-size: 14px;
+}
+
+
+
+@media(max-width: 700px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .profile-hero h1 {
+        font-size: 28px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            A
+        </div>
+
+        AlumniPortal
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            🏠 Home
+        </a>
+
+        <a href="{% url 'directory' %}">
+            👥 Alumni
+        </a>
+
+        <a href="{% url 'events' %}">
+            📅 Events
+        </a>
+
+        <a href="{% url 'jobs' %}">
+            💼 Careers
+        </a>
+
+        <a href="{% url 'mentorship' %}">
+            🤝 Mentorship
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<section class="profile-hero">
+
+    <div class="profile-avatar">
+
+        {{ alumnus.full_name|first|upper }}
+
+    </div>
+
+
+    <h1>
+        {{ alumnus.full_name }}
+    </h1>
+
+
+    <p>
+        {{ alumnus.position }}
+        ·
+        {{ alumnus.company }}
+    </p>
+
+</section>
+
+
+
+
+<div class="container">
+
+
+    <div class="profile-card">
+
+
+        <div class="section-title">
+
+            👤 Alumni Information
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <!-- REGISTER NUMBER -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Register Number
+                </div>
+
+                <div class="info-value">
+                    {{ alumnus.register_number }}
+                </div>
+
+            </div>
+
+
+            <!-- BATCH -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Batch
+                </div>
+
+                <div class="info-value">
+                    {{ alumnus.batch }}
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Email
+                </div>
+
+                <div class="info-value">
+                    {{ alumnus.email }}
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Mobile
+                </div>
+
+                <div class="info-value">
+                    {{ alumnus.phone }}
+                </div>
+
+            </div>
+
+
+            <!-- DATE OF BIRTH -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Date of Birth
+                </div>
+
+                <div class="info-value">
+
+                    {% if alumnus.date_of_birth %}
+
+                        {{ alumnus.date_of_birth|date:"d M Y" }}
+
+                    {% else %}
+
+                        Not Available
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPANY -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Company
+                </div>
+
+                <div class="info-value">
+                    {{ alumnus.company }}
+                </div>
+
+            </div>
+
+
+            <!-- POSITION -->
+
+            <div class="info-box">
+
+                <div class="info-label">
+                    Position
+                </div>
+
+                <div class="info-value">
+                    {{ alumnus.position }}
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="smart-section">
+
+            <h3>
+                ✨ Discover Professional Connections
+            </h3>
+
+            <p>
+                Explore alumni with similar professional
+                profiles or discover recommended alumni
+                who may be valuable connections.
+            </p>
+
+        </div>
+
+
+       
+
+        <div class="actions">
+
+
+            <a
+                href="{% url 'directory' %}"
+                class="btn back"
+            >
+                ← Back to Directory
+            </a>
+
+
+            <a
+                href="{% url 'similar_alumni' alumnus.register_number %}"
+                class="btn similar"
+            >
+                👥 Similar Alumni
+            </a>
+
+
+            <a
+                href="{% url 'recommended_alumni' alumnus.register_number %}"
+                class="btn recommended"
+            >
+                ⭐ Recommended Alumni
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<footer>
+
+    <h3>
+        AlumniPortal
+    </h3>
+
+    <p>
+        Sacred Heart College · Tirupattur · Tamil Nadu
+    </p>
+
+    <p>
+        Connecting alumni, creating opportunities.
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

@@ -93,7 +93,7 @@ def run_recommendation():
                 continue
 
             recommendations.append(
-                alumni[j].full_name
+                alumni[j].register_number
             )
 
             if len(recommendations) == 5:

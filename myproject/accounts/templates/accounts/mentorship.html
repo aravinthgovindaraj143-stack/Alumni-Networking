@@ -1,14 +1,35 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mentorship | Alumni Portal</title>
+    <title>Alumni Mentorship | Alumni Portal</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
+        :root {
+            --primary: #087f5b;
+            --primary-dark: #065f46;
+            --primary-light: #e7f7ef;
+            --gold: #e9b949;
+            --text: #172b3a;
+            --muted: #718096;
+            --background: #f5f8f7;
+            --white: #ffffff;
+            --border: #e6eeea;
+            --shadow: 0 12px 35px rgba(20, 60, 45, 0.08);
+        }
 
         * {
             margin: 0;
@@ -16,301 +37,1741 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f8fafc;
-            color: #172033;
+            font-family: "DM Sans", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        nav {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 20px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        nav a {
+        a {
             text-decoration: none;
-            color: #374151;
-            margin-left: 20px;
-            font-weight: 600;
+            color: inherit;
         }
 
-        nav a:hover {
-            color: #2563eb;
+        button,
+        input {
+            font: inherit;
         }
 
-        .container {
-            max-width: 1100px;
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1250px;
             margin: auto;
-            padding: 70px 25px;
+            min-height: 82px;
+            padding: 12px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
         }
 
-        .heading {
-            text-align: center;
-            margin-bottom: 45px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
         }
 
-        .heading h1 {
-            font-size: 45px;
-            margin-bottom: 12px;
-        }
-
-        .heading span {
-            color: #2563eb;
-        }
-
-        .heading p {
-            color: #64748b;
-            font-size: 17px;
-        }
-
-        .mentor-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .mentor {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 28px;
-            text-align: center;
-        }
-
-        .avatar {
-            width: 75px;
-            height: 75px;
-            margin: auto;
-            margin-bottom: 18px;
-            border-radius: 50%;
-            background: #dbeafe;
-            color: #2563eb;
+        .brand-logo {
+            width: 47px;
+            height: 47px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #087f5b, #19a974);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .mentor h2 {
-            margin-bottom: 8px;
-        }
-
-        .mentor p {
-            color: #64748b;
-            margin-bottom: 8px;
-        }
-
-        .expertise {
-            margin: 15px 0;
-            padding: 8px;
-            background: #eff6ff;
-            color: #2563eb;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .button {
-            display: inline-block;
-            background: #2563eb;
             color: white;
-            text-decoration: none;
-            padding: 11px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            margin-top: 10px;
+            font-size: 21px;
+            box-shadow: 0 6px 15px rgba(8, 127, 91, 0.2);
         }
 
-        .info {
-            background: #172033;
+        .brand-name {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: #173d31;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-subtitle {
+            display: block;
+            font-size: 10px;
+            color: #7a9187;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 13px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #56675f;
+            transition: 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link i {
+            font-size: 13px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: #eff8f3;
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: #e7f7ef;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 13px 7px 7px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            background: white;
+            font-size: 12px;
+            font-weight: 700;
+            color: #385347;
+            transition: 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .profile-link:hover {
+            border-color: #a9d8c2;
+            box-shadow: 0 5px 15px rgba(8, 127, 91, 0.1);
+        }
+
+        .profile-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #087f5b, #53c995);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            margin-top: 45px;
-            padding: 35px;
+            font-weight: 800;
+        }
+
+        .nav-login {
+            padding: 11px 19px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav-login:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: none;
+            background: #e7f7ef;
+            color: var(--primary);
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 19px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(233, 185, 73, 0.2),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    125deg,
+                    #073f32 0%,
+                    #087f5b 52%,
+                    #12966d 100%
+                );
+            color: white;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            top: -210px;
+            right: 7%;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -200px;
+            left: 12%;
+        }
+
+        .hero-container {
+            max-width: 1180px;
+            margin: auto;
+            padding: 75px 28px 90px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.23);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero-badge i {
+            color: #ffdf83;
+        }
+
+        .hero h1 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: clamp(35px, 5vw, 59px);
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f6d783;
+        }
+
+        .hero-description {
+            max-width: 690px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.84);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 13px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 23px;
+            border-radius: 11px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: 0.25s ease;
+        }
+
+        .hero-button.primary {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .hero-button.secondary {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.13);
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats-container {
+            max-width: 1000px;
+            padding: 0 25px;
+            margin: -38px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: white;
             border-radius: 18px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .stat-card {
             text-align: center;
+            padding: 25px 15px;
+            position: relative;
         }
 
-        .info h2 {
-            margin-bottom: 12px;
+        .stat-card:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 25%;
+            height: 50%;
+            width: 1px;
+            background: var(--border);
         }
 
-        .info p {
-            color: #cbd5e1;
+        .stat-number {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            color: var(--primary);
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.3;
         }
 
-        footer {
-            margin-top: 60px;
-            background: #0f172a;
+        .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-container {
+            max-width: 1180px;
+            margin: auto;
+            padding: 70px 28px 85px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 25px;
+            margin-bottom: 27px;
+        }
+
+        .section-eyebrow {
+            color: var(--primary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: clamp(25px, 3vw, 35px);
+            letter-spacing: -1px;
+            line-height: 1.3;
+            color: #18392e;
+        }
+
+        .section-description {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 620px;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-panel {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 18px rgba(20, 60, 45, 0.035);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-input-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f7faf8;
+            border: 1px solid #e6eeea;
+            border-radius: 11px;
+            padding: 0 15px;
+            transition: 0.25s ease;
+        }
+
+        .search-input-wrap:focus-within {
+            border-color: #69b99a;
+            box-shadow: 0 0 0 3px rgba(8, 127, 91, 0.08);
+        }
+
+        .search-input-wrap i {
+            color: var(--primary);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 13px;
+        }
+
+        .search-input::placeholder {
+            color: #97a59e;
+        }
+
+        .search-button {
+            border: none;
+            background: var(--primary);
             color: white;
-            text-align: center;
-            padding: 30px;
+            padding: 0 24px;
+            border-radius: 11px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
         }
 
-        @media(max-width:800px) {
+        .search-button:hover {
+            background: var(--primary-dark);
+        }
 
-            nav {
-                flex-direction: column;
+        .clear-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 16px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            color: #60756a;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .clear-button:hover {
+            background: #f3f8f5;
+        }
+
+        .results-label {
+            color: var(--muted);
+            font-size: 12px;
+            margin: 0 0 22px 2px;
+        }
+
+        .results-label strong {
+            color: var(--primary);
+        }
+
+        /* =========================
+           MENTOR CARDS
+        ========================= */
+
+        .mentor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .mentor-card {
+            position: relative;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 19px;
+            overflow: hidden;
+            box-shadow: 0 7px 22px rgba(20, 60, 45, 0.035);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .mentor-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 35px rgba(20, 60, 45, 0.1);
+            border-color: #c8e8d7;
+        }
+
+        .card-top {
+            height: 95px;
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(233, 185, 73, 0.3),
+                    transparent 25%
+                ),
+                linear-gradient(135deg, #e8f7ef, #d6f0e3);
+            position: relative;
+        }
+
+        .card-top::after {
+            content: "";
+            position: absolute;
+            right: -15px;
+            top: -35px;
+            width: 130px;
+            height: 130px;
+            border: 1px solid rgba(8, 127, 91, 0.12);
+            border-radius: 50%;
+        }
+
+        .mentor-avatar {
+            position: absolute;
+            top: 48px;
+            left: 24px;
+            width: 83px;
+            height: 83px;
+            border-radius: 23px;
+            background: linear-gradient(135deg, #087f5b, #25ad7b);
+            color: white;
+            border: 5px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 29px;
+            font-weight: 800;
+            box-shadow: 0 6px 16px rgba(8, 127, 91, 0.16);
+            z-index: 2;
+        }
+
+        .mentor-content {
+            padding: 48px 24px 24px;
+        }
+
+        .mentor-batch {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: #f2f8f4;
+            color: #577467;
+            font-size: 10px;
+            font-weight: 800;
+            margin-bottom: 13px;
+        }
+
+        .mentor-name {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.4;
+            color: #193a2e;
+            margin-bottom: 6px;
+            overflow-wrap: anywhere;
+        }
+
+        .mentor-position {
+            font-size: 13px;
+            color: #667b70;
+            margin-bottom: 17px;
+            min-height: 21px;
+        }
+
+        .mentor-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #eef3ef;
+            font-size: 12px;
+            color: #61746a;
+            overflow-wrap: anywhere;
+        }
+
+        .mentor-detail i {
+            color: var(--primary);
+            width: 15px;
+            text-align: center;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .mentor-company {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 15px;
+            padding: 8px 11px;
+            border-radius: 8px;
+            background: #f1f8f4;
+            color: #087f5b;
+            font-size: 11px;
+            font-weight: 800;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+        }
+
+        .mentor-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .mentor-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            min-height: 43px;
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            transition: 0.25s ease;
+            text-align: center;
+        }
+
+        .mentor-button.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .mentor-button.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .mentor-button.secondary {
+            background: white;
+            border: 1px solid var(--border);
+            color: #526c5e;
+        }
+
+        .mentor-button.secondary:hover {
+            background: #f1f8f4;
+            border-color: #b8ddc9;
+        }
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            grid-column: 1 / -1;
+            background: white;
+            border: 1px dashed #c8ded1;
+            border-radius: 20px;
+            padding: 65px 25px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            width: 76px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 23px;
+            background: #eaf7ef;
+            color: var(--primary);
+            font-size: 29px;
+        }
+
+        .empty-state h3 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .how-section {
+            margin-top: 75px;
+            padding: 45px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 23px;
+            box-shadow: var(--shadow);
+        }
+
+        .how-heading {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .how-heading h2 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 29px;
+            color: #18392e;
+        }
+
+        .how-heading p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 9px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        .step-icon {
+            width: 63px;
+            height: 63px;
+            border-radius: 19px;
+            margin: 0 auto 17px;
+            background: #e8f7ef;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .step-card h3 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 15px;
+            margin-bottom: 9px;
+        }
+
+        .step-card p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* =========================
+           BOTTOM CTA
+        ========================= */
+
+        .cta-section {
+            margin-top: 65px;
+            border-radius: 23px;
+            padding: 48px 35px;
+            text-align: center;
+            color: white;
+            background:
+                radial-gradient(
+                    circle at 90% 0%,
+                    rgba(233, 185, 73, 0.22),
+                    transparent 30%
+                ),
+                linear-gradient(120deg, #073f32, #087f5b);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 1.4;
+            margin-bottom: 13px;
+        }
+
+        .cta-section p {
+            max-width: 650px;
+            margin: auto;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            line-height: 1.9;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 24px;
+            padding: 13px 22px;
+            border-radius: 11px;
+            background: white;
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 800;
+            transition: 0.25s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.13);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            background: #102d25;
+            color: white;
+            padding: 38px 28px;
+        }
+
+        .footer-container {
+            max-width: 1180px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .footer-text {
+            color: #a9c2b5;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #c3d6cd;
+            font-size: 12px;
+            transition: 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f6d783;
+        }
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 1100px) {
+            .nav-container {
                 gap: 15px;
             }
 
-            nav a {
-                margin: 5px;
+            .nav-link {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .nav-link i {
+                display: none;
+            }
+
+            .brand-name {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-container {
+                min-height: 75px;
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: auto;
+            }
+
+            .nav-links {
+                display: none;
+                order: 3;
+                flex-basis: 100%;
+                width: 100%;
+                align-items: stretch;
+                flex-direction: column;
+                padding: 12px 0;
+                border-top: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                padding: 13px 15px;
+                font-size: 13px;
+            }
+
+            .nav-link i {
                 display: inline-block;
+                width: 17px;
+            }
+
+            .nav-actions {
+                order: 2;
+            }
+
+            .mentor-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .how-section {
+                padding: 32px 22px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 12px 17px;
+                gap: 10px;
+            }
+
+            .brand-logo {
+                width: 40px;
+                height: 40px;
+                border-radius: 12px;
+                font-size: 18px;
+            }
+
+            .brand-name {
+                font-size: 14px;
+            }
+
+            .brand-subtitle {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .hero-container {
+                padding: 55px 20px 75px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .hero-button {
+                width: 100%;
+            }
+
+            .stats-container {
+                padding: 0 15px;
+            }
+
+            .stat-card {
+                padding: 20px 7px;
+            }
+
+            .stat-number {
+                font-size: 23px;
+            }
+
+            .stat-label {
+                font-size: 10px;
+            }
+
+            .main-container {
+                padding: 55px 17px 65px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-input-wrap {
+                min-height: 48px;
+            }
+
+            .search-button,
+            .clear-button {
+                min-height: 45px;
             }
 
             .mentor-grid {
                 grid-template-columns: 1fr;
             }
+
+            .mentor-card {
+                max-width: 450px;
+                width: 100%;
+                margin: auto;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .how-section {
+                margin-top: 55px;
+                padding: 28px 18px;
+            }
+
+            .how-heading h2 {
+                font-size: 24px;
+            }
+
+            .cta-section {
+                padding: 37px 20px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                gap: 15px;
+            }
         }
-
     </style>
-
 </head>
 
 <body>
 
-<nav>
+<!-- =========================
+     NAVBAR
+========================= -->
 
-    <div class="logo">
-        Alumni Portal
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{% url 'home' %}" class="brand">
+
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div>
+                <div class="brand-name">Alumni Portal</div>
+                <span class="brand-subtitle">Stay Connected</span>
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="{% url 'home' %}" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="{% url 'about' %}" class="nav-link">
+                <i class="fa-solid fa-circle-info"></i>
+                About
+            </a>
+
+            <a href="{% url 'directory' %}" class="nav-link">
+                <i class="fa-solid fa-address-book"></i>
+                Directory
+            </a>
+
+          
+
+            <a href="{% url 'events' %}" class="nav-link">
+                <i class="fa-regular fa-calendar-days"></i>
+                Events
+            </a>
+
+            <a href="{% url 'jobs' %}" class="nav-link">
+                <i class="fa-solid fa-briefcase"></i>
+                Jobs
+            </a>
+
+            <a href="{% url 'mentorship' %}"
+               class="nav-link active"
+               aria-current="page">
+
+                <i class="fa-solid fa-people-arrows-left-right"></i>
+                Mentorship
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            {% if alumni %}
+
+                <a href="{% url 'alumni_profile' alumni.register_number %}"
+                   class="profile-link">
+
+                    <span class="profile-avatar">
+                        {{ alumni.full_name|first|upper }}
+                    </span>
+
+                    <span>
+                        {{ alumni.full_name|truncatechars:15 }}
+                    </span>
+
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="nav-login">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <button class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navLinks">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
     </div>
 
-    <div>
+</header>
 
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'directory' %}">Directory</a>
-        <a href="{% url 'scholarships' %}">Scholarships</a>
-        <a href="{% url 'events' %}">Events</a>
-        <a href="{% url 'jobs' %}">Jobs</a>
-        <a href="{% url 'mentorship' %}">Mentorship</a>
 
-    </div>
+<!-- =========================
+     HERO SECTION
+========================= -->
 
-</nav>
+<section class="hero">
 
-<div class="container">
+    <div class="hero-container">
 
-    <div class="heading">
+        <div class="hero-badge">
+            <i class="fa-solid fa-star"></i>
+            Learn • Connect • Grow
+        </div>
 
         <h1>
-            Alumni <span>Mentorship</span>
+            Learn from Experience.<br>
+            Grow with <span>Mentorship.</span>
         </h1>
 
-        <p>
-            Connect with experienced alumni and discover valuable mentorship opportunities.
+        <p class="hero-description">
+            Connect with alumni professionals, discover valuable career
+            guidance, and build meaningful relationships that support
+            your personal and professional growth.
         </p>
 
-    </div>
+        <div class="hero-buttons">
 
-    <div class="mentor-grid">
-
-        <div class="mentor">
-
-            <div class="avatar">
-                A
-            </div>
-
-            <h2>
-                Alumni Mentor
-            </h2>
-
-            <p>
-                Software Professional
-            </p>
-
-            <div class="expertise">
-                Software Development
-            </div>
-
-            <a href="#" class="button">
-                Join Mentorship
+            <a href="#mentorDirectory" class="hero-button primary">
+                <i class="fa-solid fa-users"></i>
+                Explore Alumni
             </a>
 
-        </div>
+            <a href="{% url 'directory' %}"
+               class="hero-button secondary">
 
-
-        <div class="mentor">
-
-            <div class="avatar">
-                R
-            </div>
-
-            <h2>
-                Alumni Mentor
-            </h2>
-
-            <p>
-                Industry Professional
-            </p>
-
-            <div class="expertise">
-                Career Guidance
-            </div>
-
-            <a href="#" class="button">
-                Join Mentorship
-            </a>
-
-        </div>
-
-
-        <div class="mentor">
-
-            <div class="avatar">
-                S
-            </div>
-
-            <h2>
-                Alumni Mentor
-            </h2>
-
-            <p>
-                Technology Professional
-            </p>
-
-            <div class="expertise">
-                Technology & Careers
-            </div>
-
-            <a href="#" class="button">
-                Join Mentorship
+                <i class="fa-solid fa-address-book"></i>
+                Browse Directory
             </a>
 
         </div>
 
     </div>
 
+</section>
 
-    <div class="info">
+
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<section class="stats-container">
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                {{ mentor_count|default:0 }}
+            </div>
+
+            <div class="stat-label">
+                Alumni Profiles
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div class="stat-label">
+                Experienced Professionals
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                <i class="fa-solid fa-handshake"></i>
+            </div>
+
+            <div class="stat-label">
+                Networking Opportunities
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MENTOR DIRECTORY
+========================= -->
+
+<main class="main-container">
+
+    <section id="mentorDirectory">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="section-eyebrow">
+                    Your Professional Network
+                </div>
+
+                <h2>Meet Our Alumni Community</h2>
+
+                <p class="section-description">
+                    Explore alumni profiles, discover professional
+                    backgrounds, and identify people you may wish to
+                    contact for career guidance.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <div class="search-panel">
+
+            <form method="GET"
+                  action="{% url 'mentorship' %}"
+                  class="search-form">
+
+                <div class="search-input-wrap">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        name="search"
+                        class="search-input"
+                        placeholder="Search by name, company, position or register number..."
+                        value="{{ search|default:'' }}"
+                        aria-label="Search alumni"
+                    >
+
+                </div>
+
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search
+                </button>
+
+                {% if search %}
+
+                    <a href="{% url 'mentorship' %}"
+                       class="clear-button">
+
+                        <i class="fa-solid fa-xmark"></i>
+                        Clear
+                    </a>
+
+                {% endif %}
+
+            </form>
+
+        </div>
+
+
+        <p class="results-label">
+
+            Showing
+            <strong>{{ mentors|length }}</strong>
+            alumni profile{{ mentors|length|pluralize }}
+
+            {% if search %}
+                for "<strong>{{ search }}</strong>"
+            {% endif %}
+
+        </p>
+
+
+        <!-- Dynamic Alumni Cards -->
+
+        <div class="mentor-grid">
+
+            {% for mentor in mentors %}
+
+                <article class="mentor-card">
+
+                    <div class="card-top"></div>
+
+                    <div class="mentor-avatar">
+                        {{ mentor.full_name|first|upper }}
+                    </div>
+
+
+                    <div class="mentor-content">
+
+                        <span class="mentor-batch">
+                            <i class="fa-solid fa-graduation-cap"></i>
+
+                            Batch {{ mentor.batch }}
+                        </span>
+
+
+                        <h3 class="mentor-name">
+                            {{ mentor.full_name }}
+                        </h3>
+
+
+                        <p class="mentor-position">
+                            {{ mentor.position|default:"Alumni Member" }}
+                        </p>
+
+
+                        <div class="mentor-detail">
+
+                            <i class="fa-solid fa-building"></i>
+
+                            <span>
+                                {{ mentor.company|default:"Company not specified" }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="mentor-detail">
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                            <span>
+                                {{ mentor.register_number }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="mentor-detail">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <span>
+                                {{ mentor.email|default:"Email not available" }}
+                            </span>
+
+                        </div>
+
+
+                        <div class="mentor-company">
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            {{ mentor.company|default:"Professional Network" }}
+
+                        </div>
+
+
+                        <div class="mentor-actions">
+
+                            <a href="{% url 'alumni_profile' mentor.register_number %}"
+                               class="mentor-button primary">
+
+                                <i class="fa-regular fa-user"></i>
+                                View Profile
+
+                            </a>
+
+                            <a href="{% url 'similar_alumni' mentor.register_number %}"
+                               class="mentor-button secondary">
+
+                                <i class="fa-solid fa-users"></i>
+                                Similar
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+
+                    <h3>No Alumni Found</h3>
+
+                    <p>
+                        {% if search %}
+                            No alumni match your search.
+                            Try another name, company, position, or register number.
+                        {% else %}
+                            No alumni records are currently available.
+                            Add alumni through registration or the Django Admin panel.
+                        {% endif %}
+                    </p>
+
+                    {% if search %}
+
+                        <a href="{% url 'mentorship' %}"
+                           class="mentor-button primary"
+                           style="display:inline-flex; margin-top:20px; flex:initial;">
+
+                            View All Alumni
+
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW MENTORSHIP WORKS
+    ========================= -->
+
+    <section class="how-section">
+
+        <div class="how-heading">
+
+            <div class="section-eyebrow">
+                Simple and Meaningful
+            </div>
+
+            <h2>Build Connections in Three Steps</h2>
+
+            <p>
+                Use the alumni portal to discover people and start
+                building your professional network.
+            </p>
+
+        </div>
+
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <h3>01. Discover Alumni</h3>
+
+                <p>
+                    Search the directory to explore alumni by name,
+                    company, professional position, or batch.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <h3>02. Explore Profiles</h3>
+
+                <p>
+                    Learn about alumni backgrounds and identify people
+                    whose experience matches your interests.
+                </p>
+
+            </div>
+
+
+            <div class="step-card">
+
+                <div class="step-icon">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                </div>
+
+                <h3>03. Build Relationships</h3>
+
+                <p>
+                    Use available contact and networking features
+                    to explore potential professional connections.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CALL TO ACTION
+    ========================= -->
+
+    <section class="cta-section">
 
         <h2>
-            Build Meaningful Connections
+            Great Careers Grow Through Great Connections.
         </h2>
 
         <p>
-            From mentorship guidance to career referrals,
-            alumni continue to create meaningful progress together.
+            Your alumni community brings together different experiences,
+            professional skills, and career journeys. Explore the
+            directory and discover opportunities to learn from one another.
         </p>
+
+        <a href="{% url 'directory' %}" class="cta-button">
+
+            Explore Alumni Directory
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div>
+
+            <div class="footer-brand">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Alumni Portal
+            </div>
+
+            <p class="footer-text">
+                Connecting graduates. Inspiring future generations.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="{% url 'home' %}">Home</a>
+
+            <a href="{% url 'about' %}">About</a>
+
+            <a href="{% url 'directory' %}">Directory</a>
+
+            <a href="{% url 'events' %}">Events</a>
+
+            <a href="{% url 'jobs' %}">Jobs</a>
+
+        </div>
 
     </div>
 
-</div>
-
-<footer>
-    © 2026 Alumni Portal. All rights reserved.
 </footer>
+
+
+<!-- =========================
+     NAVBAR JAVASCRIPT
+========================= -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        if (menuToggle && navLinks) {
+
+            menuToggle.addEventListener("click", function () {
+
+                const isOpen = navLinks.classList.toggle("open");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "true" : "false"
+                );
+
+                const icon = menuToggle.querySelector("i");
+
+                if (icon) {
+                    icon.className = isOpen
+                        ? "fa-solid fa-xmark"
+                        : "fa-solid fa-bars";
+                }
+
+            });
+
+            navLinks.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    navLinks.classList.remove("open");
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    const icon = menuToggle.querySelector("i");
+
+                    if (icon) {
+                        icon.className = "fa-solid fa-bars";
+                    }
+
+                });
+
+            });
+
+        }
+
+    });
+</script>
 
 </body>
 </html>

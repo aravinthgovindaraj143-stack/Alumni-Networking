@@ -1,24 +1,21 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Alumni Portal | Login</title>
+    <title>Login | Alumni Portal</title>
 
 
     <style>
 
-        
+       
 
         * {
             margin: 0;
@@ -44,114 +41,276 @@
                 Arial,
                 sans-serif;
 
-            background:
-                #090a16;
+            background: #f5efe2;
 
-            color: #ffffff;
+            color: #25231f;
 
             overflow-x: hidden;
         }
 
 
-        .login-page {
+        a {
+            text-decoration: none;
+        }
 
-            min-height: 100vh;
+
+        .topbar {
+
+            min-height: 58px;
 
             display: flex;
 
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 24px;
+
+            padding: 0 4.2%;
+
+            background: rgba(255,255,255,0.94);
+
+            border-bottom: 1px solid #e4d9c1;
+
+            box-shadow: 0 5px 18px rgba(73, 54, 29, 0.08);
+
+            position: relative;
+
+            z-index: 50;
+        }
+
+
+        .topbar .brand {
+
+            margin: 0;
+
+            gap: 9px;
+        }
+
+
+        .topbar .brand-icon {
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 10px;
+
+            font-size: 17px;
+        }
+
+
+        .topbar .brand-name {
+
+            font-size: 20px;
+        }
+
+
+        .topbar-links {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 4px;
+
+            flex: 1;
+        }
+
+
+        .topbar-links a {
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            color: #35312b;
+
+            font-size: 12px;
+
+            font-weight: 650;
+
+            transition: 0.2s ease;
+        }
+
+
+        .topbar-links a:hover,
+        .topbar-links a.active {
+
+            background: #f1e5cc;
+
+            color: #82591d;
+        }
+
+
+        .topbar-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .topbar-theme {
+
+            border: none;
+
+            border-right: 1px solid #d9d1c2;
+
+            padding: 0 14px 0 0;
+
+            background: transparent;
+
+            color: #292621;
+
+            cursor: pointer;
+
+            font-size: 17px;
+        }
+
+
+        .topbar-login {
+
+            color: #302c26;
+
+            font-size: 12px;
+
+            font-weight: 750;
+        }
+
+
+        .topbar-join {
+
+            padding: 9px 15px;
+
+            border-radius: 9px;
+
+            background: #a77425;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+        }
+
+
+        .topbar-join:hover {
+
+            background: #8f621d;
+
+            transform: translateY(-1px);
+        }
+
+
+      
+
+        .login-page {
+
+            min-height: calc(100vh - 110px);
+
+            position: relative;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 450px;
+
+            gap: 35px;
+
+            padding:
+                28px 5% 34px;
+
+            overflow: hidden;
+
             background:
+
                 radial-gradient(
-                    circle at 15% 20%,
-                    rgba(114, 76, 255, 0.20),
-                    transparent 35%
+                    circle at 8% 15%,
+                    rgba(222, 187, 119, 0.28),
+                    transparent 30%
                 ),
 
                 radial-gradient(
                     circle at 85% 80%,
-                    rgba(0, 224, 201, 0.12),
-                    transparent 35%
+                    rgba(199, 176, 131, 0.22),
+                    transparent 30%
                 ),
 
-                #090a16;
+                #f5efe2;
         }
 
 
-        /* =====================================================
-           LEFT SIDE
-           ===================================================== */
+      
 
-        .left-panel {
+        .background-circle {
 
-            width: 56%;
+            position: absolute;
 
-            min-height: 100vh;
+            width: 620px;
+            height: 620px;
+
+            border-radius: 50%;
+
+            top: -350px;
+            left: -130px;
+
+            background:
+                rgba(255,255,255,0.38);
+
+            pointer-events: none;
+        }
+
+
+        .background-circle-two {
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            right: -190px;
+            bottom: -190px;
+
+            background:
+                rgba(206,178,124,0.14);
+
+            pointer-events: none;
+        }
+
+
+
+        .left-section {
 
             position: relative;
 
-            overflow: hidden;
+            z-index: 5;
 
-            padding:
-                55px
-                65px;
+            min-height: calc(100vh - 110px);
 
             display: flex;
 
             flex-direction: column;
 
-            justify-content: space-between;
+            justify-content: center;
 
-            background:
-
-                linear-gradient(
-                    145deg,
-                    #17112e 0%,
-                    #24174d 45%,
-                    #0c2431 100%
-                );
+            padding:
+                25px 20px 30px 4%;
         }
 
 
-        /* Decorative circles */
+        .left-section > *:not(.college-area) {
 
-        .left-panel::before {
+            position: relative;
 
-            content: "";
-
-            position: absolute;
-
-            width: 550px;
-            height: 550px;
-
-            border-radius: 50%;
-
-            top: -250px;
-            right: -180px;
-
-            background:
-                rgba(131, 91, 255, 0.22);
-
-            filter: blur(2px);
-
-        }
-
-
-        .left-panel::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 400px;
-            height: 400px;
-
-            border-radius: 50%;
-
-            bottom: -200px;
-            left: -180px;
-
-            background:
-                rgba(0, 225, 201, 0.10);
-
+            z-index: 5;
         }
 
 
@@ -159,24 +318,22 @@
 
         .brand {
 
-            position: relative;
-
-            z-index: 5;
-
             display: flex;
 
             align-items: center;
 
-            gap: 14px;
+            gap: 12px;
+
+            margin-bottom: 48px;
         }
 
 
         .brand-icon {
 
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
 
-            border-radius: 13px;
+            border-radius: 14px;
 
             display: flex;
 
@@ -184,108 +341,41 @@
 
             justify-content: center;
 
-            font-size: 21px;
-
             background:
-                rgba(255,255,255,0.10);
-
-            border:
-                1px solid rgba(255,255,255,0.15);
-
-            backdrop-filter: blur(10px);
-        }
-
-
-        .brand-title {
-
-            font-size: 20px;
-
-            font-weight: 750;
-
-            letter-spacing: -0.3px;
-        }
-
-
-        .brand-subtitle {
-
-            margin-top: 3px;
-
-            font-size: 10px;
-
-            letter-spacing: 2.2px;
+                #eadcc1;
 
             color:
-                rgba(255,255,255,0.58);
+                #7b5720;
 
-            text-transform: uppercase;
+            font-size: 24px;
+
+            box-shadow:
+                0 7px 20px
+                rgba(113,81,29,0.08);
         }
 
 
+        .brand-name {
 
-        .hero-content {
+            font-size: 22px;
 
-            position: relative;
-
-            z-index: 5;
-
-            max-width: 700px;
-
-            margin-top: 20px;
-        }
-
-
-        .hero-content h1 {
-
-            font-size:
-                clamp(42px, 5vw, 70px);
-
-            line-height: 1.03;
-
-            letter-spacing: -3px;
-
-            font-weight: 800;
-
-            margin-bottom: 22px;
-        }
-
-
-        .hero-content h1 span {
-
-            display: block;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #a98cff,
-                    #5fe9db
-                );
-
-            -webkit-background-clip: text;
-
-            background-clip: text;
-
-            color: transparent;
-        }
-
-
-        .hero-content p {
-
-            max-width: 620px;
-
-            font-size: 16px;
-
-            line-height: 1.8;
+            font-weight: 850;
 
             color:
-                rgba(255,255,255,0.68);
+                #302c26;
 
-            margin-bottom: 30px;
+            letter-spacing:
+                -0.7px;
         }
 
 
-       
+        .brand-name span {
 
-        .badge {
+            color:
+                #a77626;
+        }
+
+        .community-badge {
 
             display: inline-flex;
 
@@ -293,297 +383,563 @@
 
             gap: 9px;
 
-            padding:
-                10px
-                16px;
+            width: fit-content;
 
-            border-radius: 50px;
+            padding:
+                9px 15px;
+
+            border-radius: 30px;
 
             background:
-                rgba(255,255,255,0.08);
+                rgba(255,255,255,0.50);
 
             border:
-                1px solid rgba(255,255,255,0.13);
+                1px solid #dec99f;
 
             color:
-                rgba(255,255,255,0.80);
+                #674b22;
 
-            font-size: 12px;
+            font-size: 11px;
 
-            font-weight: 600;
+            font-weight: 750;
 
-            backdrop-filter: blur(12px);
+            margin-bottom: 21px;
         }
 
 
-        .badge-dot {
-
-            width: 8px;
-            height: 8px;
-
-            border-radius: 50%;
-
-            background: #5fe9db;
-
-            box-shadow:
-                0 0 12px #5fe9db;
-        }
-
-
-        
-        .stats {
-
-            position: relative;
-
-            z-index: 5;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 13px;
-
-            margin-top: 35px;
-
-            max-width: 720px;
-        }
-
-
-        .stat-card {
-
-            min-height: 125px;
-
-            padding: 21px;
-
-            border-radius: 18px;
-
-            background:
-                rgba(255,255,255,0.075);
-
-            border:
-                1px solid rgba(255,255,255,0.12);
-
-            backdrop-filter: blur(15px);
-
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease;
-        }
-
-
-        .stat-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            background:
-                rgba(255,255,255,0.11);
-        }
-
-
-        .stat-icon {
-
-            width: 34px;
-            height: 34px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border-radius: 10px;
-
-            margin-bottom: 13px;
-
-            background:
-                rgba(255,255,255,0.10);
+        .badge-icon {
 
             font-size: 15px;
         }
 
 
-        .stat-number {
+       
 
-            font-size: 27px;
+        .hero-title {
 
-            font-weight: 800;
+            max-width:
+                720px;
 
-            line-height: 1;
+            font-size:
+                clamp(45px, 5.3vw, 72px);
 
-            margin-bottom: 7px;
-        }
+            line-height:
+                0.98;
 
+            letter-spacing:
+                -3.5px;
 
-        .stat-label {
-
-            font-size: 11px;
+            font-weight:
+                850;
 
             color:
-                rgba(255,255,255,0.57);
+                #2b2926;
+
+            margin-bottom:
+                22px;
+
+            text-shadow: 0 2px 18px rgba(255,255,255,0.45);
+        }
+
+
+        .hero-title .gold {
+
+            display: block;
+
+            color:
+                #a77425;
+        }
+
+
+        .hero-description {
+
+            max-width:
+                610px;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.75;
+
+            color:
+                #3f3a32;
+
+            font-weight: 550;
+
+            margin-bottom:
+                27px;
         }
 
 
 
-        .left-footer {
+        .college-area {
+
+            position: absolute;
+
+            z-index: 0;
+
+            right: -4%;
+
+            top: 50%;
+
+            transform:
+                translateY(-43%);
+
+            width: 64%;
+
+            max-width: 720px;
+
+            height: 78%;
+
+            overflow: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .college-area::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 2;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #f5efe2 0%,
+                    rgba(245,239,226,0.94) 14%,
+                    rgba(245,239,226,0.40) 48%,
+                    rgba(245,239,226,0.08) 100%
+                );
+
+        }
+
+
+        .college-area::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 3;
+
+            background:
+
+                linear-gradient(
+                    0deg,
+                    #f5efe2 0%,
+                    transparent 18%,
+                    transparent 80%,
+                    rgba(245,239,226,0.45) 100%
+                );
+        }
+
+
+        .college-image {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            opacity: 0.78;
+
+            filter:
+                saturate(0.82)
+                sepia(0.08);
+
+            border-radius: 24px;
+
+            box-shadow: 0 22px 55px rgba(91, 66, 31, 0.16);
+        }
+
+
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(120px, 1fr));
+
+            gap: 12px;
 
             position: relative;
 
             z-index: 5;
 
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            color:
-                rgba(255,255,255,0.55);
-
-            font-size: 11px;
+            margin-bottom: 28px;
         }
 
 
-        .status {
+        .stat-card {
+
+            min-height: 100px;
+
+            padding:
+                17px 18px;
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(255,255,255,0.70);
+
+            border:
+                1px solid #e4d9c1;
+
+            backdrop-filter:
+                blur(10px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(87,65,35,0.05);
+
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+
+        .stat-card:hover {
+
+            transform: translateY(-4px);
+
+            box-shadow: 0 14px 30px rgba(87,65,35,0.12);
+        }
+
+
+        .stat-icon {
+
+            font-size: 20px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .stat-number {
+
+            font-size: 23px;
+
+            line-height: 1;
+
+            font-weight: 850;
+
+            color:
+                #5f471f;
+
+            margin-bottom: 5px;
+        }
+
+
+        .stat-label {
+
+            font-size: 10px;
+
+            color:
+                #777064;
+        }
+
+
+        .live-stat .stat-number {
+
+            color: #27705b;
+        }
+
+
+        .live-dot {
+
+            display: inline-block;
 
             width: 8px;
             height: 8px;
 
+            margin-right: 5px;
+
             border-radius: 50%;
 
-            background: #5fe9db;
+            background: #2e9b70;
 
-            box-shadow:
-                0 0 10px #5fe9db;
+            box-shadow: 0 0 0 4px rgba(46, 155, 112, 0.12);
         }
 
 
-       
 
-        .right-panel {
+        .quote {
 
-            width: 44%;
+            position: absolute;
 
-            min-height: 100vh;
+            z-index: 5;
+
+            left: 4%;
+
+            bottom: 145px;
+
+            max-width:
+                430px;
+
+            padding-left:
+                5px;
+
+            margin-top: 0;
+
+            padding: 16px 22px 17px;
+
+            border-left: 4px solid #a87528;
+
+            border-radius: 0 14px 14px 0;
+
+            background: rgba(255,255,255,0.42);
+
+            box-shadow: 0 10px 24px rgba(87,65,35,0.07);
+        }
+
+
+        .quote-text {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                22px;
+
+            line-height:
+                1.35;
+
+            font-style:
+                italic;
+
+            color:
+                #50432e;
+
+            font-weight: 600;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .quote-line {
+
+            width:
+                92px;
+
+            height:
+                3px;
+
+            background:
+                linear-gradient(90deg, #a87528, #d9b56b);
+
+            margin-top:
+                13px;
+
+            border-radius:
+                3px;
+        }
+
+
+        .page-footer .quote {
+
+            position: relative;
+
+            left: auto;
+
+            bottom: auto;
+
+            max-width: 320px;
+
+            margin: 0;
+
+            padding: 6px 0 6px 14px;
+
+            border-left-width: 3px;
+
+            background: transparent;
+
+            box-shadow: none;
+        }
+
+
+        .page-footer .quote-text {
+
+            font-size: 15px;
+
+            line-height: 1.2;
+
+            color: rgba(255,255,255,0.9);
+        }
+
+
+        .page-footer .quote-line {
+
+            width: 55px;
+
+            height: 2px;
+
+            margin-top: 7px;
+        }
+
+
+
+        .features {
+
+            position: absolute;
+
+            z-index: 6;
+
+            left: 4%;
+
+            bottom: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+        }
+
+
+        .feature-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color:
+                #403b32;
+
+            font-size: 11px;
+
+            font-weight: 650;
+        }
+
+
+        .feature-icon {
+
+            font-size: 19px;
+        }
+
+
+        .feature-divider {
+
+            width: 1px;
+
+            height: 28px;
+
+            background:
+                #cfc1a5;
+        }
+
+
+
+        .right-section {
+
+            position: relative;
+
+            z-index: 20;
 
             display: flex;
 
             align-items: center;
 
             justify-content: center;
-
-            padding: 40px;
-
-            background:
-                #f7f8fc;
-
-            color: #171827;
-
-            position: relative;
         }
 
 
-
-        .home-button {
-
-            position: absolute;
-
-            top: 30px;
-            right: 38px;
-
-            text-decoration: none;
-
-            color: #38394a;
-
-            font-size: 12px;
-
-            font-weight: 650;
-
-            padding:
-                11px
-                17px;
-
-            border-radius: 50px;
-
-            background: #ffffff;
-
-            border:
-                1px solid #e4e5ec;
-
-            box-shadow:
-                0 5px 20px rgba(20,20,50,0.06);
-
-            transition: 0.25s ease;
-        }
-
-
-        .home-button:hover {
-
-            transform:
-                translateY(-2px);
-
-            border-color:
-                #9b83ff;
-
-            color:
-                #7255e8;
-        }
-
-
-
-        .login-box {
+        .login-card {
 
             width: 100%;
 
-            max-width: 455px;
+            max-width:
+                430px;
 
             padding:
-                35px 20px;
+                38px 38px 30px;
+
+            border-radius:
+                22px;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            border:
+                1px solid #e4ddd0;
+
+            box-shadow:
+                0 25px 70px
+                rgba(70,53,28,0.12);
+
+            backdrop-filter:
+                blur(20px);
         }
 
+
+        
 
         .welcome {
 
-            font-size: 10px;
+            font-size:
+                11px;
 
-            font-weight: 800;
-
-            letter-spacing: 2px;
+            letter-spacing:
+                2px;
 
             color:
-                #7255e8;
+                #9c6d23;
 
-            margin-bottom: 11px;
+            font-weight:
+                850;
 
-            text-transform: uppercase;
+            margin-bottom:
+                9px;
+
+            text-transform:
+                uppercase;
         }
 
 
-        .login-box h2 {
+        .login-card h2 {
 
-            font-size: 42px;
+            font-size:
+                42px;
 
-            line-height: 1.05;
+            line-height:
+                1;
 
-            letter-spacing: -1.8px;
+            letter-spacing:
+                -2px;
 
-            margin-bottom: 11px;
+            color:
+                #282724;
 
-            color: #171827;
+            margin-bottom:
+                12px;
         }
 
 
-        .description {
+        .login-description {
 
-            font-size: 13px;
+            font-size:
+                13px;
 
-            line-height: 1.6;
+            line-height:
+                1.65;
 
             color:
-                #77798a;
+                #77736c;
 
-            margin-bottom: 30px;
+            margin-bottom:
+                27px;
         }
 
 
@@ -591,134 +947,129 @@
 
         .messages {
 
-            margin-bottom: 18px;
+            margin-bottom:
+                18px;
         }
 
 
         .message {
 
             padding:
-                12px 14px;
+                11px 13px;
 
-            border-radius: 10px;
+            border-radius:
+                9px;
 
             background:
-                #fff0f0;
-
-            color:
-                #bd3d4a;
+                #fff1ef;
 
             border:
-                1px solid #ffd5d5;
+                1px solid #f1d1cc;
 
-            font-size: 12px;
+            color:
+                #ad4035;
 
-            margin-bottom: 8px;
+            font-size:
+                11px;
+
+            margin-bottom:
+                7px;
         }
 
 
+     
 
         .form-group {
 
-            margin-bottom: 21px;
-        }
-
-
-        .form-label-row {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            margin-bottom: 9px;
+            margin-bottom:
+                19px;
         }
 
 
         .form-label {
 
-            font-size: 10px;
+            display: block;
 
-            font-weight: 800;
+            font-size:
+                10px;
 
-            letter-spacing: 1px;
+            font-weight:
+                850;
 
-            color:
-                #424356;
-
-            text-transform: uppercase;
-        }
-
-
-        .forgot {
-
-            font-size: 11px;
-
-            font-weight: 650;
-
-            text-decoration: none;
+            letter-spacing:
+                1px;
 
             color:
-                #7255e8;
+                #46443f;
+
+            text-transform:
+                uppercase;
+
+            margin-bottom:
+                8px;
         }
 
-
-        .forgot:hover {
-
-            text-decoration: underline;
-        }
-
-
-      
 
         .input-wrapper {
 
-            position: relative;
+            position:
+                relative;
         }
 
 
         .input-icon {
 
-            position: absolute;
+            position:
+                absolute;
 
-            left: 15px;
+            left:
+                15px;
 
-            top: 50%;
+            top:
+                50%;
 
             transform:
                 translateY(-50%);
 
-            font-size: 15px;
+            font-size:
+                17px;
 
             color:
-                #9b9cac;
+                #918c83;
 
-            pointer-events: none;
+            pointer-events:
+                none;
         }
 
 
         .form-input {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 51px;
+            height:
+                52px;
 
-            border-radius: 11px;
+            border-radius:
+                10px;
 
             border:
-                1px solid #dedfe7;
+                1px solid #ddd9d1;
 
-            background: #ffffff;
+            background:
+                #ffffff;
+
+            color:
+                #2d2b28;
+
+            outline:
+                none;
 
             padding:
-                0 45px 0 43px;
+                0 43px;
 
-            outline: none;
-
-            color: #222331;
-
-            font-size: 13px;
+            font-size:
+                13px;
 
             transition:
                 0.25s ease;
@@ -728,92 +1079,180 @@
         .form-input::placeholder {
 
             color:
-                #a8a9b4;
+                #aaa59c;
         }
 
 
         .form-input:focus {
 
             border-color:
-                #866cff;
+                #b5812c;
 
             box-shadow:
                 0 0 0 4px
-                rgba(134,108,255,0.10);
+                rgba(181,129,44,0.10);
         }
 
 
+        
 
         .password-toggle {
 
-            position: absolute;
+            position:
+                absolute;
 
-            right: 14px;
+            right:
+                12px;
 
-            top: 50%;
+            top:
+                50%;
 
             transform:
                 translateY(-50%);
 
-            border: none;
+            border:
+                none;
 
-            background: transparent;
+            background:
+                transparent;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
             color:
-                #8c8d9a;
+                #858078;
 
-            font-size: 15px;
+            font-size:
+                16px;
 
-            padding: 5px;
+            padding:
+                5px;
         }
 
 
         .password-toggle:hover {
 
             color:
-                #7255e8;
+                #9c6d23;
         }
 
 
+        
+
+        .form-row {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-top:
+                -4px;
+
+            margin-bottom:
+                21px;
+        }
+
+
+        .remember {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                #68645d;
+
+            font-size:
+                11px;
+
+            cursor:
+                pointer;
+        }
+
+
+        .remember input {
+
+            width:
+                15px;
+
+            height:
+                15px;
+
+            accent-color:
+                #9d7028;
+
+            cursor:
+                pointer;
+        }
+
+
+        .forgot {
+
+            color:
+                #93651e;
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        .forgot:hover {
+
+            text-decoration:
+                underline;
+        }
+
+
+       
 
         .sign-button {
 
-            width: 100%;
+            width:
+                100%;
 
-            height: 53px;
+            height:
+                53px;
 
-            margin-top: 5px;
+            border:
+                none;
 
-            border: none;
+            border-radius:
+                10px;
 
-            border-radius: 12px;
-
-            cursor: pointer;
-
-            color: white;
-
-            font-size: 14px;
-
-            font-weight: 750;
-
-            letter-spacing: 0.2px;
+            cursor:
+                pointer;
 
             background:
-                linear-gradient(
-                    100deg,
-                    #7051e8,
-                    #8b68f5
-                );
+                #a77425;
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            font-weight:
+                800;
 
             box-shadow:
-                0 12px 25px
-                rgba(112,81,232,0.25);
+                0 10px 25px
+                rgba(167,116,37,0.20);
 
             transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+                0.25s ease;
         }
 
 
@@ -822,162 +1261,494 @@
             transform:
                 translateY(-2px);
 
+            background:
+                #93651d;
+
             box-shadow:
-                0 16px 30px
-                rgba(112,81,232,0.32);
-        }
-
-
-        .sign-button:active {
-
-            transform:
-                translateY(0);
+                0 14px 30px
+                rgba(167,116,37,0.28);
         }
 
 
         .sign-button.loading {
 
-            opacity: 0.75;
+            opacity:
+                0.75;
 
-            pointer-events: none;
+            pointer-events:
+                none;
         }
 
 
+      
 
-        .login-footer {
+        .register-section {
 
-            margin-top: 32px;
+            margin-top:
+                23px;
 
-            text-align: center;
+            padding-top:
+                20px;
 
-            font-size: 11px;
+            border-top:
+                1px solid #e8e4dc;
+
+            text-align:
+                center;
+        }
+
+
+        .new-user {
+
+            font-size:
+                12px;
 
             color:
-                #a0a1ad;
+                #77736b;
+
+            margin-bottom:
+                12px;
         }
 
 
-        .login-footer a {
+        .register-button {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            width:
+                100%;
+
+            height:
+                48px;
+
+            border-radius:
+                10px;
+
+            background:
+                #f5eddd;
+
+            border:
+                1px solid #ddc79e;
 
             color:
-                #7255e8;
+                #805b20;
 
-            text-decoration: none;
+            font-size:
+                13px;
 
-            font-weight: 650;
+            font-weight:
+                800;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .register-button:hover {
+
+            background:
+                #eee1c7;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .register-button span {
+
+            margin-left:
+                7px;
+
+            font-size:
+                15px;
         }
 
 
 
-        @media (max-width: 1000px) {
+        .login-card-footer {
 
-            .left-panel {
+            text-align:
+                center;
 
-                width: 50%;
+            margin-top:
+                20px;
 
-                padding:
-                    40px;
-            }
+            color:
+                #aaa59c;
 
+            font-size:
+                9px;
 
-            .right-panel {
-
-                width: 50%;
-            }
-
-
-            .hero-content h1 {
-
-                font-size: 47px;
-            }
-
+            line-height:
+                1.6;
         }
 
 
-        @media (max-width: 800px) {
+
+        .page-footer {
+
+            position:
+                relative;
+
+            z-index:
+                30;
+
+            left:
+                auto;
+
+            right:
+                auto;
+
+            bottom:
+                auto;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            color:
+                rgba(255,255,255,0.72);
+
+            font-size:
+                9px;
+
+            padding: 14px 4.2%;
+
+            background: #2d2924;
+
+            min-height: 52px;
+        }
+
+
+        .page-footer-brand {
+
+            font-weight:
+                800;
+
+            color:
+                #ffffff;
+        }
+
+
+        .page-footer-brand span {
+
+            color:
+                #a77425;
+        }
+
+
+      
+
+        @media (max-width: 1100px) {
 
             .login-page {
 
-                flex-direction: column;
+                grid-template-columns:
+                    1fr 400px;
+
+                gap:
+                    15px;
+
+                padding:
+                    35px 4%;
             }
 
 
-            .left-panel {
+            .hero-title {
 
-                width: 100%;
-
-                min-height: auto;
-
-                padding:
-                    35px 25px 40px;
+                font-size:
+                    55px;
             }
 
 
-            .right-panel {
+            .college-area {
 
-                width: 100%;
+                width:
+                    54%;
 
-                min-height: 600px;
-
-                padding:
-                    25px;
+                opacity:
+                    0.62;
             }
 
 
             .stats {
 
                 grid-template-columns:
-                    repeat(3, 1fr);
-            }
-
-
-            .home-button {
-
-                top: 20px;
-                right: 20px;
+                    repeat(2, minmax(140px, 1fr));
             }
 
         }
 
 
-        @media (max-width: 500px) {
+        @media (max-width: 850px) {
 
-            .hero-content h1 {
+            .topbar {
+                flex-wrap: wrap;
+                padding: 10px 5%;
+            }
 
-                font-size: 39px;
+            .topbar-links {
+                order: 3;
+                width: 100%;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
 
-                letter-spacing: -1.8px;
+            .login-page {
+
+                min-height:
+                    100vh;
+
+                display:
+                    flex;
+
+                flex-direction:
+                    column;
+
+                padding:
+                    30px 5% 80px;
+
+                gap:
+                    35px;
+
+                padding-top: 22px;
             }
 
 
-            .hero-content p {
+            .left-section {
 
-                font-size: 14px;
+                min-height:
+                    auto;
+
+                padding:
+                    10px 0;
+            }
+
+
+            .brand {
+
+                margin-bottom:
+                    35px;
+            }
+
+
+            .hero-title {
+
+                font-size:
+                    50px;
+            }
+
+
+            .college-area {
+
+                display:
+                    none;
+            }
+
+
+            .right-section {
+
+                width:
+                    100%;
+            }
+
+
+            .login-card {
+
+                max-width:
+                    500px;
+            }
+
+
+            .features {
+
+                position:
+                    relative;
+
+                left:
+                    auto;
+
+                bottom:
+                    auto;
+
+                margin-top:
+                    25px;
+
+                margin-bottom: 10px;
+
+                flex-wrap:
+                    wrap;
+            }
+
+
+            .quote {
+
+                position: relative;
+
+                left: auto;
+
+                bottom: auto;
+
+                margin-top: 30px;
+            }
+
+
+            .page-footer {
+
+                bottom:
+                    auto;
+            }
+
+        }
+
+
+        @media (max-width: 560px) {
+
+            .login-page {
+
+                padding:
+                    25px 18px 65px;
+            }
+
+
+            .brand {
+
+                margin-bottom:
+                    30px;
+            }
+
+
+            .hero-title {
+
+                font-size:
+                    42px;
+
+                letter-spacing:
+                    -2.2px;
+            }
+
+
+            .hero-description {
+
+                font-size:
+                    13px;
             }
 
 
             .stats {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
+
+                max-width:
+                    100%;
             }
 
 
             .stat-card {
 
-                min-height: 95px;
+                min-height:
+                    78px;
+
+                display:
+                    flex;
+
+                align-items:
+                    center;
+
+                gap:
+                    13px;
             }
 
 
-            .login-box {
+            .stat-icon {
+
+                margin:
+                    0;
+            }
+
+
+            .stat-number {
+
+                margin:
+                    0 0 3px;
+            }
+
+
+            .quote-text {
+
+                font-size:
+                    18px;
+            }
+
+
+            .features {
+
+                gap:
+                    14px;
+            }
+
+
+            .feature-divider {
+
+                display:
+                    none;
+            }
+
+
+            .login-card {
 
                 padding:
-                    45px 5px;
+                    30px 22px 25px;
+
+                border-radius:
+                    18px;
             }
 
 
-            .login-box h2 {
+            .login-card h2 {
 
-                font-size: 36px;
+                font-size:
+                    37px;
+            }
+
+
+            .page-footer {
+
+                left:
+                    auto;
+
+                right:
+                    auto;
+
+                justify-content:
+                    center;
+
+                flex-direction: column;
+
+                gap: 8px;
+
+                text-align:
+                    center;
+            }
+
+
+            .page-footer-brand {
+
+                display:
+                    none;
             }
 
         }
@@ -990,152 +1761,283 @@
 <body>
 
 
+<nav class="topbar">
+
+    <a href="{% url 'home' %}" class="brand">
+
+        <div class="brand-icon">
+            🎓
+        </div>
+
+        <div class="brand-name">
+            Alumni<span>Portal</span>
+        </div>
+
+    </a>
+
+
+    <div class="topbar-links">
+
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'directory' %}">Directory</a>
+        <a href="{% url 'events' %}">Events</a>
+        <a href="{% url 'jobs' %}">Jobs</a>
+        <a href="{% url 'mentorship' %}">Mentorship</a>
+
+    </div>
+
+
+    <div class="topbar-actions">
+
+        <button
+            type="button"
+            class="topbar-theme"
+            aria-label="Theme settings"
+        >
+            🌙
+        </button>
+
+        <a href="{% url 'login' %}" class="topbar-login">
+            ↪ Login
+        </a>
+
+        <a href="{% url 'register' %}" class="topbar-join">
+            Join Network
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<div class="background-circle"></div>
+
+<div class="background-circle-two"></div>
+
+
+
+
 <div class="login-page">
 
 
+  
+
+    <section class="left-section">
 
 
-    <section class="left-panel">
+        <!-- COLLEGE IMAGE -->
 
+        <div class="college-area">
 
-        <!-- BRAND -->
-
-        <div class="brand">
-
-            <div class="brand-icon">
-                🎓
-            </div>
-
-            <div>
-
-                <div class="brand-title">
-                    Alumni Portal
-                </div>
-
-                <div class="brand-subtitle">
-                    Unified Community Access
-                </div>
-
-            </div>
+            <img
+                src="{% static 'images/shc1.jpg' %}"
+                class="college-image"
+                alt="Sacred Heart College, Tirupattur"
+            >
 
         </div>
 
 
-        <!-- HERO -->
+        <!-- BADGE -->
 
-        <div class="hero-content">
+        <div class="community-badge">
 
-            <div class="badge">
+            <span class="badge-icon">
+                👥
+            </span>
 
-                <span class="badge-dot"></span>
+            Welcome to Our Alumni Community
 
-                Smart alumni community platform
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1 class="hero-title">
+
+            Reconnect.
+            <br>
+
+            Network.
+
+            <span class="gold">
+                Make an Impact.
+            </span>
+
+        </h1>
+
+
+        <!-- DESCRIPTION -->
+
+        <p class="hero-description">
+
+            Join a vibrant community of alumni from
+            <strong>Sacred Heart College, Tirupattur.</strong>
+            Share opportunities, attend events, mentor future
+            generations, and be part of a legacy that continues
+            to grow.
+
+        </p>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <div
+                        class="stat-number counter"
+                        data-target="{{ total_members }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Alumni Members
+                    </div>
+
+                </div>
 
             </div>
 
 
-            <h1>
+            <div class="stat-card">
 
-                One community.
+                <div class="stat-icon">
+                    📅
+                </div>
 
-                <span>
-                    Endless connections.
+                <div>
+
+                    <div
+                        class="stat-number counter"
+                        data-target="{{ total_events }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Events Conducted
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <div
+                        class="stat-number counter"
+                        data-target="{{ total_jobs }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Job Opportunities
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card live-stat">
+
+                <div class="stat-icon">
+                    <span class="live-dot"></span>🔐
+                </div>
+
+                <div>
+
+                    <div
+                        class="stat-number live-login-count"
+                        data-target="{{ total_logins }}"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Successful Logins
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+
+            <div class="feature-item">
+
+                <span class="feature-icon">
+                    🤝
                 </span>
 
-            </h1>
-
-
-            <p>
-
-                Connect with alumni, discover career opportunities,
-                participate in events, build professional relationships,
-                and grow together through one secure platform.
-
-            </p>
-
-
-
-            <div class="stats">
-
-
-                <!-- ACTIVE MEMBERS -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        👥
-                    </div>
-
-                    <div
-                        class="stat-number counter"
-                        data-target="{{ active_members|default:0 }}"
-                    >
-                        0
-                    </div>
-
-                    <div class="stat-label">
-                        Active members
-                    </div>
-
-                </div>
-
-
-                <!-- TOTAL MEMBERS -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🎓
-                    </div>
-
-                    <div
-                        class="stat-number counter"
-                        data-target="{{ total_members|default:0 }}"
-                    >
-                        0
-                    </div>
-
-                    <div class="stat-label">
-                        Registered alumni
-                    </div>
-
-                </div>
-
-
-                <!-- LOGIN SESSIONS -->
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        ✨
-                    </div>
-
-                    <div
-                        class="stat-number counter"
-                        data-target="{{ total_logins|default:0 }}"
-                    >
-                        0
-                    </div>
-
-                    <div class="stat-label">
-                        Successful logins
-                    </div>
-
-                </div>
-
+                <span>
+                    Stronger<br>
+                    Connections
+                </span>
 
             </div>
 
-        </div>
+
+            <div class="feature-divider"></div>
 
 
-        <!-- FOOTER -->
+            <div class="feature-item">
 
-        <div class="left-footer">
+                <span class="feature-icon">
+                    📈
+                </span>
 
-            <span class="status"></span>
+                <span>
+                    Greater<br>
+                    Opportunities
+                </span>
 
-            Alumni network is online
+            </div>
+
+
+            <div class="feature-divider"></div>
+
+
+            <div class="feature-item">
+
+                <span class="feature-icon">
+                    ❤️
+                </span>
+
+                <span>
+                    Lifelong<br>
+                    Belonging
+                </span>
+
+            </div>
+
 
         </div>
 
@@ -1144,28 +2046,16 @@
 
 
 
-    
-
-    <section class="right-panel">
+    <section class="right-section">
 
 
-        
-
-        <a
-            href="{% url 'home' %}"
-            class="home-button"
-        >
-            ← Go to Home
-        </a>
+        <div class="login-card">
 
 
-      
-
-        <div class="login-box">
-
+            <!-- HEADER -->
 
             <div class="welcome">
-                Welcome back
+                Welcome Back
             </div>
 
 
@@ -1174,14 +2064,15 @@
             </h2>
 
 
-            <p class="description">
+            <p class="login-description">
 
-                Enter your username and password
-                to access your alumni dashboard.
+                Enter your credentials to access your
+                alumni portal.
 
             </p>
 
 
+            <!-- DJANGO MESSAGES -->
 
             {% if messages %}
 
@@ -1202,6 +2093,8 @@
             {% endif %}
 
 
+            
+
             <form
                 method="POST"
                 action="{% url 'login' %}"
@@ -1215,16 +2108,12 @@
 
                 <div class="form-group">
 
-                    <div class="form-label-row">
-
-                        <label
-                            class="form-label"
-                            for="username"
-                        >
-                            Username
-                        </label>
-
-                    </div>
+                    <label
+                        class="form-label"
+                        for="username"
+                    >
+                        Username
+                    </label>
 
 
                     <div class="input-wrapper">
@@ -1232,6 +2121,7 @@
                         <span class="input-icon">
                             👤
                         </span>
+
 
                         <input
                             type="text"
@@ -1248,30 +2138,16 @@
                 </div>
 
 
-
                 <!-- PASSWORD -->
 
                 <div class="form-group">
 
-                    <div class="form-label-row">
-
-                        <label
-                            class="form-label"
-                            for="password"
-                        >
-                            Password
-                        </label>
-
-
-                        <a
-                            href="#"
-                            class="forgot"
-                            onclick="forgotPassword(event)"
-                        >
-                            Forgot password?
-                        </a>
-
-                    </div>
+                    <label
+                        class="form-label"
+                        for="password"
+                    >
+                        Password
+                    </label>
 
 
                     <div class="input-wrapper">
@@ -1307,8 +2183,36 @@
                 </div>
 
 
+                <!-- REMEMBER + FORGOT -->
 
-                
+                <div class="form-row">
+
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="{% url 'directory' %}"
+                        class="forgot"
+                        onclick="forgotPassword(event)"
+                    >
+                        Forgot password?
+                    </a>
+
+
+                </div>
+
+
+                <!-- SIGN IN -->
 
                 <button
                     type="submit"
@@ -1317,7 +2221,8 @@
                 >
 
                     Sign in
-                    <span style="margin-left:6px;">
+
+                    <span style="margin-left:7px;">
                         →
                     </span>
 
@@ -1327,22 +2232,93 @@
             </form>
 
 
-            
+        
 
-            <div class="login-footer">
+            <div class="register-section">
 
-                © 2026 Alumni Portal
+
+                <div class="new-user">
+
+                    New user?
+                    Create your account to join
+                    the alumni community.
+
+                </div>
+
+
+                <a
+                    href="{% url 'register' %}"
+                    class="register-button"
+                >
+
+                    Register Now
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+         
+
+            <div class="login-card-footer">
+
+                By continuing, you agree to use the
+                Alumni Portal responsibly.
+
+                <br>
+
+                Sacred Heart College · Tirupattur
 
             </div>
 
 
         </div>
 
+
     </section>
 
 
 </div>
 
+
+
+<div class="page-footer">
+
+    <div class="page-footer-brand">
+
+        🎓 Alumni<span>Portal</span>
+
+    </div>
+
+
+    <div class="quote">
+
+        <div class="quote-text">
+
+            “Once a Heartian,
+            <br>
+            Always a Heartian.”
+
+        </div>
+
+        <div class="quote-line"></div>
+
+    </div>
+
+
+    <div>
+
+        © 2026 Sacred Heart College,
+        Tirupattur. All rights reserved.
+
+    </div>
+
+</div>
 
 
 <script>
@@ -1358,7 +2334,9 @@
             document.getElementById("passwordToggle");
 
 
-        if (password.type === "password") {
+        if (
+            password.type === "password"
+        ) {
 
             password.type = "text";
 
@@ -1369,7 +2347,9 @@
                 "Hide password"
             );
 
-        } else {
+        }
+
+        else {
 
             password.type = "password";
 
@@ -1385,19 +2365,46 @@
     }
 
 
+    function updateLiveLoginCount() {
 
-    
+        fetch("{% url 'login_count' %}")
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+
+                const counter =
+                    document.querySelector(".live-login-count");
+
+                if (counter) {
+
+                    counter.textContent = data.count;
+
+                }
+
+            })
+            .catch(function () {
+            });
+
+    }
+
+
+ 
 
     document.addEventListener(
         "DOMContentLoaded",
         function () {
 
+
             const counters =
-                document.querySelectorAll(".counter");
+                document.querySelectorAll(
+                    ".counter"
+                );
 
 
             counters.forEach(
                 function (counter) {
+
 
                     const target =
                         parseInt(
@@ -1407,17 +2414,17 @@
                         ) || 0;
 
 
-                    let current = 0;
+                    if (target <= 0) {
 
-
-                    if (target === 0) {
-
-                        counter.textContent = "0";
+                        counter.textContent =
+                            "0";
 
                         return;
 
                     }
 
+
+                    let current = 0;
 
                     const duration = 900;
 
@@ -1425,7 +2432,6 @@
 
                     const increment =
                         target / steps;
-
 
                     const interval =
                         duration / steps;
@@ -1435,22 +2441,30 @@
                         setInterval(
                             function () {
 
-                                current += increment;
+
+                                current +=
+                                    increment;
 
 
                                 if (
-                                    current >= target
+                                    current >=
+                                    target
                                 ) {
 
-                                    current = target;
+                                    current =
+                                        target;
 
-                                    clearInterval(timer);
+                                    clearInterval(
+                                        timer
+                                    );
 
                                 }
 
 
                                 counter.textContent =
-                                    Math.floor(current);
+                                    Math.floor(
+                                        current
+                                    );
 
                             },
                             interval
@@ -1459,18 +2473,35 @@
                 }
             );
 
+            const liveCounter =
+                document.querySelector(".live-login-count");
+
+            if (liveCounter) {
+
+                liveCounter.textContent =
+                    liveCounter.getAttribute("data-target") || "0";
+
+            }
+
+            updateLiveLoginCount();
+
+            setInterval(
+                updateLiveLoginCount,
+                5000
+            );
+
         }
     );
 
 
-
- 
+  
 
     document
         .getElementById("loginForm")
         .addEventListener(
             "submit",
             function () {
+
 
                 const button =
                     document.getElementById(
@@ -1486,15 +2517,17 @@
                 button.innerHTML =
                     "Signing in...";
 
+
             }
         );
 
 
-
+  
 
     function forgotPassword(event) {
 
         event.preventDefault();
+
 
         alert(
             "Please contact your Alumni Portal administrator to reset your password."

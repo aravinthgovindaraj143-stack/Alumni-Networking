@@ -1,284 +1,2011 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Jobs | Alumni Portal</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <style>
+    <title>
+        Recommended Alumni | Sacred Heart College
+    </title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f8fafc;
-            color: #172033;
-        }
+<style>
 
-        nav {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 20px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* =====================================================
+   RESET
+===================================================== */
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        nav a {
-            text-decoration: none;
-            color: #374151;
-            margin-left: 20px;
-            font-weight: 600;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        nav a:hover {
-            color: #2563eb;
-        }
+body {
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 70px 25px;
-        }
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
 
-        .heading {
-            text-align: center;
-            margin-bottom: 45px;
-        }
+    background: #f4f8f6;
 
-        .heading h1 {
-            font-size: 45px;
-            margin-bottom: 12px;
-        }
+    color: #173a31;
 
-        .heading span {
-            color: #2563eb;
-        }
+    line-height: 1.5;
+}
 
-        .heading p {
-            color: #64748b;
-        }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-        .jobs {
-            display: grid;
-            gap: 20px;
-        }
 
-        .job {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 25px;
-        }
+/* =====================================================
+   NAVBAR
+===================================================== */
 
-        .job h2 {
-            margin-bottom: 8px;
-        }
+.navbar {
 
-        .job p {
-            color: #64748b;
-            margin-bottom: 6px;
-        }
+    position: sticky;
 
-        .tag {
-            display: inline-block;
-            background: #eff6ff;
-            color: #2563eb;
-            padding: 6px 10px;
-            border-radius: 7px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-top: 8px;
-        }
+    top: 0;
 
-        .button {
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
+    z-index: 1000;
 
-        footer {
-            margin-top: 60px;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
+    isolation: isolate;
 
-        @media(max-width:700px) {
+    min-height: 82px;
 
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
+    padding: 10px 3.5%;
 
-            nav a {
-                margin: 5px;
-                display: inline-block;
-            }
+    display: flex;
 
-            .job {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
+    align-items: center;
 
-    </style>
+    justify-content: space-between;
+
+    gap: 18px;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid #e1eae5;
+
+    box-shadow:
+        0 8px 28px
+        rgba(10,70,50,0.10);
+}
+
+.navbar::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 3px;
+
+    background: linear-gradient(90deg, #0b674c 0 72%, #e4b23e 72% 100%);
+}
+
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 250px;
+}
+
+.brand-logo {
+
+    width: 51px;
+
+    height: 51px;
+
+    border: 1px solid rgba(244, 204, 105, .55);
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b6a4d,
+            #16483a
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 900;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 7px 18px
+        rgba(10,100,72,.20);
+}
+
+.brand-text h2 {
+
+    color: #103d31;
+
+    font-size: 18px;
+
+    font-weight: 850;
+}
+
+.brand-text p {
+
+    color: #667770;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    padding: 5px;
+
+    border: 1px solid #e7eeea;
+
+    border-radius: 28px;
+
+    background: #f7faf8;
+}
+
+.nav-link {
+
+    padding: 9px 12px;
+
+    border-radius: 25px;
+
+    color: #263f37;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: background .2s, color .2s, transform .2s;
+}
+
+.nav-link:hover {
+
+    background: #eaf5f0;
+
+    color: #08704f;
+
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+
+    background: #0b674c;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 13px
+        rgba(11,103,76,.20);
+}
+
+
+/* NAV RIGHT */
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 230px;
+
+    justify-content: flex-end;
+}
+
+.nav-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #f0f5f3;
+
+    border: 1px solid #dce6e2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+
+    position: relative;
+
+    transition: transform .2s, background .2s, border-color .2s;
+}
+
+.nav-icon:hover {
+
+    transform: translateY(-2px);
+
+    background: #e5f2ec;
+
+    border-color: #c3d9ce;
+}
+
+.notification-number {
+
+    position: absolute;
+
+    top: -3px;
+
+    right: -2px;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #e64848;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+.user-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 51px;
+
+    padding: 4px 12px 4px 5px;
+
+    border: 1px solid #e0eae4;
+
+    border-radius: 28px;
+
+    background: #ffffff;
+
+    box-shadow: 0 3px 12px rgba(12, 61, 44, .06);
+}
+
+.user-avatar {
+
+    width: 39px;
+
+    height: 39px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b674c,
+            #174839
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 850;
+}
+
+.user-name {
+
+    max-width: 120px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 750;
+
+    color: #23483b;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height: 315px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            rgba(0,75,52,.95),
+            rgba(9,95,66,.73),
+            rgba(225,166,25,.50)
+        ),
+
+        url("{% static 'images/campus.jpg' %}");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+.hero-content {
+
+    width: 90%;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    position: relative;
+}
+
+.hero-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(5,67,49,.50);
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    margin-bottom: 13px;
+}
+
+.hero-main {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 23px;
+}
+
+.hero-icon {
+
+    width: 103px;
+
+    height: 103px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    background:
+        rgba(255,255,255,.10);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 42px;
+
+    color: white;
+}
+
+.hero h1 {
+
+    color: white;
+
+    font-size: 48px;
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    margin-bottom: 7px;
+}
+
+.hero-subtitle {
+
+    color: #f2f8f5;
+
+    font-size: 18px;
+}
+
+.hero-pills {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 20px;
+}
+
+.hero-pill {
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(4,65,47,.50);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.breadcrumb {
+
+    position: absolute;
+
+    right: 5%;
+
+    bottom: 25px;
+
+    padding: 10px 17px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(5,49,38,.62);
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.breadcrumb span {
+
+    margin: 0 7px;
+
+    opacity: .55;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    width: 94%;
+
+    max-width: 1400px;
+
+    margin: -25px auto 60px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.main-card {
+
+    background:
+        rgba(255,255,255,.98);
+
+    border-radius: 24px;
+
+    padding: 22px;
+
+    border:
+        1px solid #e0eae5;
+
+    box-shadow:
+        0 15px 55px
+        rgba(18,70,52,.11);
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.back-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 13px 20px;
+
+    border-radius: 13px;
+
+    background: #edf3f1;
+
+    color: #17384d;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    transition: .2s;
+
+    margin-bottom: 17px;
+}
+
+.back-button:hover {
+
+    background: #e1ebe7;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   RECOMMENDATION BANNER
+===================================================== */
+
+.recommendation-banner {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 21px 24px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff3d2,
+            #fff9e9
+        );
+
+    border:
+        1px solid #f0dda9;
+}
+
+.recommendation-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb400,
+            #ed8500
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 7px 18px
+        rgba(239,146,0,.20);
+}
+
+.recommendation-banner h2 {
+
+    color: #15364e;
+
+    font-size: 20px;
+
+    margin-bottom: 4px;
+}
+
+.recommendation-banner p {
+
+    color: #6d6654;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   RESULT HEADER
+===================================================== */
+
+.result-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 25px 4px 16px;
+}
+
+.result-title {
+
+    color: #0a3150;
+
+    font-size: 20px;
+
+    font-weight: 850;
+}
+
+.result-count {
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #fff0c9;
+
+    color: #a26800;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.recommended-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.recommended-card {
+
+    background: white;
+
+    border-radius: 19px;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e1ebe6;
+
+    box-shadow:
+        0 8px 27px
+        rgba(20,70,52,.07);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+}
+
+.recommended-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(20,70,52,.14);
+}
+
+
+/* CARD TOP */
+
+.card-header {
+
+    min-height: 158px;
+
+    padding: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5d9,
+            #ffffff
+        );
+}
+
+.recommended-card:nth-child(2)
+.card-header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf9f0,
+            #ffffff
+        );
+}
+
+.recommended-card:nth-child(3)
+.card-header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0e9,
+            #ffffff
+        );
+}
+
+
+/* RANK */
+
+.rank {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 15px;
+
+    z-index: 3;
+
+    padding: 8px 12px;
+
+    border-radius: 25px;
+
+    background: #fff0bd;
+
+    color: #9b6500;
+
+    font-size: 11px;
+
+    font-weight: 850;
+}
+
+.recommended-card:nth-child(2)
+.rank {
+
+    background: #e8f0ed;
+
+    color: #456056;
+}
+
+.recommended-card:nth-child(3)
+.rank {
+
+    background: #ffe4da;
+
+    color: #a94f28;
+}
+
+
+/* PROFILE */
+
+.profile-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    position: relative;
+
+    z-index: 4;
+
+    padding-top: 18px;
+}
+
+.profile-avatar {
+
+    width: 68px;
+
+    height: 68px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+    background: #ffedbb;
+
+    color: #a06600;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: 850;
+}
+
+.recommended-card:nth-child(2)
+.profile-avatar {
+
+    background: #d7f2e0;
+
+    color: #087149;
+}
+
+.recommended-card:nth-child(3)
+.profile-avatar {
+
+    background: #ffdfd5;
+
+    color: #b44920;
+}
+
+.profile-row h3 {
+
+    color: #0a304d;
+
+    font-size: 18px;
+
+    font-weight: 850;
+
+    margin-bottom: 3px;
+}
+
+.profile-row p {
+
+    color: #a16600;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+.recommended-card:nth-child(2)
+.profile-row p {
+
+    color: #087149;
+}
+
+.recommended-card:nth-child(3)
+.profile-row p {
+
+    color: #b44920;
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.card-body {
+
+    padding: 17px 20px 20px;
+}
+
+.details {
+
+    border-top:
+        1px solid #e9efec;
+
+    padding-top: 14px;
+}
+
+.detail {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+
+    font-size: 13px;
+
+    color: #40554d;
+}
+
+.detail:last-child {
+    margin-bottom: 0;
+}
+
+.detail-icon {
+
+    width: 23px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+.detail strong {
+
+    color: #50645b;
+
+    font-weight: 650;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.profile-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    height: 50px;
+
+    margin-top: 17px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e99c08,
+            #d97c00
+        );
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.recommended-card:nth-child(2)
+.profile-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #07945e,
+            #047348
+        );
+}
+
+.recommended-card:nth-child(3)
+.profile-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef6546,
+            #df4429
+        );
+}
+
+.profile-button:hover {
+
+    filter: brightness(.94);
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 75px 20px;
+
+    border:
+        1px dashed #cedbd5;
+
+    border-radius: 18px;
+
+    background: #fbfdfc;
+}
+
+.empty-icon {
+
+    font-size: 52px;
+
+    margin-bottom: 13px;
+}
+
+.empty-state h2 {
+
+    color: #153c31;
+
+    margin-bottom: 7px;
+}
+
+.empty-state p {
+
+    color: #728078;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background:
+        linear-gradient(
+            145deg,
+            #062e2b,
+            #0a3d3a,
+            #082c3a
+        );
+
+    color: white;
+
+    padding: 45px 5% 24px;
+}
+
+.footer-content {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.7fr 2fr 1fr;
+
+    gap: 45px;
+}
+
+.footer-brand {
+
+    display: flex;
+
+    gap: 14px;
+}
+
+.footer-logo {
+
+    width: 53px;
+
+    height: 53px;
+
+    border-radius: 12px;
+
+    background: #0b6249;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 900;
+}
+
+.footer-brand h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 3px;
+}
+
+.footer-brand p {
+
+    color: #a9c1ba;
+
+    font-size: 12px;
+}
+
+.footer-column h4,
+.footer-social h4 {
+
+    color: #f7c844;
+
+    font-size: 14px;
+
+    margin-bottom: 13px;
+}
+
+.quick-links {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 8px;
+}
+
+.quick-links a {
+
+    color: #bdd0ca;
+
+    font-size: 12px;
+}
+
+.quick-links a:hover {
+    color: white;
+}
+
+.social-icons {
+
+    display: flex;
+
+    gap: 9px;
+}
+
+.social {
+
+    width: 39px;
+
+    height: 39px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(255,255,255,.10);
+
+    font-weight: 800;
+}
+
+.footer-bottom {
+
+    max-width: 1400px;
+
+    margin: 30px auto 0;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255,255,255,.10);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #8fa9a3;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1200px) {
+
+    .nav-link {
+        padding: 10px;
+    }
+
+    .brand {
+        min-width: 220px;
+    }
+
+    .recommended-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-content {
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width:1100px) {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        width: 100%;
+        order: 3;
+        overflow-x: auto;
+    }
+
+    .nav-right {
+        margin-left: auto;
+    }
+}
+
+
+@media(max-width:850px) {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        width: 100%;
+        order: 3;
+        overflow-x: auto;
+    }
+
+    .nav-right {
+        margin-left: auto;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .recommended-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media(max-width:550px) {
+
+    .brand-text h2 {
+        font-size: 15px;
+    }
+
+    .brand-text p {
+        font-size: 10px;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .hero-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-icon {
+        width: 78px;
+        height: 78px;
+        font-size: 31px;
+    }
+
+    .hero-pills {
+        display: none;
+    }
+
+    .main {
+        width: 95%;
+    }
+
+    .main-card {
+        padding: 13px;
+    }
+
+    .quick-links {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+</style>
 
 </head>
 
+
 <body>
 
-<nav>
 
-    <div class="logo">
-        Alumni Portal
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+
+    <a
+        href="{% url 'home' %}"
+        class="brand"
+    >
+
+        <div class="brand-logo">
+            SHC
+        </div>
+
+        <div class="brand-text">
+
+            <h2>
+                Sacred Heart College
+            </h2>
+
+            <p>
+                Alumni Portal
+            </p>
+
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a
+            href="{% url 'home' %}"
+            class="nav-link"
+        >
+            Home
+        </a>
+
+
+        <a
+            href="{% url 'directory' %}"
+            class="nav-link"
+        >
+            Alumni
+        </a>
+
+
+        <a
+            href="{% url 'events' %}"
+            class="nav-link"
+        >
+            Events
+        </a>
+
+
+        <a
+            href="{% url 'jobs' %}"
+            class="nav-link active"
+        >
+            Careers
+        </a>
+
+
+        <a
+            href="{% url 'mentorship' %}"
+            class="nav-link"
+        >
+            Mentorship
+        </a>
+
+
+        <a
+            class="nav-link"
+        >
+        </a>
+
+
+        <a
+            href="{% url 'about' %}"
+            class="nav-link"
+        >
+            About
+        </a>
+
     </div>
 
-    <div>
 
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'directory' %}">Directory</a>
-        <a href="{% url 'scholarships' %}">Scholarships</a>
-        <a href="{% url 'events' %}">Events</a>
-        <a href="{% url 'jobs' %}">Jobs</a>
-        <a href="{% url 'mentorship' %}">Mentorship</a>
+    <div class="nav-right">
+
+        <div class="nav-icon">
+            🔍
+        </div>
+
+
+        <div class="nav-icon">
+
+            🔔
+
+            <span class="notification-number">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-avatar">
+
+                {{ alumni.full_name|slice:":2"|upper }}
+
+            </div>
+
+
+            <div class="user-name">
+
+                {{ alumni.full_name }}
+
+            </div>
+
+        </div>
 
     </div>
 
 </nav>
 
-<div class="container">
 
-    <div class="heading">
 
-        <h1>
-            Career <span>Opportunities</span>
-        </h1>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-        <p>
-            Find jobs and career opportunities shared by the alumni community.
-        </p>
+<section class="hero">
 
-    </div>
+    <div class="hero-content">
 
-    <div class="jobs">
 
-        <div class="job">
+        <div class="hero-badge">
+            CAREER OPPORTUNITIES
+        </div>
+
+
+        <div class="hero-main">
+
+
+            <div class="hero-icon">💼</div>
+
 
             <div>
 
-                <h2>
-                    Software Developer
-                </h2>
+                <h1>
+                    Alumni Jobs
+                </h1>
 
-                <p>
-                    Company: Company Name
-                </p>
 
-                <p>
-                    Location: Chennai
-                </p>
+                <div class="hero-subtitle">
 
-                <span class="tag">
-                    Full Time
-                </span>
+                    Explore current openings shared with the alumni community
+
+                </div>
+
+
+                <div class="hero-pills">
+
+                    <div class="hero-pill">{{ total_jobs }} open jobs</div>
+                    <div class="hero-pill">{{ company_count }} companies</div>
+                    <div class="hero-pill">{{ fresher_jobs }} fresher roles</div>
+                    <div class="hero-pill">{{ internship_jobs }} internships</div>
+
+                </div>
 
             </div>
-
-            <a href="#" class="button">
-                Apply
-            </a>
 
         </div>
 
 
-        <div class="job">
+        <div class="breadcrumb">
 
-            <div>
-
-                <h2>
-                    Web Developer
-                </h2>
-
-                <p>
-                    Company: Company Name
-                </p>
-
-                <p>
-                    Location: Bengaluru
-                </p>
-
-                <span class="tag">
-                    Full Time
-                </span>
-
-            </div>
-
-            <a href="#" class="button">
-                Apply
+            <a href="{% url 'home' %}">
+                🏠 Home
             </a>
 
-        </div>
+            <span>›</span>
 
-
-        <div class="job">
-
-            <div>
-
-                <h2>
-                    Data Analyst
-                </h2>
-
-                <p>
-                    Company: Company Name
-                </p>
-
-                <p>
-                    Location: Hyderabad
-                </p>
-
-                <span class="tag">
-                    Full Time
-                </span>
-
-            </div>
-
-            <a href="#" class="button">
-                Apply
-            </a>
+            <span>Careers</span>
 
         </div>
 
     </div>
 
-</div>
+</section>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <div class="main-card">
+
+
+        {% if alumni %}
+            <a
+                href="{% url 'alumni_profile' alumni.register_number %}"
+                class="back-button"
+            >
+                ←
+                Back to Profile
+            </a>
+        {% else %}
+            <a href="{% url 'directory' %}" class="back-button">
+                ←
+                Back to Alumni Directory
+            </a>
+        {% endif %}
+
+
+
+        <section class="recommendation-banner">
+            <div class="recommendation-icon">💼</div>
+            <div>
+                <h2>Opportunities from the alumni network</h2>
+                <p>Browse active roles and apply directly through the employer's application link.</p>
+            </div>
+        </section>
+
+
+
+        <!-- HEADER -->
+
+        <div class="result-header">
+
+
+            <div class="result-title">
+
+                Current Job Openings
+
+            </div>
+
+
+            <div class="result-count">
+
+                {{ total_jobs }} jobs
+
+            </div>
+
+        </div>
+
+
+
+        {% if jobs %}
+
+
+        <div class="recommended-grid">
+
+
+            {% for job in jobs %}
+
+
+            <article class="recommended-card">
+
+
+                <!-- CARD HEADER -->
+
+                <div class="card-header">
+
+
+                    <div class="rank">
+
+                        {{ job.get_category_display }}
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+
+                        <div class="profile-avatar">
+
+                            {{ job.title|slice:":2"|upper }}
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                {{ job.title }}
+                            </h3>
+
+                            <p>
+                                {{ job.company }}
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD BODY -->
+
+                <div class="card-body">
+
+
+                    <div class="details">
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🏢
+                            </span>
+
+                            <strong>
+                                {{ job.location }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🎓
+                            </span>
+
+                            <strong>
+                                {{ job.get_experience_display }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🪪
+                            </span>
+
+                            <strong>
+                                {{ job.job_type }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                💼
+                            </span>
+
+                            <strong>
+                                {{ job.skills|default:"Skills not specified" }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                ✉
+                            </span>
+
+                            <strong>
+                                {% if job.last_date %}Apply by {{ job.last_date|date:"M j, Y" }}{% else %}Open until filled{% endif %}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <p>{{ job.description|truncatewords:28 }}</p>
+                    <a href="{{ job.apply_url }}" class="profile-button" target="_blank" rel="noopener noreferrer">
+                        View Application →
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                💼
+            </div>
+
+
+            <h2>
+                No jobs found
+            </h2>
+
+
+            <p>
+
+                There are no active jobs matching these filters right now. Please check back later.
+
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
-    © 2026 Alumni Portal. All rights reserved.
+
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+
+            <div class="footer-logo">
+                SHC
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Sacred Heart College
+                </h3>
+
+                <p>
+                    Alumni Portal
+                </p>
+
+                <p>
+                    Connecting alumni,
+                    creating opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h4>
+                Quick Links
+            </h4>
+
+
+            <div class="quick-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'directory' %}">
+                    Alumni
+                </a>
+
+                <a href="{% url 'events' %}">
+                    Events
+                </a>
+
+                <a href="{% url 'jobs' %}">
+                    Careers
+                </a>
+
+                <a href="{% url 'mentorship' %}">
+                    Mentorship
+                </a>
+
+                </a>
+
+                <a href="{% url 'about' %}">
+                    About
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-social">
+
+            <h4>
+                Follow Us
+            </h4>
+
+
+            <div class="social-icons">
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    in
+                </a>
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    X
+                </a>
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    ◎
+                </a>
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    ▶
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <span>
+
+            © 2026 Sacred Heart College Alumni Portal.
+            All Rights Reserved.
+
+        </span>
+
+
+        <span>
+
+            Made with ❤️ for our Alumni Community
+
+        </span>
+
+    </div>
+
+
 </footer>
 
+
 </body>
+
 </html>

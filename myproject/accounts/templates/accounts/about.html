@@ -1,162 +1,2066 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>About | Alumni Portal</title>
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f8fafc;
-            color: #172033;
+        html {
+            scroll-behavior: smooth;
         }
 
-        nav {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 20px 7%;
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background: #f4f7f1;
+            color: #102f2e;
+
+            overflow-x: hidden;
+        }
+
+        body.dark {
+            background: #101b1d;
+            color: #e8f1ed;
+        }
+
+        body.dark .navbar,
+        body.dark footer {
+            background: rgba(17, 31, 32, 0.96);
+            border-color: #2c4542;
+        }
+
+        body.dark .brand-name,
+        body.dark .nav-links a,
+        body.dark .login,
+        body.dark .footer-column h4,
+        body.dark .story-card h2,
+        body.dark .leadership-header h2,
+        body.dark .features-section h2 {
+            color: #e8f1ed;
+        }
+
+        body.dark .nav-links a:hover,
+        body.dark .nav-links a.active {
+            background: #244b48;
+            color: #d9eee5;
+
+            border-color: #47756c;
+        }
+
+        body.dark .nav-links {
+            background: #142625;
+            border-color: #31504c;
+        }
+
+        body.dark .nav-links a,
+        body.dark .login,
+        body.dark .theme-btn {
+            background: #1b3534;
+            border-color: #31504c;
+            color: #d9eee5;
+        }
+
+        body.dark .login:hover,
+        body.dark .theme-btn:hover {
+            background: #244b48;
+            border-color: #47756c;
+        }
+
+        body.dark .story-card,
+        body.dark .leadership-card,
+        body.dark .feature,
+        body.dark .stat,
+        body.dark .leader {
+            background: #172829;
+            border-color: #31504c;
+        }
+
+        body.dark .story-card p,
+        body.dark .leadership-header p,
+        body.dark .features-subtitle,
+        body.dark .feature p,
+        body.dark .footer-description,
+        body.dark .footer-column a,
+        body.dark .contact-item {
+            color: #a9bfba;
+        }
+
+        body.dark .story-highlight {
+            background: #1c3332;
+            border-color: #31504c;
+            color: #c5d9d1;
+        }
+
+        body.dark .hero {
+            background: linear-gradient(110deg, #193331 0%, #1d4140 48%, #244d53 100%);
+        }
+
+        body.dark .hero h1,
+        body.dark .hero-description {
+            color: #edf7f1;
+        }
+
+        body.dark .footer-bottom {
+            border-color: #2c4542;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 72px;
+
             display: flex;
+            align-items: center;
             justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(255, 255, 255, 0.98);
+
+            border-bottom: 1px solid #cbdccf;
+
+            backdrop-filter: blur(18px);
+
+            box-shadow: 0 10px 28px rgba(25, 63, 53, 0.12);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-weight: 800;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg, #1f655a, #3f8d77);
+
+            color: #ffffff;
+
+            box-shadow: 0 7px 16px rgba(31, 101, 90, 0.22);
+
+            font-size: 20px;
+        }
+
+        .brand-name {
+            font-size: 20px;
+            letter-spacing: 0.15px;
+            color: #102f2e;
+        }
+
+        .brand-name span {
+            color: #9c8150;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            padding: 4px;
+
+            border: 1px solid #d8e5d9;
+
+            border-radius: 13px;
+
+            background: #f1f6f1;
+        }
+
+        .nav-links a {
+            min-height: 38px;
+
+            display: inline-flex;
+            align-items: center;
+
+            padding: 9px 14px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+            font-weight: 750;
+
+            letter-spacing: 0.1px;
+
+            color: #183b38;
+
+            background: rgba(255, 255, 255, 0.52);
+
+            border: 1px solid #d6e3d7;
+
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            background: #eaf1e9;
+
+            color: #0c5148;
+
+            border-color: #a9cbbb;
+
+            transform: translateY(-1px);
+        }
+
+        .nav-links a.active {
+            background: #ffffff;
+            color: #0b5148;
+
+            border-color: #a9cbbb;
+
+            box-shadow: 0 4px 10px rgba(31, 85, 80, 0.14);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-btn {
+            width: 36px;
+            height: 36px;
+
+            border: none;
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            border-radius: 50%;
+
+            border: 1px solid #cbdccf;
+
+            background: #f1f6f1;
+
+            transition: 0.25s ease;
+        }
+
+        .theme-btn:hover {
+            background: #eaf1e9;
+            transform: rotate(12deg) scale(1.08);
+        }
+
+        .login {
+            min-height: 38px;
+
+            display: inline-flex;
+            align-items: center;
+
+            padding: 0 14px;
+
+            border: 1px solid #cbdccf;
+            border-radius: 10px;
+
+            font-size: 13px;
+            font-weight: 750;
+
+            color: #183b38;
+
+            background: #f7faf7;
+
+            transition: 0.25s ease;
+        }
+
+        .login:hover {
+            color: #0c5148;
+            border-color: #a9cbbb;
+            background: #eaf1e9;
+            transform: translateY(-1px);
+        }
+
+        .join-btn {
+            min-height: 38px;
+
+            display: inline-flex;
+            align-items: center;
+
+            padding: 0 17px;
+
+            border-radius: 9px;
+
+            background: linear-gradient(135deg, #164f49, #247765);
+
+            color: white;
+
+            font-size: 13px;
+            font-weight: 750;
+
+            letter-spacing: 0.1px;
+
+            transition: 0.25s ease;
+        }
+
+        .join-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(31, 85, 80, 0.20);
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 430px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                55px 6% 50px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #edf7ed 0%,
+                    #e6f2eb 45%,
+                    #d8eeeb 100%
+                );
+
+            display: flex;
             align-items: center;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 620px;
+            height: 620px;
+
+            border-radius: 50%;
+
+            right: -100px;
+            top: -270px;
+
+            background:
+                rgba(255,255,255,0.25);
         }
 
-        nav a {
-            text-decoration: none;
-            color: #374151;
-            margin-left: 22px;
-            font-weight: 600;
+        .hero-content {
+            width: 54%;
+
+            position: relative;
+            z-index: 5;
         }
 
-        nav a:hover {
-            color: #2563eb;
-        }
+        .hero-badge {
+            display: inline-flex;
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 80px 25px;
-        }
+            align-items: center;
+            gap: 8px;
 
-        .hero {
-            text-align: center;
-            margin-bottom: 50px;
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,0.42);
+
+            border:
+                1px solid #c9ddd0;
+
+            color: #244e49;
+
+            font-size: 11px;
+            font-weight: 750;
+
+            margin-bottom: 18px;
         }
 
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size:
+                clamp(42px, 5vw, 66px);
+
+            line-height: 0.98;
+
+            letter-spacing: -3px;
+
+            color: #123e3d;
+
+            margin-bottom: 10px;
+
+            font-weight: 850;
         }
 
-        .hero span {
-            color: #2563eb;
+        .hero h1 span {
+            display: block;
+
+            color: #318276;
+
+            margin-top: 6px;
         }
 
-        .hero p {
-            color: #64748b;
+        .hero-description {
+            max-width: 620px;
+
+            color: #244541;
+
+            font-size: 14px;
+
+            line-height: 1.75;
+
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+
+            gap: 10px;
+
+            max-width: 610px;
+        }
+
+        .stat {
+            min-width: 150px;
+
+            padding: 13px 17px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.65);
+
+            border:
+                1px solid rgba(201,215,207,0.8);
+
+            box-shadow:
+                0 5px 15px
+                rgba(43,78,68,0.04);
+        }
+
+        .stat strong {
+            display: block;
+
+            color: #15514c;
+
+            font-size: 22px;
+
+            line-height: 1.1;
+
+            margin-bottom: 5px;
+        }
+
+        .stat span {
+            font-size: 10px;
+
+            color: #687976;
+        }
+
+
+        /* =====================================================
+           COLLEGE IMAGE
+        ===================================================== */
+
+        .hero-image {
+            position: absolute;
+
+            right: 2%;
+            bottom: 0;
+
+            width: 50%;
+            height: 100%;
+
+            z-index: 2;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: "";
+
+            position: absolute;
+
+            width: 570px;
+            height: 570px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.30);
+
+            right: 0;
+            top: -130px;
+        }
+
+        .college-image {
+            position: relative;
+
+            z-index: 2;
+
+            width: 650px;
+
+            max-width: 100%;
+
+            height: auto;
+
+            object-fit: contain;
+
+            align-self: flex-end;
+
+            mask-image:
+                linear-gradient(
+                    to top,
+                    black 75%,
+                    transparent 100%
+                );
+        }
+
+        .heritage-text {
+            position: absolute;
+
+            right: 55px;
+            top: 40px;
+
+            z-index: 5;
+
+            font-family: Georgia, serif;
+
             font-size: 18px;
+
+            line-height: 1.4;
+
+            font-style: italic;
+
+            color: #164846;
+
+            transform: rotate(-5deg);
         }
 
-        .card {
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
-            border: 1px solid #e5e7eb;
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main {
+            padding: 45px 4.5% 0;
+        }
+
+
+        /* =====================================================
+           STORY + LEADERSHIP
+        ===================================================== */
+
+        .story-leadership {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1.12fr;
+
+            gap: 18px;
+
             margin-bottom: 25px;
         }
 
-        .card h2 {
-            margin-bottom: 15px;
-            color: #111827;
+        .story-card,
+        .leadership-card {
+            background:
+                rgba(248,250,244,0.92);
+
+            border:
+                1px solid #d6e0d2;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 4px 18px
+                rgba(49,74,58,0.04);
         }
 
-        .card p {
-            color: #64748b;
-            line-height: 1.8;
+
+        /* =====================================================
+           STORY
+        ===================================================== */
+
+        .story-card {
+            padding: 29px 30px;
+
+            min-height: 390px;
         }
+
+        .small-label {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            background: #dfe9d9;
+
+            color: #325b53;
+
+            font-size: 10px;
+
+            font-weight: 750;
+
+            margin-bottom: 18px;
+        }
+
+        .story-card h2 {
+            font-size: 30px;
+
+            line-height: 1.08;
+
+            letter-spacing: -1.4px;
+
+            color: #173e3c;
+
+            margin-bottom: 18px;
+        }
+
+        .story-card p {
+            font-size: 13px;
+
+            line-height: 1.75;
+
+            color: #304f4a;
+
+            margin-bottom: 15px;
+        }
+
+        .story-highlight {
+            margin-top: 22px;
+
+            padding: 15px 17px;
+
+            border-radius: 11px;
+
+            background: #f8faf5;
+
+            border: 1px solid #dfe7db;
+
+            color: #465d59;
+
+            font-size: 11px;
+
+            font-weight: 650;
+        }
+
+
+        /* =====================================================
+           LEADERSHIP
+        ===================================================== */
+
+        .leadership-card {
+            padding: 27px 28px;
+
+            min-height: 390px;
+        }
+
+        .leadership-header {
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+
+        .leadership-header .label {
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            color: #478277;
+
+            font-weight: 800;
+        }
+
+        .leadership-header h2 {
+            font-size: 30px;
+
+            color: #163f3d;
+
+            margin: 5px 0 5px;
+        }
+
+        .leadership-header p {
+            font-size: 13px;
+
+            color: #405a55;
+        }
+
+        .leaders-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 9px;
+        }
+
+        .leader {
+            min-height: 88px;
+
+            padding: 15px 16px;
+
+            background:
+                rgba(255,255,255,0.68);
+
+            border:
+                1px solid #dce5d9;
+
+            border-radius: 11px;
+        }
+
+        .leader-role {
+            font-size: 10px;
+
+            letter-spacing: 0.7px;
+
+            color: #8b8062;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            margin-bottom: 6px;
+        }
+
+        .leader-name {
+            font-size: 16px;
+
+            font-weight: 750;
+
+            color: #244644;
+        }
+
+        .leader-batch {
+            font-size: 11px;
+
+            color: #76827f;
+
+            margin-top: 4px;
+        }
+
+        .leader:last-child {
+            grid-column: 1 / 3;
+
+            width: 50%;
+
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .features-section {
+            padding:
+                30px 1% 35px;
+        }
+
+        .section-label {
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            color: #4c867b;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .features-section h2 {
+            font-size: 31px;
+
+            letter-spacing: -1.3px;
+
+            color: #173f3d;
+
+            margin-bottom: 7px;
+        }
+
+        .features-subtitle {
+            font-size: 12px;
+
+            color: #405a55;
+
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+        }
+
+        .feature {
+            min-height: 105px;
+
+            padding: 16px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 13px;
+
+            border:
+                1px solid #dce5da;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.65);
+
+            transition: 0.25s ease;
+        }
+
+        .feature:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 22px
+                rgba(52,82,64,0.07);
+        }
+
+        .feature-icon {
+            width: 43px;
+            height: 43px;
+
+            min-width: 43px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #dcece3;
+
+            font-size: 19px;
+        }
+
+        .feature h3 {
+            font-size: 13px;
+
+            color: #214845;
+
+            margin-bottom: 6px;
+        }
+
+        .feature p {
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            color: #4b625e;
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta {
+            min-height: 145px;
+
+            margin:
+                0 0 35px;
+
+            padding:
+                28px 32px;
+
+            border-radius: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #0f504d,
+                    #174f54
+                );
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .cta::after {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            right: -90px;
+            top: -180px;
+
+            background:
+                rgba(255,255,255,0.06);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-label {
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            color: #b8d6cb;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+        .cta h2 {
+            font-size: 22px;
+
+            margin-bottom: 7px;
+        }
+
+        .cta p {
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,0.68);
+        }
+
+        .cta-btn {
+            position: relative;
+
+            z-index: 3;
+
+            flex-shrink: 0;
+
+            padding:
+                13px 22px;
+
+            border-radius: 10px;
+
+            background: #f5f2e9;
+
+            color: #24413e;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: 0.25s ease;
+        }
+
+        .cta-btn:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 20px
+                rgba(0,0,0,0.18);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
         footer {
-            background: #0f172a;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 40px;
+            background: #ffffff;
+
+            border-top:
+                1px solid #dfe7df;
+
+            padding:
+                35px 4.5% 18px;
         }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr 1fr 1.1fr;
+
+            gap: 35px;
+
+            padding-bottom: 30px;
+        }
+
+        .footer-description {
+            max-width: 260px;
+
+            color: #71807c;
+
+            font-size: 11px;
+
+            line-height: 1.7;
+
+            margin:
+                12px 0 14px;
+        }
+
+        .socials {
+            display: flex;
+
+            gap: 7px;
+        }
+
+        .social {
+            width: 29px;
+            height: 29px;
+
+            border-radius: 8px;
+
+            background: #edf2ed;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 11px;
+
+            color: #46635e;
+        }
+
+        .footer-column h4 {
+            font-size: 11px;
+
+            color: #283f3d;
+
+            margin-bottom: 14px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            color: #71807d;
+
+            font-size: 10px;
+
+            margin-bottom: 10px;
+
+            transition: 0.2s ease;
+        }
+
+        .footer-column a:hover {
+            color: #26766d;
+        }
+
+        .contact-item {
+            display: flex;
+
+            gap: 8px;
+
+            color: #71807d;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            margin-bottom: 11px;
+        }
+
+        .footer-bottom {
+            border-top:
+                1px solid #e2e8e2;
+
+            padding-top: 15px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #919a97;
+
+            font-size: 9px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .nav-links a {
+                padding:
+                    8px 8px;
+
+                font-size: 11px;
+            }
+
+            .hero-content {
+                width: 60%;
+            }
+
+            .hero-image {
+                width: 47%;
+            }
+
+            .features-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                height: auto;
+
+                min-height: 70px;
+
+                flex-wrap: wrap;
+
+                padding:
+                    12px 4%;
+            }
+
+            .nav-links {
+                order: 3;
+
+                width: 100%;
+
+                overflow-x: auto;
+
+                padding-bottom: 4px;
+            }
+
+            .hero {
+                padding:
+                    45px 5%;
+
+                min-height: auto;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .story-leadership {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .login {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+
+                letter-spacing: -2px;
+            }
+
+            .stats {
+                display: grid;
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .stat {
+                min-width: auto;
+            }
+
+            .leaders-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .leader:last-child {
+                grid-column: auto;
+
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+
+                gap: 7px;
+            }
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<nav>
-    <div class="logo">Alumni Portal</div>
 
-    <div>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'directory' %}">Directory</a>
-        <a href="{% url 'scholarships' %}">Scholarships</a>
-        <a href="{% url 'events' %}">Events</a>
-        <a href="{% url 'jobs' %}">Jobs</a>
-        <a href="{% url 'mentorship' %}">Mentorship</a>
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+
+    <a href="{% url 'home' %}" class="brand">
+
+        <div class="brand-icon">
+            🎓
+        </div>
+
+        <div class="brand-name">
+            Alumni<span>Portal</span>
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'about' %}" class="active">
+            About
+        </a>
+
+        <a href="{% url 'directory' %}">
+            Directory
+        </a>
+
+        </a>
+
+        <a href="{% url 'events' %}">
+            Events
+        </a>
+
+        <a href="{% url 'jobs' %}">
+            Jobs
+        </a>
+
+        <a href="{% url 'mentorship' %}">
+            Mentorship
+        </a>
+
     </div>
+
+
+    <div class="nav-actions">
+
+        <button
+            class="theme-btn"
+            onclick="toggleTheme()"
+            id="themeBtn"
+            type="button"
+            aria-label="Switch to dark theme"
+        >
+            🌙
+        </button>
+
+        <a href="{% url 'login' %}" class="login">
+            ↪ Login
+        </a>
+
+        <a href="{% url 'register' %}" class="join-btn">
+            Join Network
+        </a>
+
+    </div>
+
 </nav>
 
-<div class="container">
 
-    <div class="hero">
-        <h1>About <span>Alumni Portal</span></h1>
-        <p>One Community, Many Journeys</p>
-    </div>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-    <div class="card">
-        <h2>Our Community</h2>
+<section class="hero">
 
-        <p>
-            The Alumni Portal is designed to connect graduates,
-            foster professional relationships and build a lifelong
-            alumni community.
+
+    <div class="hero-content">
+
+
+        <div class="hero-badge">
+
+            ✨
+
+            About The Alumni Community
+
+        </div>
+
+
+        <h1>
+
+            The Heart of
+            Sacred Heart College
+
+            <span>
+                Beyond Campus Years
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            We are a living network of alumni who learn together,
+            support one another, and create long-term value for
+            students, families, and society through action.
+
         </p>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <strong>
+                    150+
+                </strong>
+
+                <span>
+                    Alumni Network
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    50+
+                </strong>
+
+                <span>
+                    Career & Mentorship Connections
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    10+
+                </strong>
+
+                <span>
+                    Events & Initiatives
+                </span>
+
+            </div>
+
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Our Purpose</h2>
 
-        <p>
-            Our platform helps alumni reconnect with classmates,
-            discover career opportunities, participate in events,
-            find mentors and contribute to the growth of the
-            alumni community.
+    <!-- COLLEGE IMAGE -->
+
+    <div class="hero-image">
+
+
+        <div class="heritage-text">
+
+            Once a Heartian,<br>
+            Always a Heartian.
+
+        </div>
+
+
+        <img
+            src="{% static 'images/shc2.jpg' %}"
+            class="college-image"
+            alt="Sacred Heart College"
+        >
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         OUR STORY + LEADERSHIP
+    ================================================== -->
+
+    <section class="story-leadership">
+
+
+        <!-- OUR STORY -->
+
+        <div class="story-card">
+
+
+            <div class="small-label">
+
+                🏛
+
+                Our Story
+
+            </div>
+
+
+            <h2>
+
+                A Shared Legacy,
+                <br>
+                Continuously Renewed
+
+            </h2>
+
+
+            <p>
+
+                The alumni community of Sacred Heart College,
+                Tirupattur is built on trust, academic spirit,
+                and collective responsibility.
+
+            </p>
+
+
+            <p>
+
+                What started as reconnecting old classmates
+                has evolved into a platform for mentorship,
+                leadership, collaboration, and
+                institution-building.
+
+            </p>
+
+
+            <p>
+
+                Our community focuses on real outcomes:
+                guiding students, supporting careers,
+                enabling entrepreneurship, and preserving
+                the values that shaped us.
+
+            </p>
+
+
+            <div class="story-highlight">
+
+                🌐
+
+                Connected across generations,
+                united by one identity.
+
+            </div>
+
+        </div>
+
+
+        <!-- LEADERSHIP -->
+
+        <div class="leadership-card">
+
+
+            <div class="leadership-header">
+
+                <div class="label">
+                    LEADERSHIP
+                </div>
+
+                <h2>
+                    Executive Committee
+                </h2>
+
+                <p>
+                    A committed team guiding alumni initiatives,
+                    community activities and growth.
+                </p>
+
+            </div>
+
+
+            <div class="leaders-grid">
+
+                {% for member in executive_members %}
+
+                    <div class="leader">
+
+                        <div class="leader-role">
+                            {{ member.role }}
+                        </div>
+
+                        <div class="leader-name">
+                            {{ member.alumni.full_name }}
+                        </div>
+
+                        <div class="leader-batch">
+                            Batch {{ member.alumni.batch }}
+                        </div>
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="leader">
+
+                        <div class="leader-name">
+                            Senior alumni will appear here.
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         WHAT WE OFFER
+    ================================================== -->
+
+    <section class="features-section">
+
+
+        <div class="section-label">
+            ✣ &nbsp; WHAT WE OFFER
+        </div>
+
+
+        <h2>
+            Everything your alumni community needs.
+        </h2>
+
+
+        <p class="features-subtitle">
+
+            The portal brings alumni together with
+            opportunities, support and lifelong connections.
+
         </p>
-    </div>
 
-    <div class="card">
-        <h2>Stay Connected</h2>
 
-        <p>
-            Start by creating your profile and exploring the alumni
-            directory to unlock opportunities and meaningful
-            connections.
-        </p>
-    </div>
+        <div class="features-grid">
 
-</div>
+
+            <!-- DIRECTORY -->
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <h3>
+                        Alumni Directory
+                    </h3>
+
+                    <p>
+                        Discover alumni profiles and
+                        connect with fellow Heartians.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAREER -->
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <h3>
+                        Career Opportunities
+                    </h3>
+
+                    <p>
+                        Explore job opportunities and
+                        professional connections.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EVENTS -->
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <h3>
+                        Events & Reunions
+                    </h3>
+
+                    <p>
+                        Join upcoming alumni events and
+                        register for community activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENTORSHIP -->
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🤝
+                </div>
+
+                <div>
+
+                    <h3>
+                        Mentorship
+                    </h3>
+
+                    <p>
+                        Guidance and support for students
+                        and young alumni.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🏆
+                </div>
+
+                <div>
+
+                    <h3>
+                    </h3>
+
+                    <p>
+                        and support opportunities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALUMNI ENGAGEMENT -->
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🌐
+                </div>
+
+                <div>
+
+                    <h3>
+                        Alumni Engagement
+                    </h3>
+
+                    <p>
+                        Collaborate, contribute and give
+                        back to the institution.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CTA
+    ================================================== -->
+
+    <section class="cta">
+
+
+        <div class="cta-content">
+
+
+            <div class="cta-label">
+                BE PART OF OUR STORY
+            </div>
+
+
+            <h2>
+                Join the Sacred Heart College Alumni Network
+            </h2>
+
+
+            <p>
+                Reconnect. Collaborate. Give back.
+                Make a difference.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'register' %}"
+            class="cta-btn"
+        >
+            Join The Network
+            &nbsp; →
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
-    © 2026 Alumni Portal. All rights reserved.
+
+
+    <div class="footer-grid">
+
+
+        <!-- BRAND -->
+
+        <div>
+
+
+            <a href="{% url 'home' %}" class="brand">
+
+                <div class="brand-icon">
+                    🎓
+                </div>
+
+                <div class="brand-name">
+                    Alumni<span>Portal</span>
+                </div>
+
+            </a>
+
+
+            <p class="footer-description">
+
+                Connecting graduates, fostering growth,
+                and building a lifelong community of
+                Sacred Heart College, Tirupattur.
+
+            </p>
+
+
+            <div class="socials">
+
+                <div class="social">
+                    in
+                </div>
+
+                <div class="social">
+                    𝕏
+                </div>
+
+                <div class="social">
+                    f
+                </div>
+
+                <div class="social">
+                    ◎
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="{% url 'about' %}">
+                About Us
+            </a>
+
+            <a href="{% url 'directory' %}">
+                Alumni Directory
+            </a>
+
+            <a href="{% url 'events' %}">
+                Upcoming Events
+            </a>
+
+            <a href="{% url 'jobs' %}">
+                News & Stories
+            </a>
+
+        </div>
+
+
+        <!-- OPPORTUNITIES -->
+
+        <div class="footer-column">
+
+            <h4>
+                Opportunities
+            </h4>
+
+            <a href="{% url 'jobs' %}">
+                Job Board
+            </a>
+
+            <a href="{% url 'mentorship' %}">
+                Mentorship Program
+            </a>
+
+            </a>
+
+            <a href="{% url 'events' %}">
+                Upcoming Events
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-column">
+
+            <h4>
+                Contact Us
+            </h4>
+
+
+            <div class="contact-item">
+
+                <span>
+                    📍
+                </span>
+
+                <span>
+                    Sacred Heart College,<br>
+                    Tirupattur,<br>
+                    Tamil Nadu, India
+                </span>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <span>
+                    🎓
+                </span>
+
+                <span>
+                    Department of Artificial Intelligence
+                    & Machine Learning
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Alumni Portal. All rights reserved.
+        </span>
+
+        <span>
+            Sacred Heart College · Tirupattur
+        </span>
+
+    </div>
+
+
 </footer>
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    const savedTheme = localStorage.getItem("about-theme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark");
+
+    }
+
+    updateThemeButton();
+
+    function toggleTheme() {
+
+        document.body.classList.toggle("dark");
+
+        localStorage.setItem(
+            "about-theme",
+            document.body.classList.contains("dark") ? "dark" : "light"
+        );
+
+        updateThemeButton();
+
+    }
+
+
+    function updateThemeButton() {
+
+        const button =
+            document.getElementById("themeBtn");
+
+        if (
+            document.body.classList.contains("dark")
+        ) {
+
+            button.textContent = "☀️";
+
+            button.setAttribute(
+                "aria-label",
+                "Switch to light theme"
+            );
+
+        } else {
+
+            button.textContent = "🌙";
+
+            button.setAttribute(
+                "aria-label",
+                "Switch to dark theme"
+            );
+
+        }
+
+    }
+
+</script>
+
+
 </body>
+
 </html>

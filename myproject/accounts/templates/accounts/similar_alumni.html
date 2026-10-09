@@ -1,249 +1,2740 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Similar Alumni | AlumniPortal</title>
+    <title>
+        Similar Alumni | Sacred Heart College
+    </title>
 
-<style>
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <style>
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fb;
-    color: #172033;
-}
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-.header {
-    background: linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    color: white;
-    padding: 55px 20px;
-    text-align: center;
-}
 
-.header h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.header p {
-    opacity: .9;
-}
 
-.container {
-    max-width: 1150px;
-    margin: auto;
-    padding: 45px 20px 80px;
-}
+        body {
 
-.back {
-    display: inline-block;
-    margin-bottom: 25px;
-    color: #667eea;
-    text-decoration: none;
-    font-weight: bold;
-}
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
 
-.source {
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.06);
-}
+            background: #f3f8f6;
 
-.source h2 {
-    margin-bottom: 8px;
-}
+            color: #173a31;
 
-.source p {
-    color: #6b7280;
-}
+            line-height: 1.5;
 
-.grid {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
+        }
 
-    gap: 22px;
-}
 
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.06);
-    transition: .3s;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.card:hover {
-    transform: translateY(-5px);
-}
 
-.avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #eef2ff;
-    color: #667eea;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        /* =====================================================
+           NAVIGATION BAR
+        ===================================================== */
 
-    font-size: 23px;
-    font-weight: bold;
+        .navbar {
 
-    margin-bottom: 18px;
-}
+            position: sticky;
 
-.name {
-    font-size: 20px;
-    font-weight: 800;
-}
+            top: 0;
 
-.position {
-    color: #667eea;
-    margin-top: 5px;
-    font-weight: bold;
-}
+            z-index: 1000;
 
-.info {
-    margin-top: 15px;
-    color: #6b7280;
-    line-height: 1.8;
-}
+            width: 100%;
 
-.profile {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 10px 16px;
-    background: #667eea;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: bold;
-}
+            min-height: 82px;
 
-.empty {
-    text-align: center;
-    padding: 50px;
-    color: #777;
-}
+            padding: 10px 3.5%;
 
-</style>
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid rgba(16,75,55,0.10);
+
+            box-shadow:
+                0 5px 25px rgba(10,70,50,0.08);
+
+        }
+
+
+
+        /* =====================================================
+           BRAND
+        ===================================================== */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            min-width: 270px;
+
+        }
+
+
+        .brand-logo {
+
+            width: 55px;
+
+            height: 55px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0c694d,
+                    #164936
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 7px 18px
+                rgba(10,100,72,0.22);
+
+            overflow: hidden;
+
+        }
+
+
+        .brand-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .brand-text h2 {
+
+            color: #092e49;
+
+            font-size: 18px;
+
+            font-weight: 850;
+
+            line-height: 1.1;
+
+        }
+
+
+        .brand-text p {
+
+            color: #63736d;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+
+        }
+
+
+
+        /* =====================================================
+           NAV LINKS
+        ===================================================== */
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 4px;
+
+        }
+
+
+        .nav-link {
+
+            padding: 11px 15px;
+
+            border-radius: 25px;
+
+            color: #243d35;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: all .25s ease;
+
+            white-space: nowrap;
+
+        }
+
+
+        .nav-link:hover {
+
+            background: #eaf5f0;
+
+            color: #086b4c;
+
+        }
+
+
+        .nav-link.active {
+
+            color: #17382e;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8c53e,
+                    #ffcf55
+                );
+
+            box-shadow:
+                0 5px 15px
+                rgba(246,194,55,.22);
+
+        }
+
+
+
+        /* =====================================================
+           NAV RIGHT
+        ===================================================== */
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            min-width: 245px;
+
+            justify-content: flex-end;
+
+        }
+
+
+        .search-nav {
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #f0f5f3;
+
+            border: 1px solid #dce7e2;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+        }
+
+
+        .notification {
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #f0f5f3;
+
+            border: 1px solid #dce7e2;
+
+            font-size: 18px;
+
+            position: relative;
+
+        }
+
+
+        .notification-badge {
+
+            position: absolute;
+
+            top: -3px;
+
+            right: -2px;
+
+            width: 19px;
+
+            height: 19px;
+
+            border-radius: 50%;
+
+            background: #e63e3e;
+
+            color: white;
+
+            font-size: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+
+        }
+
+
+        .user-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+
+        .user-avatar {
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b674d,
+                    #17483a
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 850;
+
+            font-size: 13px;
+
+        }
+
+
+        .user-name {
+
+            max-width: 125px;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            color: #15382e;
+
+            font-size: 13px;
+
+            font-weight: 750;
+
+        }
+
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            position: relative;
+
+            min-height: 315px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            background:
+
+                linear-gradient(
+                    100deg,
+                    rgba(0,76,52,.94),
+                    rgba(8,95,66,.72),
+                    rgba(223,165,25,.53)
+                ),
+
+                url("{% static 'images/campus.jpg' %}");
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+        .hero-content {
+
+            width: 90%;
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            position: relative;
+
+            z-index: 3;
+
+        }
+
+
+        .ai-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(10,70,53,.55);
+
+            border:
+                1px solid rgba(255,255,255,.22);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 750;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .hero-main {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 24px;
+
+        }
+
+
+        .hero-icon {
+
+            width: 105px;
+
+            height: 105px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            border: 3px solid white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 42px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,.15);
+
+        }
+
+
+        .hero h1 {
+
+            color: white;
+
+            font-size: 49px;
+
+            font-weight: 900;
+
+            line-height: 1.05;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .hero-subtitle {
+
+            color: #f1f7f4;
+
+            font-size: 18px;
+
+        }
+
+
+        .hero-pills {
+
+            display: flex;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+
+            margin-top: 22px;
+
+        }
+
+
+        .hero-pill {
+
+            padding: 9px 16px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(5,66,48,.48);
+
+            border:
+                1px solid rgba(255,255,255,.18);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        .breadcrumb {
+
+            position: absolute;
+
+            right: 5%;
+
+            bottom: 25px;
+
+            background:
+                rgba(5,50,39,.62);
+
+            padding: 10px 17px;
+
+            border-radius: 25px;
+
+            color: white;
+
+            font-size: 12px;
+
+        }
+
+
+        .breadcrumb span {
+
+            margin: 0 7px;
+
+            opacity: .55;
+
+        }
+
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+
+            width: 94%;
+
+            max-width: 1400px;
+
+            margin: -25px auto 60px;
+
+            position: relative;
+
+            z-index: 10;
+
+        }
+
+
+        .main-card {
+
+            background:
+                rgba(255,255,255,.97);
+
+            border-radius: 24px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 15px 55px
+                rgba(18,70,52,.11);
+
+            border:
+                1px solid #e1ebe6;
+
+        }
+
+
+
+        /* =====================================================
+           TOP TOOLBAR
+        ===================================================== */
+
+        .toolbar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 16px;
+
+        }
+
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 13px 20px;
+
+            border-radius: 13px;
+
+            background: #edf3f1;
+
+            color: #15384e;
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            transition: .2s;
+
+        }
+
+
+        .back-button:hover {
+
+            background: #e1ebe7;
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .toolbar-right {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+
+        .search-wrapper {
+
+            display: flex;
+
+            align-items: center;
+
+            background: #f5f8f7;
+
+            border: 1px solid #dce6e2;
+
+            border-radius: 13px;
+
+            height: 48px;
+
+            overflow: hidden;
+
+        }
+
+
+        .search-wrapper input {
+
+            width: 270px;
+
+            height: 100%;
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            padding: 0 15px;
+
+            color: #344b43;
+
+            font-size: 13px;
+
+        }
+
+
+        .search-button {
+
+            height: 100%;
+
+            width: 52px;
+
+            border: none;
+
+            background: #08744f;
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+        }
+
+
+        .filter-button {
+
+            height: 48px;
+
+            padding: 0 18px;
+
+            border-radius: 13px;
+
+            border: 1px solid #dce6e2;
+
+            background: #f5f8f7;
+
+            color: #173d31;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+
+        /* =====================================================
+           INFORMATION BANNER
+        ===================================================== */
+
+        .info-banner {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 19px 23px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e4f8ee,
+                    #edf8f5
+                );
+
+            border: 1px solid #d3ece1;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .info-icon {
+
+            width: 56px;
+
+            height: 56px;
+
+            border-radius: 50%;
+
+            flex-shrink: 0;
+
+            background: #c6f1d8;
+
+            color: #08754e;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 26px;
+
+        }
+
+
+        .info-banner h2 {
+
+            color: #092f4d;
+
+            font-size: 19px;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .info-banner p {
+
+            color: #46645a;
+
+            font-size: 14px;
+
+        }
+
+
+
+        /* =====================================================
+           RESULT HEADER
+        ===================================================== */
+
+        .result-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin: 22px 4px 15px;
+
+        }
+
+
+        .result-title {
+
+            color: #0b3150;
+
+            font-size: 19px;
+
+            font-weight: 850;
+
+        }
+
+
+        .result-count {
+
+            padding: 6px 12px;
+
+            border-radius: 20px;
+
+            background: #e8f4ef;
+
+            color: #08704d;
+
+            font-size: 12px;
+
+            font-weight: 750;
+
+        }
+
+
+
+        /* =====================================================
+           ALUMNI GRID
+        ===================================================== */
+
+        .alumni-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 17px;
+
+        }
+
+
+        .alumni-card {
+
+            position: relative;
+
+            background: white;
+
+            border-radius: 19px;
+
+            overflow: hidden;
+
+            border: 1px solid #e2ebe7;
+
+            box-shadow:
+                0 7px 25px
+                rgba(20,70,52,.07);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+
+        .alumni-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 17px 35px
+                rgba(20,70,52,.13);
+
+        }
+
+
+        /* CARD TOP */
+
+        .card-top {
+
+            min-height: 155px;
+
+            padding: 20px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef6ff,
+                    #ffffff
+                );
+
+            overflow: hidden;
+
+        }
+
+
+        .card-top::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 80px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(80,150,220,.08);
+
+            right: -35px;
+
+            top: -25px;
+
+            transform: rotate(-15deg);
+
+        }
+
+
+        .alumni-card:nth-child(2)
+        .card-top {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ecfaf1,
+                    #ffffff
+                );
+
+        }
+
+
+        .alumni-card:nth-child(2)
+        .card-top::after {
+
+            background:
+                rgba(50,180,105,.08);
+
+        }
+
+
+        .alumni-card:nth-child(3)
+        .card-top {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f1,
+                    #ffffff
+                );
+
+        }
+
+
+        .alumni-card:nth-child(3)
+        .card-top::after {
+
+            background:
+                rgba(220,60,70,.08);
+
+        }
+
+
+        /* RANK */
+
+        .rank {
+
+            position: absolute;
+
+            right: 16px;
+
+            top: 15px;
+
+            padding: 8px 12px;
+
+            border-radius: 25px;
+
+            background: #fff1c9;
+
+            color: #9b6500;
+
+            font-size: 11px;
+
+            font-weight: 850;
+
+            z-index: 2;
+
+        }
+
+
+        .rank.second {
+
+            background: #edf0f4;
+
+            color: #40536a;
+
+        }
+
+
+        .rank.third {
+
+            background: #ffe7d9;
+
+            color: #ae541c;
+
+        }
+
+
+        /* CARD IDENTITY */
+
+        .identity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            position: relative;
+
+            z-index: 3;
+
+            padding-top: 15px;
+
+        }
+
+
+        .avatar {
+
+            width: 67px;
+
+            height: 67px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            font-weight: 850;
+
+            background: #dcecff;
+
+            color: #1261a5;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .alumni-card:nth-child(2)
+        .avatar {
+
+            background: #d8f5e2;
+
+            color: #08734d;
+
+        }
+
+
+        .alumni-card:nth-child(3)
+        .avatar {
+
+            background: #ffdfe1;
+
+            color: #b2262d;
+
+        }
+
+
+        .identity h3 {
+
+            color: #0c304d;
+
+            font-size: 18px;
+
+            font-weight: 850;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .identity p {
+
+            color: #075cc4;
+
+            font-size: 13px;
+
+            font-weight: 650;
+
+        }
+
+
+        /* CARD BODY */
+
+        .card-body {
+
+            padding: 17px 20px 20px;
+
+        }
+
+
+        .detail-list {
+
+            border-top:
+                1px solid #e9efec;
+
+            padding-top: 13px;
+
+        }
+
+
+        .detail {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 10px;
+
+            color: #334d43;
+
+            font-size: 13px;
+
+        }
+
+
+        .detail:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .detail-icon {
+
+            width: 24px;
+
+            text-align: center;
+
+            font-size: 15px;
+
+        }
+
+
+        .detail strong {
+
+            color: #52665e;
+
+            font-weight: 600;
+
+        }
+
+
+        /* VIEW PROFILE */
+
+        .view-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            height: 49px;
+
+            margin-top: 17px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #286ddd,
+                    #0758c7
+                );
+
+            transition: .2s;
+
+        }
+
+
+        .alumni-card:nth-child(2)
+        .view-profile {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #07945e,
+                    #047348
+                );
+
+        }
+
+
+        .alumni-card:nth-child(3)
+        .view-profile {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef4c51,
+                    #df272d
+                );
+
+        }
+
+
+        .view-profile:hover {
+
+            filter: brightness(.95);
+
+            transform: translateY(-1px);
+
+        }
+
+
+
+        /* =====================================================
+           EMPTY STATE
+        ===================================================== */
+
+        .empty-state {
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            border: 1px dashed #cddbd4;
+
+            border-radius: 18px;
+
+            background: #fbfdfc;
+
+        }
+
+
+        .empty-state-icon {
+
+            font-size: 48px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .empty-state h2 {
+
+            color: #163d31;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .empty-state p {
+
+            color: #718079;
+
+            font-size: 14px;
+
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #062d2a,
+                    #0b3d3b,
+                    #072a38
+                );
+
+            color: white;
+
+            padding:
+                45px 5% 24px;
+
+        }
+
+
+        footer::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+
+            height: 200px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,180,130,.07);
+
+            left: -150px;
+
+            top: -100px;
+
+        }
+
+
+        .footer-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.7fr 2fr 1fr;
+
+            gap: 45px;
+
+        }
+
+
+        .footer-brand {
+
+            display: flex;
+
+            gap: 14px;
+
+        }
+
+
+        .footer-logo {
+
+            width: 52px;
+
+            height: 52px;
+
+            border-radius: 12px;
+
+            background: #0b6249;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 900;
+
+        }
+
+
+        .footer-brand h3 {
+
+            font-size: 17px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .footer-brand p {
+
+            color: #abc2bb;
+
+            font-size: 12px;
+
+        }
+
+
+        .footer-links h4,
+        .footer-social h4 {
+
+            color: #f8ca48;
+
+            font-size: 14px;
+
+            margin-bottom: 13px;
+
+        }
+
+
+        .quick-links {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 8px;
+
+        }
+
+
+        .quick-links a {
+
+            color: #c1d2cd;
+
+            font-size: 12px;
+
+        }
+
+
+        .quick-links a:hover {
+
+            color: white;
+
+        }
+
+
+        .social-icons {
+
+            display: flex;
+
+            gap: 9px;
+
+        }
+
+
+        .social-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+
+            background: rgba(255,255,255,.10);
+
+        }
+
+
+        .footer-bottom {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 1400px;
+
+            margin: 30px auto 0;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid rgba(255,255,255,.10);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #8fa9a3;
+
+            font-size: 11px;
+
+        }
+
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 1200px) {
+
+            .brand {
+
+                min-width: auto;
+
+            }
+
+            .nav-links {
+
+                gap: 0;
+
+            }
+
+            .nav-link {
+
+                padding: 10px;
+
+            }
+
+            .nav-right {
+
+                min-width: auto;
+
+            }
+
+            .alumni-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+            .footer-content {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+        }
+
+
+        @media(max-width: 850px) {
+
+            .navbar {
+
+                flex-wrap: wrap;
+
+            }
+
+            .nav-links {
+
+                width: 100%;
+
+                order: 3;
+
+                overflow-x: auto;
+
+                justify-content: flex-start;
+
+                padding-bottom: 4px;
+
+            }
+
+            .nav-right {
+
+                margin-left: auto;
+
+            }
+
+            .hero {
+
+                min-height: 330px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 39px;
+
+            }
+
+            .breadcrumb {
+
+                display: none;
+
+            }
+
+            .toolbar {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+            .toolbar-right {
+
+                width: 100%;
+
+            }
+
+            .search-wrapper {
+
+                flex: 1;
+
+            }
+
+            .search-wrapper input {
+
+                width: 100%;
+
+            }
+
+            .alumni-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .footer-content {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media(max-width: 550px) {
+
+            .brand-text h2 {
+
+                font-size: 15px;
+
+            }
+
+            .brand-text p {
+
+                font-size: 10px;
+
+            }
+
+            .user-name {
+
+                display: none;
+
+            }
+
+            .hero-main {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+            .hero h1 {
+
+                font-size: 34px;
+
+            }
+
+            .hero-icon {
+
+                width: 75px;
+
+                height: 75px;
+
+                font-size: 30px;
+
+            }
+
+            .hero-pills {
+
+                display: none;
+
+            }
+
+            .main {
+
+                width: 95%;
+
+            }
+
+            .main-card {
+
+                padding: 13px;
+
+            }
+
+            .info-banner {
+
+                align-items: flex-start;
+
+            }
+
+            .quick-links {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+            .footer-bottom {
+
+                flex-direction: column;
+
+                gap: 8px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<section class="header">
 
-    <h1>👥 Similar Alumni</h1>
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
-    <p>
-        Alumni with similar professional profiles
-    </p>
+<nav class="navbar">
+
+
+    <!-- BRAND -->
+
+    <a href="{% url 'home' %}" class="brand">
+
+        <div class="brand-logo">
+
+            SHC
+
+        </div>
+
+
+        <div class="brand-text">
+
+            <h2>
+                Sacred Heart College
+            </h2>
+
+            <p>
+                Alumni Portal
+            </p>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- LINKS -->
+
+    <div class="nav-links">
+
+        <a
+            href="{% url 'home' %}"
+            class="nav-link"
+        >
+            Home
+        </a>
+
+
+        <a
+            href="{% url 'directory' %}"
+            class="nav-link active"
+        >
+            Alumni
+        </a>
+
+
+        <a
+            href="{% url 'events' %}"
+            class="nav-link"
+        >
+            Events
+        </a>
+
+
+        <a
+            href="{% url 'jobs' %}"
+            class="nav-link"
+        >
+            Careers
+        </a>
+
+
+        <a
+            href="{% url 'mentorship' %}"
+            class="nav-link"
+        >
+            Mentorship
+        </a>
+
+
+        <a
+            class="nav-link"
+        >
+        </a>
+
+
+        <a
+            href="{% url 'about' %}"
+            class="nav-link"
+        >
+            About
+        </a>
+
+    </div>
+
+
+
+    <!-- RIGHT -->
+
+    <div class="nav-right">
+
+        <div class="search-nav">
+            🔍
+        </div>
+
+
+        <div class="notification">
+
+            🔔
+
+            <span class="notification-badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-avatar">
+
+                {{ alumnus.full_name|slice:":2"|upper }}
+
+            </div>
+
+
+            <div class="user-name">
+
+                {{ alumnus.full_name }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="ai-badge">
+
+            ✨
+
+            Similar Profile Matching
+
+        </div>
+
+
+        <div class="hero-main">
+
+
+            <div class="hero-icon">
+
+                👥
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Similar Alumni
+                </h1>
+
+                <div class="hero-subtitle">
+
+                    Connect with alumni who share
+                    similar professional journeys
+
+                </div>
+
+
+                <div class="hero-pills">
+
+                    <div class="hero-pill">
+                        👥 {{ similar_count }} Similar Alumni
+                    </div>
+
+                    <div class="hero-pill">
+                        🎯 Same Interests
+                    </div>
+
+                    <div class="hero-pill">
+                        🚀 Career Growth
+                    </div>
+
+                    <div class="hero-pill">
+                        🤝 Networking
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="breadcrumb">
+
+            <a href="{% url 'home' %}">
+                🏠 Home
+            </a>
+
+            <span>›</span>
+
+            <a href="{% url 'directory' %}">
+                Alumni
+            </a>
+
+            <span>›</span>
+
+            <span>
+                {{ alumnus.full_name }}
+            </span>
+
+            <span>›</span>
+
+            Similar Alumni
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<div class="container">
 
-    <a href="{% url 'directory' %}" class="back">
-        ← Back to Directory
-    </a>
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-
-    <div class="source">
-
-        <h2>
-            {{ alumnus.full_name }}
-        </h2>
-
-        <p>
-            {{ alumnus.position }} at {{ alumnus.company }}
-        </p>
-
-    </div>
+<main class="main">
 
 
-    {% if similar_alumni %}
+    <div class="main-card">
 
-    <div class="grid">
 
-        {% for person in similar_alumni %}
+        <!-- TOOLBAR -->
 
-        <div class="card">
+        <div class="toolbar">
 
-            <div class="avatar">
-                {{ person.full_name|first|upper }}
-            </div>
-
-            <div class="name">
-                {{ person.full_name }}
-            </div>
-
-            <div class="position">
-                {{ person.position }}
-            </div>
-
-            <div class="info">
-
-                🏢 {{ person.company }}<br>
-
-                🎓 Batch {{ person.batch }}<br>
-
-                🆔 {{ person.register_number }}
-
-            </div>
 
             <a
-                href="{% url 'alumni_profile' person.register_number %}"
-                class="profile"
+                href="{% url 'alumni_profile' alumnus.register_number %}"
+                class="back-button"
             >
-                View Profile →
+
+                ←
+
+                Back to Profile
+
             </a>
+
+
+            <div class="toolbar-right">
+
+
+                <div class="search-wrapper">
+
+                    <input
+                        type="text"
+                        id="alumniSearch"
+                        placeholder="Search by name, company, position..."
+                        onkeyup="searchAlumni()"
+                    >
+
+                    <button
+                        type="button"
+                        class="search-button"
+                    >
+                        🔍
+                    </button>
+
+                </div>
+
+
+                <select
+                    id="companyFilter"
+                    class="filter-button"
+                    onchange="filterAlumni()"
+                >
+
+                    <option value="all">
+                        Filter Company
+                    </option>
+
+                </select>
+
+            </div>
 
         </div>
 
-        {% endfor %}
+
+
+        <!-- INFORMATION -->
+
+        <div class="info-banner">
+
+            <div class="info-icon">
+                🎯
+            </div>
+
+
+            <div>
+
+                <h2>
+                    People with Similar Professional Profiles
+                </h2>
+
+                <p>
+
+                    These alumni have similar career paths,
+                    professional backgrounds or interests
+                    as <strong>{{ alumnus.full_name }}</strong>.
+
+                    Connect with them to expand your
+                    professional network.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RESULT HEADER -->
+
+        <div class="result-header">
+
+            <div class="result-title">
+
+                Recommended Similar Profiles
+
+            </div>
+
+
+            <div class="result-count">
+
+                {{ similar_count }} Matches
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ALUMNI CARDS
+        ================================================= -->
+
+        {% if similar_alumni %}
+
+
+        <div
+            class="alumni-grid"
+            id="alumniGrid"
+        >
+
+
+            {% for person in similar_alumni %}
+
+
+            <article
+                class="alumni-card"
+                data-name="{{ person.full_name|lower }}"
+                data-company="{{ person.company|lower }}"
+                data-position="{{ person.position|lower }}"
+            >
+
+
+                <!-- CARD TOP -->
+
+                <div class="card-top">
+
+
+                    {% if forloop.counter == 1 %}
+
+                        <div class="rank">
+                            🏆 #1 Match
+                        </div>
+
+                    {% elif forloop.counter == 2 %}
+
+                        <div class="rank second">
+                            🥈 #2 Match
+                        </div>
+
+                    {% elif forloop.counter == 3 %}
+
+                        <div class="rank third">
+                            🥉 #3 Match
+                        </div>
+
+                    {% else %}
+
+                        <div class="rank">
+                            ⭐ #{{ forloop.counter }} Match
+                        </div>
+
+                    {% endif %}
+
+
+
+                    <div class="identity">
+
+
+                        <div class="avatar">
+
+                            {{ person.full_name|slice:":2"|upper }}
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+
+                                {{ person.full_name }}
+
+                            </h3>
+
+
+                            <p>
+
+                                {{ person.position }}
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD BODY -->
+
+                <div class="card-body">
+
+
+                    <div class="detail-list">
+
+
+                        <!-- COMPANY -->
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🏢
+                            </span>
+
+                            <strong>
+                                {{ person.company }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- BATCH -->
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🎓
+                            </span>
+
+                            <strong>
+                                Batch {{ person.batch }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- REGISTER -->
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🪪
+                            </span>
+
+                            <strong>
+                                {{ person.register_number }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- POSITION -->
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                💼
+                            </span>
+
+                            <strong>
+                                {{ person.position }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                ✉
+                            </span>
+
+                            <strong>
+                                {{ person.email }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PROFILE BUTTON -->
+
+                    <a
+                        href="{% url 'alumni_profile' person.register_number %}"
+                        class="view-profile"
+                    >
+
+                        👤
+
+                        View Profile
+
+                        →
+
+                    </a>
+
+                </div>
+
+
+            </article>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- EMPTY -->
+
+        <div class="empty-state">
+
+            <div class="empty-state-icon">
+                🔍
+            </div>
+
+
+            <h2>
+                No Similar Alumni Found
+            </h2>
+
+
+            <p>
+
+                There are currently no similar alumni
+                available for this profile.
+
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
 
     </div>
 
-    {% else %}
+</main>
 
-    <div class="empty">
 
-        <h2>No similar alumni available</h2>
 
-        <p>
-            Similar connections have not been calculated yet.
-        </p>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer-content">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+
+            <div class="footer-logo">
+                SHC
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Sacred Heart College
+                </h3>
+
+                <p>
+                    Alumni Portal
+                </p>
+
+                <p>
+                    Connecting alumni,
+                    creating opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LINKS -->
+
+        <div class="footer-links">
+
+            <h4>
+                Quick Links
+            </h4>
+
+
+            <div class="quick-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'directory' %}">
+                    Alumni
+                </a>
+
+                <a href="{% url 'events' %}">
+                    Events
+                </a>
+
+                <a href="{% url 'jobs' %}">
+                    Careers
+                </a>
+
+                <a href="{% url 'mentorship' %}">
+                    Mentorship
+                </a>
+
+                </a>
+
+                <a href="{% url 'about' %}">
+                    About
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SOCIAL -->
+
+        <div class="footer-social">
+
+            <h4>
+                Follow Us
+            </h4>
+
+
+            <div class="social-icons">
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social-icon"
+                >
+                    in
+                </a>
+
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social-icon"
+                >
+                    X
+                </a>
+
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social-icon"
+                >
+                    ◎
+                </a>
+
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social-icon"
+                >
+                    ▶
+                </a>
+
+            </div>
+
+        </div>
+
 
     </div>
 
-    {% endif %}
 
-</div>
+
+    <!-- BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Sacred Heart College Alumni Portal.
+            All Rights Reserved.
+        </span>
+
+        <span>
+            Made with ❤️ for our Alumni Community
+        </span>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    function searchAlumni() {
+
+        const searchInput =
+            document.getElementById("alumniSearch");
+
+        const search =
+            searchInput.value.toLowerCase().trim();
+
+        const cards =
+            document.querySelectorAll(".alumni-card");
+
+
+        cards.forEach(function(card) {
+
+            const name =
+                card.dataset.name || "";
+
+            const company =
+                card.dataset.company || "";
+
+            const position =
+                card.dataset.position || "";
+
+
+            if (
+                name.includes(search) ||
+                company.includes(search) ||
+                position.includes(search)
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       COMPANY FILTER
+    ===================================================== */
+
+    function filterAlumni() {
+
+        const filter =
+            document.getElementById("companyFilter")
+                .value
+                .toLowerCase();
+
+        const cards =
+            document.querySelectorAll(".alumni-card");
+
+
+        cards.forEach(function(card) {
+
+            const company =
+                card.dataset.company || "";
+
+
+            if (
+                filter === "all" ||
+                company === filter
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       CREATE COMPANY FILTER OPTIONS
+    ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            const filter =
+                document.getElementById(
+                    "companyFilter"
+                );
+
+            const cards =
+                document.querySelectorAll(
+                    ".alumni-card"
+                );
+
+
+            const companies =
+                new Set();
+
+
+            cards.forEach(function(card) {
+
+                const company =
+                    card.dataset.company;
+
+
+                if (company) {
+
+                    companies.add(company);
+
+                }
+
+            });
+
+
+            companies.forEach(function(company) {
+
+                const option =
+                    document.createElement("option");
+
+
+                option.value = company;
+
+                option.textContent =
+                    company.charAt(0).toUpperCase() +
+                    company.slice(1);
+
+
+                filter.appendChild(option);
+
+            });
+
+        }
+
+    );
+
+
+</script>
+
 
 </body>
 

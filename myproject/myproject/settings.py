@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +70,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
+ASGI_APPLICATION = 'myproject.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
+
+DATABASE_ROUTERS = [
+    'myproject.database_routers.WebsocketDatabaseRouter',
+]
 
 
 # Database
@@ -77,7 +90,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    'websocket': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'websocket.sqlite3',
+    },
 }
 
 
@@ -130,7 +147,7 @@ MAILERS = {
             "port": 587,
             "use_tls": True,
             "username": "aravinthgovindaraj143@gmail.com",
-            "password": "qauqcxywlowtllkm",
+            "password": "xihxltdplkdfjfgf",
         },
     },
 }

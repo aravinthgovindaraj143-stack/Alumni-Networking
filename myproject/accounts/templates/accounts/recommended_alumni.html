@@ -1,161 +1,1346 @@
-<!DOCTYPE html>
+{% load static %}
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Recommended Alumni | AlumniPortal</title>
+    <title>
+        Recommended Alumni | Sacred Heart College
+    </title>
+
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #fffaf5;
-    color: #172033;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f4f8f6;
+
+    color: #173a31;
+
+    line-height: 1.5;
 }
 
-.header {
-    background: linear-gradient(
-        135deg,
-        #f59e0b,
-        #ea580c
-    );
-
-    color: white;
-    text-align: center;
-    padding: 55px 20px;
-}
-
-.header h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.container {
-    max-width: 1150px;
-    margin: auto;
-    padding: 45px 20px 80px;
-}
-
-.back {
-    color: #ea580c;
+a {
     text-decoration: none;
-    font-weight: bold;
+    color: inherit;
 }
 
-.source {
-    background: white;
-    margin: 25px 0 30px;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.06);
-}
 
-.source p {
-    color: #777;
-    margin-top: 8px;
-}
+/* =====================================================
+   NAVBAR
+===================================================== */
 
-.grid {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
+.navbar {
 
-    gap: 22px;
-}
+    position: sticky;
 
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
+    top: 0;
 
-    box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    z-index: 1000;
 
-    border: 1px solid #fed7aa;
+    min-height: 82px;
 
-    transition: .3s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-}
-
-.badge {
-    display: inline-block;
-    background: #fff7ed;
-    color: #ea580c;
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 18px;
-}
-
-.avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-
-    background: #fff7ed;
-    color: #ea580c;
+    padding: 10px 3.5%;
 
     display: flex;
+
     align-items: center;
-    justify-content: center;
 
-    font-size: 23px;
-    font-weight: bold;
+    justify-content: space-between;
 
-    margin-bottom: 15px;
+    gap: 18px;
+
+    background:
+        rgba(255,255,255,0.96);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid #e1eae5;
+
+    box-shadow:
+        0 5px 25px
+        rgba(10,70,50,0.08);
 }
 
-.name {
-    font-size: 20px;
+
+/* BRAND */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 250px;
+}
+
+.brand-logo {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b6a4d,
+            #16483a
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 900;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 7px 18px
+        rgba(10,100,72,.20);
+}
+
+.brand-text h2 {
+
+    color: #092f49;
+
+    font-size: 18px;
+
+    font-weight: 850;
+}
+
+.brand-text p {
+
+    color: #667770;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+.nav-link {
+
+    padding: 11px 14px;
+
+    border-radius: 25px;
+
+    color: #263f37;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: .25s;
+}
+
+.nav-link:hover {
+
+    background: #eaf5f0;
+
+    color: #08704f;
+}
+
+.nav-link.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5c33f,
+            #ffd25b
+        );
+
+    color: #18382e;
+
+    box-shadow:
+        0 5px 15px
+        rgba(245,194,55,.20);
+}
+
+
+/* NAV RIGHT */
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 230px;
+
+    justify-content: flex-end;
+}
+
+.nav-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #f0f5f3;
+
+    border: 1px solid #dce6e2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+
+    position: relative;
+}
+
+.notification-number {
+
+    position: absolute;
+
+    top: -3px;
+
+    right: -2px;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #e64848;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 9px;
+
     font-weight: 800;
 }
 
-.position {
-    color: #ea580c;
-    font-weight: bold;
-    margin-top: 5px;
+.user-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
 }
 
-.info {
-    margin-top: 15px;
-    color: #777;
-    line-height: 1.8;
-}
+.user-avatar {
 
-.profile {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 10px 16px;
+    width: 43px;
 
-    background: #ea580c;
+    height: 43px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b674c,
+            #174839
+        );
+
     color: white;
 
-    border-radius: 10px;
+    display: flex;
 
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 850;
 }
 
-.empty {
+.user-name {
+
+    max-width: 120px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height: 315px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+
+        linear-gradient(
+            100deg,
+            rgba(0,75,52,.95),
+            rgba(9,95,66,.73),
+            rgba(225,166,25,.50)
+        ),
+
+        url("{% static 'images/campus.jpg' %}");
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+.hero-content {
+
+    width: 90%;
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    position: relative;
+}
+
+.hero-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(5,67,49,.50);
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    margin-bottom: 13px;
+}
+
+.hero-main {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 23px;
+}
+
+.hero-icon {
+
+    width: 103px;
+
+    height: 103px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    background:
+        rgba(255,255,255,.10);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 42px;
+
+    color: white;
+}
+
+.hero h1 {
+
+    color: white;
+
+    font-size: 48px;
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    margin-bottom: 7px;
+}
+
+.hero-subtitle {
+
+    color: #f2f8f5;
+
+    font-size: 18px;
+}
+
+.hero-pills {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 20px;
+}
+
+.hero-pill {
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(4,65,47,.50);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.breadcrumb {
+
+    position: absolute;
+
+    right: 5%;
+
+    bottom: 25px;
+
+    padding: 10px 17px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(5,49,38,.62);
+
+    color: white;
+
+    font-size: 12px;
+}
+
+.breadcrumb span {
+
+    margin: 0 7px;
+
+    opacity: .55;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    width: 94%;
+
+    max-width: 1400px;
+
+    margin: -25px auto 60px;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.main-card {
+
+    background:
+        rgba(255,255,255,.98);
+
+    border-radius: 24px;
+
+    padding: 22px;
+
+    border:
+        1px solid #e0eae5;
+
+    box-shadow:
+        0 15px 55px
+        rgba(18,70,52,.11);
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.back-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 13px 20px;
+
+    border-radius: 13px;
+
+    background: #edf3f1;
+
+    color: #17384d;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    transition: .2s;
+
+    margin-bottom: 17px;
+}
+
+.back-button:hover {
+
+    background: #e1ebe7;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   RECOMMENDATION BANNER
+===================================================== */
+
+.recommendation-banner {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 21px 24px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff3d2,
+            #fff9e9
+        );
+
+    border:
+        1px solid #f0dda9;
+}
+
+.recommendation-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb400,
+            #ed8500
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 7px 18px
+        rgba(239,146,0,.20);
+}
+
+.recommendation-banner h2 {
+
+    color: #15364e;
+
+    font-size: 20px;
+
+    margin-bottom: 4px;
+}
+
+.recommendation-banner p {
+
+    color: #6d6654;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   RESULT HEADER
+===================================================== */
+
+.result-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 25px 4px 16px;
+}
+
+.result-title {
+
+    color: #0a3150;
+
+    font-size: 20px;
+
+    font-weight: 850;
+}
+
+.result-count {
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    background: #fff0c9;
+
+    color: #a26800;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.recommended-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.recommended-card {
+
+    background: white;
+
+    border-radius: 19px;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e1ebe6;
+
+    box-shadow:
+        0 8px 27px
+        rgba(20,70,52,.07);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+}
+
+.recommended-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(20,70,52,.14);
+}
+
+
+/* CARD TOP */
+
+.card-header {
+
+    min-height: 158px;
+
+    padding: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5d9,
+            #ffffff
+        );
+}
+
+.recommended-card:nth-child(2)
+.card-header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf9f0,
+            #ffffff
+        );
+}
+
+.recommended-card:nth-child(3)
+.card-header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0e9,
+            #ffffff
+        );
+}
+
+
+/* RANK */
+
+.rank {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 15px;
+
+    z-index: 3;
+
+    padding: 8px 12px;
+
+    border-radius: 25px;
+
+    background: #fff0bd;
+
+    color: #9b6500;
+
+    font-size: 11px;
+
+    font-weight: 850;
+}
+
+.recommended-card:nth-child(2)
+.rank {
+
+    background: #e8f0ed;
+
+    color: #456056;
+}
+
+.recommended-card:nth-child(3)
+.rank {
+
+    background: #ffe4da;
+
+    color: #a94f28;
+}
+
+
+/* PROFILE */
+
+.profile-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    position: relative;
+
+    z-index: 4;
+
+    padding-top: 18px;
+}
+
+.profile-avatar {
+
+    width: 68px;
+
+    height: 68px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+    background: #ffedbb;
+
+    color: #a06600;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: 850;
+}
+
+.recommended-card:nth-child(2)
+.profile-avatar {
+
+    background: #d7f2e0;
+
+    color: #087149;
+}
+
+.recommended-card:nth-child(3)
+.profile-avatar {
+
+    background: #ffdfd5;
+
+    color: #b44920;
+}
+
+.profile-row h3 {
+
+    color: #0a304d;
+
+    font-size: 18px;
+
+    font-weight: 850;
+
+    margin-bottom: 3px;
+}
+
+.profile-row p {
+
+    color: #a16600;
+
+    font-size: 13px;
+
+    font-weight: 650;
+}
+
+.recommended-card:nth-child(2)
+.profile-row p {
+
+    color: #087149;
+}
+
+.recommended-card:nth-child(3)
+.profile-row p {
+
+    color: #b44920;
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.card-body {
+
+    padding: 17px 20px 20px;
+}
+
+.details {
+
+    border-top:
+        1px solid #e9efec;
+
+    padding-top: 14px;
+}
+
+.detail {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+
+    font-size: 13px;
+
+    color: #40554d;
+}
+
+.detail:last-child {
+    margin-bottom: 0;
+}
+
+.detail-icon {
+
+    width: 23px;
+
     text-align: center;
-    padding: 60px;
-    color: #777;
+
+    font-size: 15px;
+}
+
+.detail strong {
+
+    color: #50645b;
+
+    font-weight: 650;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.profile-button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    height: 50px;
+
+    margin-top: 17px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e99c08,
+            #d97c00
+        );
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.recommended-card:nth-child(2)
+.profile-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #07945e,
+            #047348
+        );
+}
+
+.recommended-card:nth-child(3)
+.profile-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef6546,
+            #df4429
+        );
+}
+
+.profile-button:hover {
+
+    filter: brightness(.94);
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 75px 20px;
+
+    border:
+        1px dashed #cedbd5;
+
+    border-radius: 18px;
+
+    background: #fbfdfc;
+}
+
+.empty-icon {
+
+    font-size: 52px;
+
+    margin-bottom: 13px;
+}
+
+.empty-state h2 {
+
+    color: #153c31;
+
+    margin-bottom: 7px;
+}
+
+.empty-state p {
+
+    color: #728078;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background:
+        linear-gradient(
+            145deg,
+            #062e2b,
+            #0a3d3a,
+            #082c3a
+        );
+
+    color: white;
+
+    padding: 45px 5% 24px;
+}
+
+.footer-content {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.7fr 2fr 1fr;
+
+    gap: 45px;
+}
+
+.footer-brand {
+
+    display: flex;
+
+    gap: 14px;
+}
+
+.footer-logo {
+
+    width: 53px;
+
+    height: 53px;
+
+    border-radius: 12px;
+
+    background: #0b6249;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 900;
+}
+
+.footer-brand h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 3px;
+}
+
+.footer-brand p {
+
+    color: #a9c1ba;
+
+    font-size: 12px;
+}
+
+.footer-column h4,
+.footer-social h4 {
+
+    color: #f7c844;
+
+    font-size: 14px;
+
+    margin-bottom: 13px;
+}
+
+.quick-links {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 8px;
+}
+
+.quick-links a {
+
+    color: #bdd0ca;
+
+    font-size: 12px;
+}
+
+.quick-links a:hover {
+    color: white;
+}
+
+.social-icons {
+
+    display: flex;
+
+    gap: 9px;
+}
+
+.social {
+
+    width: 39px;
+
+    height: 39px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(255,255,255,.10);
+
+    font-weight: 800;
+}
+
+.footer-bottom {
+
+    max-width: 1400px;
+
+    margin: 30px auto 0;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255,255,255,.10);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #8fa9a3;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1200px) {
+
+    .nav-link {
+        padding: 10px;
+    }
+
+    .recommended-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-content {
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width:850px) {
+
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        width: 100%;
+        order: 3;
+        overflow-x: auto;
+    }
+
+    .nav-right {
+        margin-left: auto;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+    }
+
+    .breadcrumb {
+        display: none;
+    }
+
+    .recommended-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media(max-width:550px) {
+
+    .brand-text h2 {
+        font-size: 15px;
+    }
+
+    .brand-text p {
+        font-size: 10px;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .hero-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-icon {
+        width: 78px;
+        height: 78px;
+        font-size: 31px;
+    }
+
+    .hero-pills {
+        display: none;
+    }
+
+    .main {
+        width: 95%;
+    }
+
+    .main-card {
+        padding: 13px;
+    }
+
+    .quick-links {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 
 </style>
@@ -165,104 +1350,660 @@ body {
 
 <body>
 
-<section class="header">
 
-    <h1>⭐ Recommended Alumni</h1>
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-    <p>
-        Alumni recommended based on professional similarity
-    </p>
+<nav class="navbar">
+
+
+    <a
+        href="{% url 'home' %}"
+        class="brand"
+    >
+
+        <div class="brand-logo">
+            SHC
+        </div>
+
+        <div class="brand-text">
+
+            <h2>
+                Sacred Heart College
+            </h2>
+
+            <p>
+                Alumni Portal
+            </p>
+
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a
+            href="{% url 'home' %}"
+            class="nav-link"
+        >
+            Home
+        </a>
+
+
+        <a
+            href="{% url 'directory' %}"
+            class="nav-link active"
+        >
+            Alumni
+        </a>
+
+
+        <a
+            href="{% url 'events' %}"
+            class="nav-link"
+        >
+            Events
+        </a>
+
+
+        <a
+            href="{% url 'jobs' %}"
+            class="nav-link"
+        >
+            Careers
+        </a>
+
+
+        <a
+            href="{% url 'mentorship' %}"
+            class="nav-link"
+        >
+            Mentorship
+        </a>
+
+
+        <a
+            class="nav-link"
+        >
+        </a>
+
+
+        <a
+            href="{% url 'about' %}"
+            class="nav-link"
+        >
+            About
+        </a>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <div class="nav-icon">
+            🔍
+        </div>
+
+
+        <div class="nav-icon">
+
+            🔔
+
+            <span class="notification-number">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-avatar">
+
+                {{ alumnus.full_name|slice:":2"|upper }}
+
+            </div>
+
+
+            <div class="user-name">
+
+                {{ alumnus.full_name }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="hero-badge">
+
+            ✨
+
+            Personalized Alumni Recommendations
+
+        </div>
+
+
+        <div class="hero-main">
+
+
+            <div class="hero-icon">
+                ⭐
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Recommended Alumni
+                </h1>
+
+
+                <div class="hero-subtitle">
+
+                    Discover alumni who may be valuable
+                    professional connections
+
+                </div>
+
+
+                <div class="hero-pills">
+
+                    <div class="hero-pill">
+                        ⭐ {{ recommended_count }} Recommendations
+                    </div>
+
+                    <div class="hero-pill">
+                        🎯 Professional Match
+                    </div>
+
+                    <div class="hero-pill">
+                        🚀 Career Growth
+                    </div>
+
+                    <div class="hero-pill">
+                        🤝 Networking
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="breadcrumb">
+
+            <a href="{% url 'home' %}">
+                🏠 Home
+            </a>
+
+            <span>›</span>
+
+            <a href="{% url 'directory' %}">
+                Alumni
+            </a>
+
+            <span>›</span>
+
+            <span>
+                {{ alumnus.full_name }}
+            </span>
+
+            <span>›</span>
+
+            Recommended
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<div class="container">
 
-    <a
-        href="{% url 'directory' %}"
-        class="back"
-    >
-        ← Back to Directory
-    </a>
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
 
 
-    <div class="source">
-
-        <h2>
-            Recommendations for {{ alumnus.full_name }}
-        </h2>
-
-        <p>
-            {{ alumnus.position }}
-            ·
-            {{ alumnus.company }}
-        </p>
-
-    </div>
+    <div class="main-card">
 
 
-    {% if recommended_alumni %}
+        <a
+            href="{% url 'alumni_profile' alumnus.register_number %}"
+            class="back-button"
+        >
 
-    <div class="grid">
+            ←
 
-        {% for person in recommended_alumni %}
+            Back to Profile
 
-        <div class="card">
+        </a>
 
-            <div class="badge">
-                ⭐ Recommended Connection
+
+
+        <!-- BANNER -->
+
+        <section class="recommendation-banner">
+
+
+            <div class="recommendation-icon">
+                ⭐
             </div>
 
-            <div class="avatar">
-                {{ person.full_name|first|upper }}
-            </div>
 
-            <div class="name">
-                {{ person.full_name }}
-            </div>
+            <div>
 
-            <div class="position">
-                {{ person.position }}
-            </div>
+                <h2>
+                    Recommended Professional Connections
+                </h2>
 
-            <div class="info">
 
-                🏢 {{ person.company }}<br>
+                <p>
 
-                🎓 Batch {{ person.batch }}<br>
+                    These alumni are recommended based on
+                    professional profile information for
+                    <strong>
+                        {{ alumnus.full_name }}
+                    </strong>.
 
-                🆔 {{ person.register_number }}
+                    Explore their profiles and connect with
+                    members of the alumni community.
+
+                </p>
 
             </div>
 
-            <a
-                href="{% url 'alumni_profile' person.register_number %}"
-                class="profile"
-            >
-                View Profile →
-            </a>
+        </section>
+
+
+
+        <!-- HEADER -->
+
+        <div class="result-header">
+
+
+            <div class="result-title">
+
+                Recommended Profiles
+
+            </div>
+
+
+            <div class="result-count">
+
+                {{ recommended_count }}
+                Recommendations
+
+            </div>
 
         </div>
 
-        {% endfor %}
+
+
+        {% if recommended_alumni %}
+
+
+        <div class="recommended-grid">
+
+
+            {% for person in recommended_alumni %}
+
+
+            <article class="recommended-card">
+
+
+                <!-- CARD HEADER -->
+
+                <div class="card-header">
+
+
+                    <div class="rank">
+
+                        {% if forloop.counter == 1 %}
+                            🏆 #1 Recommended
+                        {% elif forloop.counter == 2 %}
+                            🥈 #2 Recommended
+                        {% elif forloop.counter == 3 %}
+                            🥉 #3 Recommended
+                        {% else %}
+                            ⭐ #{{ forloop.counter }}
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="profile-row">
+
+
+                        <div class="profile-avatar">
+
+                            {{ person.full_name|slice:":2"|upper }}
+
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                {{ person.full_name }}
+                            </h3>
+
+                            <p>
+                                {{ person.position }}
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD BODY -->
+
+                <div class="card-body">
+
+
+                    <div class="details">
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🏢
+                            </span>
+
+                            <strong>
+                                {{ person.company }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🎓
+                            </span>
+
+                            <strong>
+                                Batch {{ person.batch }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                🪪
+                            </span>
+
+                            <strong>
+                                {{ person.register_number }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                💼
+                            </span>
+
+                            <strong>
+                                {{ person.position }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <span class="detail-icon">
+                                ✉
+                            </span>
+
+                            <strong>
+                                {{ person.email }}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <a
+                        href="{% url 'alumni_profile' person.register_number %}"
+                        class="profile-button"
+                    >
+
+                        👤
+
+                        View Profile
+
+                        →
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ⭐
+            </div>
+
+
+            <h2>
+                No Recommendations Available
+            </h2>
+
+
+            <p>
+
+                Run the recommendation algorithm first
+                to generate recommended alumni.
+
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
 
     </div>
 
-    {% else %}
+</main>
 
-    <div class="empty">
 
-        <h2>No recommendations available</h2>
 
-        <p>
-            Run the recommendation system to generate connections.
-        </p>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer-content">
+
+
+        <div class="footer-brand">
+
+
+            <div class="footer-logo">
+                SHC
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Sacred Heart College
+                </h3>
+
+                <p>
+                    Alumni Portal
+                </p>
+
+                <p>
+                    Connecting alumni,
+                    creating opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-column">
+
+            <h4>
+                Quick Links
+            </h4>
+
+
+            <div class="quick-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'directory' %}">
+                    Alumni
+                </a>
+
+                <a href="{% url 'events' %}">
+                    Events
+                </a>
+
+                <a href="{% url 'jobs' %}">
+                    Careers
+                </a>
+
+                <a href="{% url 'mentorship' %}">
+                    Mentorship
+                </a>
+
+                </a>
+
+                <a href="{% url 'about' %}">
+                    About
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="footer-social">
+
+            <h4>
+                Follow Us
+            </h4>
+
+
+            <div class="social-icons">
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    in
+                </a>
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    X
+                </a>
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    ◎
+                </a>
+
+                <a
+                    href="{% url 'directory' %}"
+                    class="social"
+                >
+                    ▶
+                </a>
+
+            </div>
+
+        </div>
+
 
     </div>
 
-    {% endif %}
 
-</div>
+
+    <div class="footer-bottom">
+
+        <span>
+
+            © 2026 Sacred Heart College Alumni Portal.
+            All Rights Reserved.
+
+        </span>
+
+
+        <span>
+
+            Made with ❤️ for our Alumni Community
+
+        </span>
+
+    </div>
+
+
+</footer>
+
 
 </body>
 

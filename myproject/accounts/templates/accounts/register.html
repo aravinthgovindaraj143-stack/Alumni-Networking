@@ -1,1699 +1,1329 @@
 {% load static %}
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Alumni Portal | Registration</title>
+    <title>
+        Alumni Registration | AlumniPortal
+    </title>
 
 
-<style>
+    <style>
 
-/* =========================================================
-   RESET
-   ========================================================= */
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
 
-body {
+        html {
+            scroll-behavior: smooth;
+        }
 
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
 
-    background: #f5f7fb;
+        body {
 
-    color: #17213d;
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
 
-    overflow-x: hidden;
-}
+            color: #123c35;
 
+            background: #eef5ef;
 
-/* =========================================================
-   NAVBAR
-   ========================================================= */
+            overflow-x: hidden;
+        }
 
-.navbar {
 
-    min-height: 76px;
+        a {
+            text-decoration: none;
+        }
 
-    background:
-        rgba(255,255,255,0.97);
 
-    border-bottom:
-        1px solid #e3e6ef;
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
 
-    display: flex;
+        .navbar {
 
-    align-items: center;
+            height: 76px;
 
-    justify-content: space-between;
+            background:
+                rgba(255,255,255,0.97);
 
-    padding: 0 7%;
+            display: flex;
 
-    position: sticky;
+            align-items: center;
 
-    top: 0;
+            justify-content:
+                space-between;
 
-    z-index: 1000;
+            padding:
+                0 6%;
 
-    backdrop-filter: blur(15px);
+            position: sticky;
 
-}
+            top: 0;
 
+            z-index: 1000;
 
-.logo {
+            border-bottom:
+                1px solid #dce6df;
+        }
 
-    display: flex;
 
-    align-items: center;
+        .logo {
 
-    gap: 11px;
+            display: flex;
 
-    text-decoration: none;
+            align-items: center;
 
-    color: #17213d;
+            gap: 9px;
 
-    font-size: 20px;
+            color: #083c32;
 
-    font-weight: 800;
+            font-size: 25px;
 
-    white-space: nowrap;
+            font-weight: 800;
+        }
 
-}
 
+        .logo-icon {
 
-.logo-icon {
+            width: 42px;
 
-    width: 44px;
+            height: 42px;
 
-    height: 44px;
+            border-radius: 12px;
 
-    border-radius: 12px;
+            display: flex;
 
-    display: flex;
+            align-items: center;
 
-    align-items: center;
+            justify-content: center;
 
-    justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #075b4e,
+                    #e59b08
+                );
 
-    background:
-        linear-gradient(
-            135deg,
-            #3157d5,
-            #16b8a9
-        );
+            color: white;
 
-    color: white;
+            font-size: 20px;
+        }
 
-    font-size: 20px;
 
-    box-shadow:
-        0 8px 20px
-        rgba(49,87,213,0.22);
+        .logo span {
+            color: #e59b08;
+        }
 
-}
 
+        .nav-links {
 
-.nav-links {
+            display: flex;
 
-    display: flex;
+            align-items: center;
 
-    align-items: center;
+            gap: 22px;
+        }
 
-    gap: 25px;
 
-}
+        .nav-links a {
 
+            color: #183f38;
 
-.nav-links a {
+            font-size: 14px;
 
-    text-decoration: none;
+            font-weight: 600;
 
-    color: #4c5368;
+            transition: 0.3s;
+        }
 
-    font-size: 14px;
 
-    font-weight: 600;
+        .nav-links a:hover {
+            color: #e59b08;
+        }
 
-    transition: 0.2s ease;
 
-}
+        .login-link {
 
+            padding:
+                10px 18px;
 
-.nav-links a:hover {
+            color: #075b4e !important;
 
-    color: #3157d5;
+            border:
+                1px solid #075b4e;
 
-}
+            border-radius: 7px;
+        }
 
 
-.nav-actions {
+        .join-btn {
 
-    display: flex;
+            padding:
+                11px 20px;
 
-    align-items: center;
+            background: #e59b08;
 
-    gap: 12px;
+            color: white !important;
 
-}
+            border-radius: 7px;
 
+            font-weight: 700 !important;
+        }
 
-.login-link {
 
-    text-decoration: none;
+        .join-btn:hover {
 
-    color: #454b60;
+            background: #c98200;
 
-    font-size: 14px;
+            color: white !important;
+        }
 
-    font-weight: 650;
 
-    padding: 10px 14px;
+        /* =====================================================
+           MAIN BACKGROUND
+        ===================================================== */
 
-}
+        .registration-page {
 
+            position: relative;
 
-.join-button {
+            min-height: 850px;
 
-    text-decoration: none;
+            padding:
+                65px 5% 80px;
 
-    color: white;
+            overflow: hidden;
 
-    background: #17213d;
+            background:
 
-    padding: 12px 19px;
+                linear-gradient(
+                    rgba(238,247,239,0.70),
+                    rgba(238,247,239,0.88)
+                ),
 
-    border-radius: 9px;
+                url("{% static 'images/shc5.jpg' %}");
 
-    font-size: 13px;
+            background-size: cover;
 
-    font-weight: 700;
+            background-position: center;
 
-    transition: 0.25s;
+            background-attachment: fixed;
+        }
 
-}
 
+        /* Dark/green overlay */
 
-.join-button:hover {
+        .registration-page::before {
 
-    background: #3157d5;
+            content: "";
 
-    transform: translateY(-2px);
+            position: absolute;
 
-}
+            inset: 0;
 
+            background:
 
-/* =========================================================
-   DJANGO MESSAGES
-   ========================================================= */
+                linear-gradient(
+                    90deg,
+                    rgba(4,65,52,0.16),
+                    rgba(255,255,255,0.28),
+                    rgba(229,155,8,0.10)
+                );
 
-.django-messages {
+            pointer-events: none;
+        }
 
-    max-width: 1200px;
 
-    margin: 20px auto 0;
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
 
-    padding: 0 20px;
+        .registration-container {
 
-}
+            position: relative;
 
+            z-index: 2;
 
-.message {
+            max-width: 1250px;
 
-    padding: 14px 18px;
+            margin: auto;
 
-    border-radius: 10px;
+            display: grid;
 
-    margin-bottom: 10px;
+            grid-template-columns:
+                0.85fr 1.15fr;
 
-    font-size: 13px;
+            gap: 35px;
 
-    background: #eafaf6;
+            align-items: stretch;
+        }
 
-    color: #087c6d;
 
-    border: 1px solid #c6ebe3;
+        /* =====================================================
+           LEFT SIDE
+        ===================================================== */
 
-}
+        .information-panel {
 
+            min-height: 760px;
 
-/* =========================================================
-   LOGGED IN SECTION
-   ========================================================= */
+            border-radius: 25px;
 
-.logged-in-section {
+            padding:
+                48px 40px;
 
-    min-height: calc(100vh - 76px);
+            color: white;
 
-    display: flex;
+            position: relative;
 
-    align-items: center;
+            z-index: 3;
 
-    justify-content: center;
+            overflow: hidden;
 
-    padding: 70px 20px;
+            display: flex;
 
-    background:
+            flex-direction: column;
 
-        radial-gradient(
-            circle at 15% 25%,
-            rgba(49,87,213,0.12),
-            transparent 30%
-        ),
+            justify-content: space-between;
 
-        radial-gradient(
-            circle at 85% 70%,
-            rgba(22,184,169,0.10),
-            transparent 30%
-        ),
+            background:
 
-        #f7f9fd;
+                linear-gradient(
+                    rgba(4,62,50,0.84),
+                    rgba(4,62,50,0.65)
+                ),
 
-}
+                url("{% static 'images/shc5.jpg' %}");
 
+            background-size: cover;
 
-.logged-in-card {
+            background-position: center;
 
-    width: 100%;
+            box-shadow:
+                0 25px 60px
+                rgba(4,65,52,0.20);
+        }
 
-    max-width: 680px;
 
-    background: white;
+        .information-panel::after {
 
-    border: 1px solid #e0e4ed;
+            content: "";
 
-    border-radius: 25px;
+            position: absolute;
 
-    padding: 45px;
+            width: 300px;
 
-    text-align: center;
+            height: 300px;
 
-    box-shadow:
-        0 25px 70px
-        rgba(22,30,60,0.10);
+            right: -140px;
 
-}
+            top: -120px;
 
+            border-radius: 50%;
 
-.logged-icon {
+            background:
+                rgba(229,155,8,0.30);
+        }
 
-    width: 76px;
 
-    height: 76px;
+        .small-title {
 
-    margin: 0 auto 22px;
+            font-size: 11px;
 
-    border-radius: 50%;
+            font-weight: 800;
 
-    display: flex;
+            letter-spacing:
+                2.5px;
 
-    align-items: center;
+            color: #f6d78d;
 
-    justify-content: center;
+            margin-bottom: 20px;
+        }
 
-    color: white;
 
-    font-size: 30px;
+        .information-panel h1 {
 
-    background:
-        linear-gradient(
-            135deg,
-            #3157d5,
-            #16b8a9
-        );
+            font-family:
+                Georgia,
+                serif;
 
-    box-shadow:
-        0 12px 30px
-        rgba(49,87,213,0.25);
+            font-size:
+                clamp(40px,4vw,58px);
 
-}
+            line-height: 1.06;
 
+            margin-bottom: 20px;
 
-.logged-in-card .small-title {
+            position: relative;
 
-    color: #3157d5;
+            z-index: 2;
+        }
 
-    font-size: 12px;
 
-    font-weight: 800;
+        .information-panel h1 span {
 
-    letter-spacing: 1.5px;
+            color: #f3b52b;
+        }
 
-    text-transform: uppercase;
 
-    margin-bottom: 10px;
+        .information-description {
 
-}
+            color: #e0eeea;
 
+            line-height: 1.75;
 
-.logged-in-card h1 {
+            font-size: 15px;
 
-    color: #17213d;
+            max-width: 500px;
 
-    font-size: 34px;
+            margin-bottom: 35px;
+        }
 
-    letter-spacing: -1px;
 
-    margin-bottom: 12px;
+        /* =====================================================
+           BENEFITS
+        ===================================================== */
 
-}
+        .benefits {
 
+            display: flex;
 
-.logged-in-card > p {
+            flex-direction: column;
 
-    color: #6d7487;
+            gap: 18px;
 
-    font-size: 14px;
+            position: relative;
 
-    line-height: 1.8;
+            z-index: 2;
+        }
 
-    margin-bottom: 28px;
 
-}
+        .benefit {
 
+            display: flex;
 
-.student-info {
+            align-items: center;
 
-    text-align: left;
+            gap: 16px;
+        }
 
-    background: #f7f9ff;
 
-    border: 1px solid #e0e5f0;
+        .benefit-icon {
 
-    border-radius: 15px;
+            width: 48px;
 
-    padding: 20px;
+            height: 48px;
 
-    margin-bottom: 28px;
+            min-width: 48px;
 
-}
+            border-radius: 50%;
 
+            display: flex;
 
-.info-row {
+            align-items: center;
 
-    display: flex;
+            justify-content: center;
 
-    justify-content: space-between;
+            background:
+                rgba(255,255,255,0.16);
 
-    gap: 20px;
+            border:
+                1px solid
+                rgba(255,255,255,0.22);
 
-    padding: 12px 0;
+            font-size: 20px;
+        }
 
-    border-bottom: 1px solid #e5e8f0;
 
-}
+        .benefit h3 {
 
+            font-size: 17px;
 
-.info-row:last-child {
+            margin-bottom: 3px;
+        }
 
-    border-bottom: none;
 
-}
+        .benefit p {
 
+            color: #c9ddd8;
 
-.info-label {
+            font-size: 12px;
 
-    color: #777f91;
+            line-height: 1.4;
+        }
 
-    font-size: 12px;
 
-    font-weight: 650;
+        .college-caption {
 
-}
+            position: relative;
 
+            z-index: 2;
 
-.info-value {
+            padding-top: 30px;
+        }
 
-    color: #202942;
 
-    font-size: 13px;
+        .college-caption .quote {
 
-    font-weight: 800;
+            font-family:
+                Georgia,
+                serif;
 
-    text-align: right;
+            font-style: italic;
 
-    word-break: break-word;
+            color: #f6d78d;
 
-}
+            font-size: 20px;
 
+            margin-bottom: 12px;
+        }
 
-.continue-button {
 
-    display: inline-block;
+        .college-caption .location {
 
-    text-decoration: none;
+            display: flex;
 
-    color: white;
+            gap: 8px;
 
-    background:
-        linear-gradient(
-            100deg,
-            #3157d5,
-            #16b8a9
-        );
+            align-items: center;
 
-    padding: 15px 30px;
+            font-size: 12px;
 
-    border-radius: 11px;
+            color: #e2efeb;
+        }
 
-    font-size: 14px;
 
-    font-weight: 800;
+        /* =====================================================
+           FORM PANEL
+        ===================================================== */
 
-    box-shadow:
-        0 12px 28px
-        rgba(49,87,213,0.20);
+        .form-panel {
 
-    transition: 0.25s;
+            position: relative;
 
-}
+            z-index: 3;
 
+            background:
+                rgba(255,255,255,0.96);
 
-.continue-button:hover {
+            border:
+                1px solid
+                rgba(255,255,255,0.9);
 
-    transform: translateY(-3px);
+            border-radius: 25px;
 
-    box-shadow:
-        0 17px 35px
-        rgba(49,87,213,0.28);
+            padding:
+                42px;
 
-}
+            box-shadow:
+                0 25px 60px
+                rgba(13,65,55,0.15);
 
+            backdrop-filter:
+                blur(12px);
+        }
 
-/* =========================================================
-   HERO
-   ========================================================= */
 
-.hero {
+        .form-heading {
 
-    min-height: 520px;
+            display: flex;
 
-    padding: 90px 8%;
+            align-items: center;
 
-    display: flex;
+            gap: 14px;
 
-    align-items: center;
+            margin-bottom: 8px;
+        }
 
-    background:
 
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(49,87,213,0.14),
-            transparent 30%
-        ),
+        .form-heading-icon {
 
-        radial-gradient(
-            circle at 15% 75%,
-            rgba(22,184,169,0.10),
-            transparent 30%
-        ),
+            width: 50px;
 
-        #f7f9fd;
+            height: 50px;
 
-}
+            border-radius: 14px;
 
+            display: flex;
 
-.hero-content {
+            align-items: center;
 
-    max-width: 920px;
+            justify-content: center;
 
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #e6f2e9,
+                    #fff2d2
+                );
 
+            font-size: 24px;
+        }
 
-.hero-badge {
 
-    display: inline-flex;
+        .form-panel h2 {
 
-    align-items: center;
+            font-family:
+                Georgia,
+                serif;
 
-    gap: 9px;
+            font-size:
+                clamp(30px,3vw,42px);
 
-    padding: 10px 16px;
+            color: #0a302a;
+        }
 
-    border-radius: 50px;
 
-    border: 1px solid #dce1eb;
+        .form-panel h2 span {
+            color: #e59b08;
+        }
 
-    background: white;
 
-    color: #50566b;
+        .form-subtitle {
 
-    font-size: 12px;
+            color: #70817c;
 
-    font-weight: 700;
+            font-size: 14px;
 
-    margin-bottom: 25px;
+            margin-bottom: 28px;
 
-}
+            margin-left: 64px;
+        }
 
 
-.hero-badge span {
+        /* =====================================================
+           MESSAGES
+        ===================================================== */
 
-    width: 8px;
+        .messages {
 
-    height: 8px;
+            margin-bottom: 20px;
+        }
 
-    border-radius: 50%;
 
-    background: #16b8a9;
+        .message {
 
-    box-shadow:
-        0 0 10px
-        rgba(22,184,169,0.7);
+            padding:
+                12px 15px;
 
-}
+            border-radius: 9px;
 
+            margin-bottom: 8px;
 
-.hero h1 {
+            font-size: 13px;
 
-    max-width: 900px;
+            font-weight: 600;
+        }
 
-    font-size: clamp(44px,5vw,72px);
 
-    line-height: 1.05;
+        .message.success {
 
-    letter-spacing: -3px;
+            background: #e5f7e9;
 
-    color: #17213d;
+            color: #17683e;
 
-    margin-bottom: 25px;
+            border:
+                1px solid #bde6c8;
+        }
 
-}
 
+        .message.error {
 
-.hero h1 span {
+            background: #fff0ee;
 
-    display: block;
+            color: #a3372e;
 
-    background:
-        linear-gradient(
-            90deg,
-            #3157d5,
-            #0ca89b
-        );
+            border:
+                1px solid #efc6c0;
+        }
 
-    -webkit-background-clip: text;
 
-    background-clip: text;
+        .message.warning {
 
-    color: transparent;
+            background: #fff6df;
 
-}
+            color: #936000;
 
+            border:
+                1px solid #f0d28d;
+        }
 
-.hero p {
 
-    max-width: 730px;
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
 
-    font-size: 16px;
+        .form-grid {
 
-    line-height: 1.8;
+            display: grid;
 
-    color: #6d7487;
+            grid-template-columns:
+                1fr 1fr;
 
-    margin-bottom: 32px;
+            gap:
+                18px 20px;
+        }
 
-}
 
+        .field {
 
-.hero-buttons {
+            display: flex;
 
-    display: flex;
+            flex-direction: column;
+        }
 
-    gap: 12px;
 
-    flex-wrap: wrap;
+        .field.full {
 
-}
+            grid-column:
+                1 / -1;
+        }
 
 
-.primary-button {
+        .field label {
 
-    display: inline-block;
+            color: #163d37;
 
-    text-decoration: none;
+            font-size: 12px;
 
-    color: white;
+            font-weight: 700;
 
-    background:
-        linear-gradient(
-            100deg,
-            #3157d5,
-            #16b8a9
-        );
+            margin-bottom: 7px;
+        }
 
-    padding: 15px 24px;
 
-    border-radius: 10px;
+        .required {
+            color: #d94635;
+        }
 
-    font-size: 14px;
 
-    font-weight: 750;
+        .input-wrapper {
 
-    box-shadow:
-        0 12px 28px
-        rgba(49,87,213,0.20);
+            position: relative;
+        }
 
-    transition: 0.25s;
 
-}
+        .input-icon {
 
+            position: absolute;
 
-.primary-button:hover {
+            left: 13px;
 
-    transform: translateY(-3px);
+            top: 50%;
 
-}
+            transform:
+                translateY(-50%);
 
+            color: #08715e;
 
-.secondary-button {
+            font-size: 16px;
 
-    display: inline-block;
+            z-index: 2;
+        }
 
-    text-decoration: none;
 
-    color: #41485d;
+        .field input {
 
-    background: white;
+            width: 100%;
 
-    border: 1px solid #dce0e9;
+            height: 49px;
 
-    padding: 15px 24px;
+            padding:
+                0 14px 0 42px;
 
-    border-radius: 10px;
+            border:
+                1px solid #ccd9d3;
 
-    font-size: 14px;
+            border-radius: 8px;
 
-    font-weight: 700;
+            background: #fbfdfb;
 
-    transition: 0.25s;
+            outline: none;
 
-}
+            font-size: 13px;
 
+            color: #183d36;
 
-.secondary-button:hover {
+            transition: 0.25s;
+        }
 
-    border-color: #3157d5;
 
-    color: #3157d5;
+        .field input:focus {
 
-}
+            border-color:
+                #08715e;
 
+            box-shadow:
+                0 0 0 3px
+                rgba(8,113,94,0.10);
 
-/* =========================================================
-   REGISTRATION SECTION
-   ========================================================= */
+            background: white;
+        }
 
-.registration-section {
 
-    padding: 85px 8%;
+        .field input::placeholder {
 
-    background: white;
+            color: #a1ada9;
+        }
 
-}
 
+        /* =====================================================
+           OTP SECTION
+        ===================================================== */
 
-.registration-grid {
+        .otp-area {
 
-    max-width: 1200px;
+            display: grid;
 
-    margin: auto;
+            grid-template-columns:
+                1fr auto auto;
 
-    display: grid;
+            gap: 10px;
 
-    grid-template-columns: 0.75fr 1.25fr;
+            align-items: end;
+        }
 
-    gap: 60px;
 
-    align-items: start;
+        .otp-area .field {
+            min-width: 0;
+        }
 
-}
 
+        .otp-button {
 
-/* =========================================================
-   WHY REGISTER
-   ========================================================= */
+            height: 49px;
 
-.why {
+            padding:
+                0 17px;
 
-    padding-top: 10px;
+            border:
+                1px solid #08715e;
 
-}
+            background: white;
 
+            color: #08715e;
 
-.section-label {
+            border-radius: 8px;
 
-    color: #3157d5;
+            cursor: pointer;
 
-    font-size: 12px;
+            font-size: 12px;
 
-    font-weight: 800;
+            font-weight: 800;
 
-    letter-spacing: 1.5px;
+            white-space: nowrap;
 
-    text-transform: uppercase;
+            transition: 0.3s;
+        }
 
-    margin-bottom: 13px;
 
-}
+        .otp-button:hover {
 
+            background: #08715e;
 
-.why h2 {
+            color: white;
+        }
 
-    color: #17213d;
 
-    font-size: 34px;
+        .verify-button {
 
-    letter-spacing: -1px;
+            height: 49px;
 
-    margin-bottom: 17px;
+            padding:
+                0 20px;
 
-}
+            border: none;
 
+            background: #08715e;
 
-.why > p {
+            color: white;
 
-    color: #73798b;
+            border-radius: 8px;
 
-    font-size: 14px;
+            cursor: pointer;
 
-    line-height: 1.8;
+            font-size: 12px;
 
-    margin-bottom: 27px;
+            font-weight: 800;
 
-}
+            white-space: nowrap;
 
+            transition: 0.3s;
+        }
 
-.benefit {
 
-    display: flex;
+        .verify-button:hover {
+            background: #055143;
+        }
 
-    gap: 13px;
 
-    padding: 18px;
+        .verified {
 
-    border: 1px solid #e2e5ed;
+            display: inline-flex;
 
-    border-radius: 14px;
+            align-items: center;
 
-    margin-bottom: 12px;
+            gap: 5px;
 
-    background: #fafbfe;
+            margin-top: 7px;
 
-    transition: 0.25s;
+            color: #18814f;
 
-}
+            font-size: 11px;
 
+            font-weight: 700;
+        }
 
-.benefit:hover {
 
-    transform: translateX(5px);
+        /* =====================================================
+           PASSWORD
+        ===================================================== */
 
-    border-color: #c9d4ff;
+        .password-toggle {
 
-    background: #f7f9ff;
+            position: absolute;
 
-}
+            right: 13px;
 
+            top: 50%;
 
-.benefit-icon {
+            transform:
+                translateY(-50%);
 
-    width: 30px;
+            border: none;
 
-    height: 30px;
+            background: none;
 
-    flex-shrink: 0;
+            cursor: pointer;
 
-    border-radius: 50%;
+            color: #71817d;
 
-    background: #e8edff;
+            font-size: 15px;
+        }
 
-    color: #3157d5;
 
-    display: flex;
+        .password-field input {
+            padding-right: 42px;
+        }
 
-    align-items: center;
 
-    justify-content: center;
+        /* =====================================================
+           TERMS
+        ===================================================== */
 
-    font-size: 13px;
+        .terms {
 
-    font-weight: 800;
+            margin-top: 22px;
 
-}
+            display: flex;
 
+            gap: 9px;
 
-.benefit p {
+            align-items: flex-start;
+        }
 
-    color: #565d70;
 
-    font-size: 13px;
+        .terms input {
 
-    line-height: 1.6;
+            width: 17px;
 
-}
+            height: 17px;
 
+            accent-color: #08715e;
 
-/* =========================================================
-   FORM CARD
-   ========================================================= */
+            margin-top: 1px;
 
-.form-card {
+            cursor: pointer;
+        }
 
-    border: 1px solid #e0e3eb;
 
-    border-radius: 24px;
+        .terms label {
 
-    padding: 36px;
+            color: #657671;
 
-    background: white;
+            font-size: 12px;
 
-    box-shadow:
-        0 25px 70px
-        rgba(22,30,60,0.08);
+            line-height: 1.5;
+        }
 
-}
 
+        .terms a {
 
-.form-top {
+            color: #08715e;
 
-    margin-bottom: 28px;
+            font-weight: 700;
 
-}
+            text-decoration: underline;
+        }
 
 
-.form-top-label {
+        /* =====================================================
+           REGISTER BUTTON
+        ===================================================== */
 
-    color: #3157d5;
+        .register-button {
 
-    font-size: 12px;
+            width: 100%;
 
-    font-weight: 800;
+            height: 53px;
 
-    margin-bottom: 9px;
+            border: none;
 
-}
+            border-radius: 9px;
 
+            margin-top: 20px;
 
-.form-top h2 {
+            background:
+                linear-gradient(
+                    90deg,
+                    #08715e,
+                    #e59b08
+                );
 
-    color: #17213d;
+            color: white;
 
-    font-size: 31px;
+            font-size: 15px;
 
-    letter-spacing: -1px;
+            font-weight: 800;
 
-}
+            cursor: pointer;
 
+            transition: 0.3s;
 
-.form-grid {
+            box-shadow:
+                0 10px 25px
+                rgba(8,113,94,0.18);
+        }
 
-    display: grid;
 
-    grid-template-columns: 1fr 1fr;
+        .register-button:hover {
 
-    gap: 19px;
+            transform:
+                translateY(-2px);
 
-}
+            box-shadow:
+                0 14px 30px
+                rgba(8,113,94,0.25);
+        }
 
 
-.form-group {
+        .login-text {
 
-    display: flex;
+            text-align: center;
 
-    flex-direction: column;
+            color: #687a75;
 
-    gap: 8px;
+            font-size: 12px;
 
-}
+            margin-top: 17px;
+        }
 
 
-.form-group.full {
+        .login-text a {
 
-    grid-column: 1 / -1;
+            color: #08715e;
 
-}
+            font-weight: 800;
+        }
 
 
-.form-group label {
+        /* =====================================================
+           FOOTER
+        ===================================================== */
 
-    font-size: 12px;
+        footer {
 
-    font-weight: 750;
+            background: #043b32;
 
-    color: #3e4559;
+            color: white;
 
-}
+            padding:
+                42px 7% 22px;
+        }
 
 
-.form-input {
+        .footer-grid {
 
-    width: 100%;
+            max-width: 1250px;
 
-    height: 50px;
+            margin: auto;
 
-    border: 1px solid #dce0e9;
+            display: grid;
 
-    border-radius: 10px;
+            grid-template-columns:
+                1.6fr 1fr 1fr 1.5fr;
 
-    padding: 0 14px;
+            gap: 35px;
+        }
 
-    background: #fafbfe;
 
-    color: #252a3b;
+        .footer-logo {
 
-    outline: none;
+            font-size: 23px;
 
-    font-size: 13px;
+            font-weight: 800;
 
-    transition: 0.2s;
+            margin-bottom: 10px;
+        }
 
-}
 
+        .footer-logo span {
+            color: #f0b21d;
+        }
 
-.form-input:focus {
 
-    border-color: #3157d5;
+        .footer-description {
 
-    background: white;
+            color: #b9d1cb;
 
-    box-shadow:
-        0 0 0 4px
-        rgba(49,87,213,0.09);
+            font-size: 12px;
 
-}
+            line-height: 1.7;
 
+            max-width: 280px;
+        }
 
-.form-input::placeholder {
 
-    color: #9ca2b1;
+        footer h3 {
 
-}
+            font-size: 14px;
 
+            margin-bottom: 13px;
+        }
 
-.form-input:read-only {
 
-    background: #f0f2f7;
+        footer a {
 
-    cursor: not-allowed;
+            display: block;
 
-}
+            color: #b9d1cb;
 
+            font-size: 12px;
 
-/* =========================================================
-   OTP
-   ========================================================= */
+            margin-bottom: 8px;
+        }
 
-.otp-row {
 
-    display: flex;
+        footer a:hover {
+            color: #f4c750;
+        }
 
-    gap: 9px;
 
-}
+        .contact-info {
 
+            color: #b9d1cb;
 
-.otp-row .form-input {
+            font-size: 12px;
 
-    flex: 1;
+            line-height: 1.8;
+        }
 
-    min-width: 0;
 
-}
+        .copyright {
 
+            max-width: 1250px;
 
-.otp-button {
+            margin:
+                28px auto 0;
 
-    min-width: 110px;
+            padding-top: 18px;
 
-    border: 1px solid #d1d7e8;
+            border-top:
+                1px solid
+                rgba(255,255,255,0.13);
 
-    border-radius: 10px;
+            color: #8ca9a2;
 
-    background: #edf1ff;
+            font-size: 11px;
 
-    color: #3157d5;
+            display: flex;
 
-    font-size: 12px;
+            justify-content:
+                space-between;
 
-    font-weight: 750;
+            gap: 20px;
+        }
 
-    cursor: pointer;
 
-    transition: 0.2s;
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
 
-}
+        @media(max-width: 1100px) {
 
+            .nav-links {
+                gap: 11px;
+            }
 
-.otp-button:hover {
 
-    background: #e2e8ff;
+            .registration-container {
 
-}
+                grid-template-columns:
+                    1fr;
+            }
 
 
-.otp-button:disabled {
+            .information-panel {
 
-    opacity: 0.5;
+                min-height: 520px;
+            }
 
-    cursor: not-allowed;
 
-}
+            .footer-grid {
 
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
 
-.verify-button {
 
-    min-width: 100px;
+        @media(max-width: 750px) {
 
-    border: none;
+            .navbar {
 
-    border-radius: 10px;
+                padding:
+                    0 5%;
+            }
 
-    background: #17213d;
 
-    color: white;
+            .nav-links {
 
-    font-size: 12px;
+                display: none;
+            }
 
-    font-weight: 750;
 
-    cursor: pointer;
+            .registration-page {
 
-    transition: 0.2s;
+                padding:
+                    30px 4% 50px;
 
-}
+                background-attachment:
+                    scroll;
+            }
 
 
-.verify-button:hover {
+            .information-panel {
 
-    background: #3157d5;
+                padding:
+                    35px 25px;
 
-}
+                min-height: 520px;
+            }
 
 
-.verify-button:disabled {
+            .form-panel {
 
-    opacity: 0.5;
+                padding:
+                    28px 20px;
+            }
 
-    cursor: not-allowed;
 
-}
+            .form-grid {
 
+                grid-template-columns:
+                    1fr;
+            }
 
-.otp-status {
 
-    margin-top: 9px;
+            .field.full {
 
-    font-size: 12px;
+                grid-column:
+                    auto;
+            }
 
-    font-weight: 650;
 
-    min-height: 18px;
+            .form-subtitle {
 
-}
+                margin-left: 0;
+            }
 
 
-.otp-success {
+            .otp-area {
 
-    color: #0b907e;
+                grid-template-columns:
+                    1fr 1fr;
+            }
 
-}
 
+            .otp-area .field {
 
-.otp-error {
+                grid-column:
+                    1 / -1;
+            }
 
-    color: #d24c5d;
 
-}
+            .otp-button,
+            .verify-button {
 
+                width: 100%;
+            }
 
-/* =========================================================
-   SUBMIT
-   ========================================================= */
 
-.submit-button {
+            .footer-grid {
 
-    width: 100%;
+                grid-template-columns:
+                    1fr;
+            }
 
-    height: 53px;
 
-    border: none;
+            .copyright {
 
-    border-radius: 11px;
+                flex-direction:
+                    column;
+            }
+        }
 
-    margin-top: 8px;
 
-    background:
-        linear-gradient(
-            100deg,
-            #3157d5,
-            #16b8a9
-        );
+        @media(max-width: 480px) {
 
-    color: white;
+            .logo {
 
-    font-size: 14px;
+                font-size: 20px;
+            }
 
-    font-weight: 800;
 
-    cursor: pointer;
+            .logo-icon {
 
-    transition: 0.25s;
+                width: 36px;
 
-    box-shadow:
-        0 12px 28px
-        rgba(49,87,213,0.18);
+                height: 36px;
+            }
 
-}
 
+            .information-panel h1 {
 
-.submit-button:hover {
+                font-size: 39px;
+            }
 
-    transform: translateY(-2px);
 
-}
+            .form-panel h2 {
 
+                font-size: 30px;
+            }
+        }
 
-.submit-button:disabled {
-
-    opacity: 0.45;
-
-    cursor: not-allowed;
-
-    transform: none;
-
-}
-
-
-/* =========================================================
-   STEPS
-   ========================================================= */
-
-.steps-section {
-
-    padding: 70px 8%;
-
-    background: #f6f8fc;
-
-}
-
-
-.steps {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap: 18px;
-
-}
-
-
-.step {
-
-    padding: 28px;
-
-    border: 1px solid #e0e3eb;
-
-    border-radius: 17px;
-
-    background: white;
-
-}
-
-
-.step-number {
-
-    width: 36px;
-
-    height: 36px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    color: white;
-
-    background: #17213d;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    margin-bottom: 18px;
-
-}
-
-
-.step h3 {
-
-    color: #20263b;
-
-    font-size: 18px;
-
-    margin-bottom: 9px;
-
-}
-
-
-.step p {
-
-    color: #777d8d;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-
-}
-
-
-/* =========================================================
-   LOGIN BANNER
-   ========================================================= */
-
-.login-banner {
-
-    max-width: 1200px;
-
-    margin: 70px auto 0;
-
-    border-radius: 22px;
-
-    padding: 38px 42px;
-
-    background:
-        linear-gradient(
-            110deg,
-            #17213d,
-            #28458e
-        );
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-}
-
-
-.banner-label {
-
-    color: #7de0d5;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 9px;
-
-}
-
-
-.login-banner h2 {
-
-    font-size: 28px;
-
-    margin-bottom: 8px;
-
-}
-
-
-.login-banner p {
-
-    color:
-        rgba(255,255,255,0.70);
-
-    font-size: 13px;
-
-}
-
-
-.banner-button {
-
-    text-decoration: none;
-
-    background: white;
-
-    color: #202942;
-
-    padding: 14px 21px;
-
-    border-radius: 10px;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    white-space: nowrap;
-
-    transition: 0.2s;
-
-}
-
-
-.banner-button:hover {
-
-    transform: translateY(-2px);
-
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer {
-
-    background: #f6f8fc;
-
-    border-top: 1px solid #e3e5ed;
-
-    padding: 60px 8% 25px;
-
-}
-
-
-.footer-grid {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        1.4fr 1fr 1fr 1.2fr;
-
-    gap: 40px;
-
-}
-
-
-.footer-brand {
-
-    color: #17213d;
-
-    font-size: 18px;
-
-    font-weight: 800;
-
-    margin-bottom: 15px;
-
-}
-
-
-.footer-description {
-
-    color: #777d8d;
-
-    font-size: 12px;
-
-    line-height: 1.7;
-
-    max-width: 280px;
-
-}
-
-
-.footer-column h3 {
-
-    color: #252b40;
-
-    font-size: 14px;
-
-    margin-bottom: 16px;
-
-}
-
-
-.footer-column a {
-
-    display: block;
-
-    text-decoration: none;
-
-    color: #777d8d;
-
-    font-size: 12px;
-
-    margin-bottom: 11px;
-
-    transition: 0.2s;
-
-}
-
-
-.footer-column a:hover {
-
-    color: #3157d5;
-
-}
-
-
-.footer-bottom {
-
-    max-width: 1200px;
-
-    margin: 45px auto 0;
-
-    padding-top: 20px;
-
-    border-top: 1px solid #dfe2ea;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    color: #9297a5;
-
-    font-size: 11px;
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 1100px) {
-
-    .nav-links {
-
-        display: none;
-
-    }
-
-
-    .registration-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .footer-grid {
-
-        grid-template-columns: 1fr 1fr;
-
-    }
-
-}
-
-
-@media (max-width: 700px) {
-
-    .navbar {
-
-        padding: 12px 20px;
-
-    }
-
-
-    .login-link {
-
-        display: none;
-
-    }
-
-
-    .hero {
-
-        padding: 65px 25px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 42px;
-
-        letter-spacing: -2px;
-
-    }
-
-
-    .registration-section {
-
-        padding: 55px 20px;
-
-    }
-
-
-    .form-card {
-
-        padding: 23px;
-
-    }
-
-
-    .form-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .form-group.full {
-
-        grid-column: auto;
-
-    }
-
-
-    .otp-row {
-
-        flex-direction: column;
-
-    }
-
-
-    .otp-button,
-    .verify-button {
-
-        height: 45px;
-
-        width: 100%;
-
-    }
-
-
-    .steps {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .steps-section {
-
-        padding: 55px 20px;
-
-    }
-
-
-    .login-banner {
-
-        margin: 50px 20px 0;
-
-        padding: 28px;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-    }
-
-
-    .logged-in-card {
-
-        padding: 30px 22px;
-
-    }
-
-
-    .logged-in-card h1 {
-
-        font-size: 27px;
-
-    }
-
-
-    .info-row {
-
-        flex-direction: column;
-
-        gap: 5px;
-
-    }
-
-
-    .info-value {
-
-        text-align: left;
-
-    }
-
-
-    footer {
-
-        padding: 50px 25px 25px;
-
-    }
-
-
-    .footer-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .footer-bottom {
-
-        flex-direction: column;
-
-        gap: 10px;
-
-    }
-
-}
-
-</style>
+    </style>
 
 </head>
 
@@ -1701,9 +1331,9 @@ footer {
 <body>
 
 
-<!-- =========================================================
+<!-- =====================================================
      NAVBAR
-     ========================================================= -->
+===================================================== -->
 
 <nav class="navbar">
 
@@ -1717,428 +1347,333 @@ footer {
             🎓
         </span>
 
-        AlumniPortal
+        Alumni<span>Portal</span>
 
     </a>
 
 
     <div class="nav-links">
 
+
         <a href="{% url 'home' %}">
             Home
         </a>
+
 
         <a href="{% url 'about' %}">
             About
         </a>
 
+
         <a href="{% url 'directory' %}">
             Directory
         </a>
 
-        <a href="{% url 'scholarships' %}">
-            Scholarships
+
         </a>
+
 
         <a href="{% url 'events' %}">
             Events
         </a>
 
+
         <a href="{% url 'jobs' %}">
             Jobs
         </a>
+
 
         <a href="{% url 'mentorship' %}">
             Mentorship
         </a>
 
-    </div>
-
-
-    <div class="nav-actions">
 
         <a
             href="{% url 'login' %}"
             class="login-link"
         >
-            → Login
+            Login
         </a>
 
 
         <a
-            href="#registration-form"
-            class="join-button"
+            href="{% url 'register' %}"
+            class="join-btn"
         >
             Join Network
         </a>
+
 
     </div>
 
 </nav>
 
 
-<!-- =========================================================
-     DJANGO MESSAGES
-     ========================================================= -->
 
-{% if messages %}
+<!-- =====================================================
+     REGISTRATION PAGE
+===================================================== -->
 
-<div class="django-messages">
+<main class="registration-page">
 
-    {% for message in messages %}
 
-    <div class="message">
-
-        {{ message }}
-
-    </div>
-
-    {% endfor %}
-
-</div>
-
-{% endif %}
-
-
-<!-- =========================================================
-     ALREADY LOGGED IN
-     ========================================================= -->
-
-{% if logged_in_student %}
-
-
-<section class="logged-in-section">
-
-
-    <div class="logged-in-card">
-
-
-        <div class="logged-icon">
-            ✓
-        </div>
-
-
-        <div class="small-title">
-            Alumni Account Verified
-        </div>
-
-
-        <h1>
-            Welcome, {{ logged_in_student.full_name }}!
-        </h1>
-
-
-        <p>
-
-            Your alumni account has already been
-            registered successfully. You are currently
-            logged in to the Alumni Portal.
-
-        </p>
-
-
-        <div class="student-info">
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Register Number
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.register_number }}
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Full Name
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.full_name }}
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Batch
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.batch|default:"Not provided" }}
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Company
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.company|default:"Not provided" }}
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Position
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.position|default:"Not provided" }}
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Mobile
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.phone|default:"Not provided" }}
-                </span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span class="info-label">
-                    Email
-                </span>
-
-                <span class="info-value">
-                    {{ logged_in_student.email|default:"Not provided" }}
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <a
-            href="{% url 'home' %}"
-            class="continue-button"
-        >
-            Continue to Home →
-        </a>
-
-
-    </div>
-
-</section>
-
-
-{% else %}
-
-
-<!-- =========================================================
-     HERO
-     ========================================================= -->
-
-<section class="hero">
-
-
-    <div class="hero-content">
-
-
-        <div class="hero-badge">
-
-            <span></span>
-
-            Alumni Registration
-
-        </div>
-
-
-        <h1>
-
-            Join a trusted alumni network
-
-            <span>
-                built for lifelong connection.
-            </span>
-
-        </h1>
-
-
-        <p>
-
-            Create your alumni profile and reconnect
-            with your batch, discover career opportunities,
-            participate in events, find mentors and become
-            part of a growing professional community.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-
-            <a
-                href="#registration-form"
-                class="primary-button"
-            >
-                Start Registration →
-            </a>
-
-
-            <a
-                href="{% url 'directory' %}"
-                class="secondary-button"
-            >
-                Explore Directory
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     REGISTRATION SECTION
-     ========================================================= -->
-
-<section
-    class="registration-section"
-    id="registration-form"
->
-
-
-    <div class="registration-grid">
+    <div class="registration-container">
 
 
         <!-- =================================================
-             WHY REGISTER
-             ================================================= -->
+             LEFT INFORMATION PANEL
+        ================================================== -->
 
-        <div class="why">
+        <section class="information-panel">
 
 
-            <div class="section-label">
-                Why Register
+            <div>
+
+
+                <div class="small-title">
+
+                    SACRED HEART COLLEGE
+                    <br>
+                    ALUMNI COMMUNITY
+
+                </div>
+
+
+                <h1>
+
+                    Become a Part
+                    of a
+
+                    <span>
+                        Stronger Network
+                    </span>
+
+                </h1>
+
+
+                <p class="information-description">
+
+                    Create your alumni profile and
+                    reconnect with your batchmates,
+                    discover career opportunities,
+                    participate in events, find mentors
+                    and contribute to a growing community.
+
+                </p>
+
+
+                <!-- BENEFITS -->
+
+                <div class="benefits">
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon">
+                            👥
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Reconnect
+                            </h3>
+
+                            <p>
+                                Find and connect with your classmates
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon">
+                            💼
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Grow
+                            </h3>
+
+                            <p>
+                                Explore career opportunities and mentorship
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon">
+                            📅
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Participate
+                            </h3>
+
+                            <p>
+                                Join alumni events, webinars and reunions
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon">
+                            ❤️
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                Give Back
+                            </h3>
+
+                            <p>
+                                Support the next generation through guidance
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
             </div>
 
 
-            <h2>
-                Become part of the community.
-            </h2>
+
+            <div class="college-caption">
 
 
-            <p>
+                <div class="quote">
 
-                Registration gives you access to a
-                meaningful alumni network built around
-                support, growth, collaboration and
-                lifelong connections.
+                    "Same Roots,
+                    Brighter Futures."
+
+                </div>
+
+
+                <div class="location">
+
+                    📍
+
+                    <span>
+
+                        Sacred Heart College,
+                        Tirupattur, Tamil Nadu
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FORM PANEL
+        ================================================== -->
+
+        <section class="form-panel">
+
+
+            <div class="form-heading">
+
+
+                <div class="form-heading-icon">
+                    🎓
+                </div>
+
+
+                <h2>
+
+                    Create Your
+                    <span>
+                        Alumni Profile
+                    </span>
+
+                </h2>
+
+
+            </div>
+
+
+            <p class="form-subtitle">
+
+                Fill in your details to join the
+                Sacred Heart College Alumni Community.
 
             </p>
 
 
-            <div class="benefit">
 
-                <div class="benefit-icon">
-                    ✓
+            <!-- =================================================
+                 DJANGO MESSAGES
+            ================================================== -->
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+
+                        <div
+                            class="message {{ message.tags }}"
+                        >
+
+                            {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
                 </div>
 
-                <p>
-                    Access verified alumni profiles
-                    and reconnect with your batch.
-                </p>
-
-            </div>
+            {% endif %}
 
 
-            <div class="benefit">
 
-                <div class="benefit-icon">
-                    ✓
-                </div>
-
-                <p>
-                    Get invitations for reunions,
-                    chapter events and career sessions.
-                </p>
-
-            </div>
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    ✓
-                </div>
-
-                <p>
-                    Discover mentorship and job
-                    opportunities from trusted alumni.
-                </p>
-
-            </div>
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    ✓
-                </div>
-
-                <p>
-                    Contribute as a mentor, speaker,
-                    chapter lead or community volunteer.
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- =================================================
-             REGISTRATION FORM
-             ================================================= -->
-
-        <div class="form-card">
-
-
-            <div class="form-top">
-
-                <div class="form-top-label">
-                    ✦ Registration Form
-                </div>
-
-                <h2>
-                    Create Your Alumni Profile
-                </h2>
-
-            </div>
-
+            <!-- =================================================
+                 REGISTRATION FORM
+            ================================================== -->
 
             <form
                 method="POST"
                 action="{% url 'register' %}"
-                id="registrationForm"
             >
 
                 {% csrf_token %}
@@ -2149,380 +1684,566 @@ footer {
 
                     <!-- REGISTER NUMBER -->
 
-                    <div class="form-group">
+                    <div class="field">
 
-                        <label for="register_number">
+
+                        <label>
+
                             College Register Number
-                        </label>
+                            <span class="required">*</span>
 
-                        <input
-                            type="text"
-                            id="register_number"
-                            name="register_number"
-                            class="form-input"
-                            placeholder="Example: BUAS1MPS"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- FULL NAME -->
-
-                    <div class="form-group">
-
-                        <label for="full_name">
-                            Full Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="full_name"
-                            name="full_name"
-                            class="form-input"
-                            placeholder="Enter your full name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- DOB -->
-
-                    <div class="form-group">
-
-                        <label for="date_of_birth">
-                            Date of Birth
-                        </label>
-
-                        <input
-                            type="date"
-                            id="date_of_birth"
-                            name="date_of_birth"
-                            class="form-input"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- EMAIL -->
-
-                    <div class="form-group">
-
-                        <label for="email">
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            class="form-input"
-                            placeholder="you@example.com"
-                            autocomplete="email"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- BATCH -->
-
-                    <div class="form-group">
-
-                        <label for="batch">
-                            Batch / Passing Year
-                        </label>
-
-                        <input
-                            type="text"
-                            id="batch"
-                            name="batch"
-                            class="form-input"
-                            placeholder="Example: 2024-2027"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- MOBILE -->
-
-                    <div class="form-group">
-
-                        <label for="mobile">
-                            Mobile Number
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="mobile"
-                            name="mobile"
-                            class="form-input"
-                            placeholder="Enter mobile number"
-                            autocomplete="tel"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- COMPANY -->
-
-                    <div class="form-group">
-
-                        <label for="company">
-                            Company Name / Working Place
-                        </label>
-
-                        <input
-                            type="text"
-                            id="company"
-                            name="company"
-                            class="form-input"
-                            placeholder="Enter your company or working place"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- POSITION -->
-
-                    <div class="form-group">
-
-                        <label for="position">
-                            Position / Job Role
-                        </label>
-
-                        <input
-                            type="text"
-                            id="position"
-                            name="position"
-                            class="form-input"
-                            placeholder="Example: Software Engineer"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- FATHER NAME -->
-
-                    <div class="form-group full">
-
-                        <label for="father_name">
-                            Father's Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="father_name"
-                            name="father_name"
-                            class="form-input"
-                            placeholder="Enter father's name"
-                        >
-
-                    </div>
-
-
-                    <!-- OTP -->
-
-                    <div class="form-group full">
-
-                        <label for="otp">
-                            Email OTP Verification
                         </label>
 
 
-                        <div class="otp-row">
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🎓
+                            </span>
 
 
                             <input
                                 type="text"
-                                id="otp"
+                                name="register_number"
+                                placeholder="Example: BUAS1MPS"
+                                required
+                                value="{{ request.POST.register_number|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Full Name
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="full_name"
+                                placeholder="Enter your full name"
+                                required
+                                value="{{ request.POST.full_name|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DATE OF BIRTH -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Date of Birth
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                📅
+                            </span>
+
+
+                            <input
+                                type="date"
+                                name="date_of_birth"
+                                required
+                                value="{{ request.POST.date_of_birth|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Email Address
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉
+                            </span>
+
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="you@example.com"
+                                required
+                                value="{{ request.POST.email|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- BATCH -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Batch / Passing Year
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🎓
+                            </span>
+
+
+                            <input
+                                type="number"
+                                name="batch"
+                                placeholder="Example: 2027"
+                                min="1950"
+                                max="2100"
+                                required
+                                value="{{ request.POST.batch|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MOBILE -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Mobile Number
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                📞
+                            </span>
+
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="Enter mobile number"
+                                maxlength="15"
+                                required
+                                value="{{ request.POST.phone|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- COMPANY -->
+
+                    <div class="field">
+
+
+                        <label>
+                            Company Name / Working Place
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🏢
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="company"
+                                placeholder="Enter your company or working place"
+                                value="{{ request.POST.company|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- POSITION -->
+
+                    <div class="field">
+
+
+                        <label>
+                            Position / Job Role
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                💼
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="position"
+                                placeholder="Example: Software Engineer"
+                                value="{{ request.POST.position|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FATHER -->
+
+                    <div class="field">
+
+
+                        <label>
+                            Father's Name
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="father_name"
+                                placeholder="Enter father's name"
+                                value="{{ request.POST.father_name|default:'' }}"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Password
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper password-field">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                minlength="6"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('password', this)"
+                            >
+
+                                👁
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- OTP -->
+
+                    <div class="field">
+
+
+                        <label>
+
+                            Email OTP Verification
+
+                        </label>
+
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔐
+                            </span>
+
+
+                            <input
+                                type="text"
                                 name="otp"
-                                class="form-input"
-                                placeholder="Enter 6-digit OTP"
                                 maxlength="6"
+                                placeholder="Enter 6-digit OTP"
                                 inputmode="numeric"
-                                autocomplete="one-time-code"
                             >
-
-
-                            <button
-                                type="button"
-                                class="otp-button"
-                                id="sendOtpButton"
-                            >
-                                Send OTP
-                            </button>
-
-
-                            <button
-                                type="button"
-                                class="verify-button"
-                                id="verifyOtpButton"
-                                disabled
-                            >
-                                Verify
-                            </button>
-
 
                         </div>
 
 
-                        <div
-                            id="otpStatus"
-                            class="otp-status"
-                        ></div>
+                        {% if request.session.registration_otp_verified %}
+
+                            <div class="verified">
+
+                                ✓ Email verified successfully
+
+                            </div>
+
+                        {% endif %}
 
 
                     </div>
 
 
-                    <!-- SUBMIT -->
 
-                    <div class="form-group full">
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="field">
 
 
-                        <button
-                            type="submit"
-                            class="submit-button"
-                            id="submitButton"
-                            disabled
-                        >
-                            Verify Email First →
-                        </button>
+                        <label>
 
+                            Confirm Password
+                            <span class="required">*</span>
+
+                        </label>
+
+
+                        <div class="input-wrapper password-field">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="Confirm your password"
+                                minlength="6"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('confirm_password', this)"
+                            >
+
+                                👁
+
+                            </button>
+
+                        </div>
 
                     </div>
 
 
                 </div>
 
+
+
+                <!-- =================================================
+                     OTP BUTTONS
+                ================================================== -->
+
+                <div class="otp-area">
+
+
+                    <div></div>
+
+
+                    <button
+                        type="submit"
+                        formaction="{% url 'send_registration_otp' %}"
+                        formmethod="POST"
+                        class="otp-button"
+                        onclick="return checkEmail()"
+                    >
+
+                        Send OTP
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        formaction="{% url 'verify_registration_otp' %}"
+                        formmethod="POST"
+                        class="verify-button"
+                        onclick="return checkOTP()"
+                    >
+
+                        Verify
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TERMS
+                ================================================== -->
+
+                <div class="terms">
+
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        value="accepted"
+                    >
+
+
+                    <label for="terms">
+
+                        I agree to the
+
+                        <a href="{% url 'directory' %}">
+                            Terms & Conditions
+                        </a>
+
+                        and
+
+                        <a href="{% url 'directory' %}">
+                            Privacy Policy
+                        </a>
+
+                    </label>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     REGISTER BUTTON
+                ================================================== -->
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+
+                    👤+
+
+                    &nbsp;
+
+                    Register
+
+                    &nbsp;
+
+                    →
+
+                </button>
+
+
+
+                <div class="login-text">
+
+                    Already registered?
+
+                    <a href="{% url 'login' %}">
+                        Login here
+                    </a>
+
+                </div>
+
+
             </form>
 
-        </div>
 
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     STEPS
-     ========================================================= -->
-
-<section class="steps-section">
-
-
-    <div class="steps">
-
-
-        <div class="step">
-
-            <div class="step-number">
-                1
-            </div>
-
-            <h3>
-                Create Your Profile
-            </h3>
-
-            <p>
-                Add your register number, personal
-                information, batch, company and
-                professional position.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-number">
-                2
-            </div>
-
-            <h3>
-                Verify Your Email
-            </h3>
-
-            <p>
-                Verify your email address using
-                the OTP sent to your registered
-                email.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-number">
-                3
-            </div>
-
-            <h3>
-                Join The Community
-            </h3>
-
-            <p>
-                Sign in using your college register
-                number and date of birth, then connect
-                with the alumni community.
-            </p>
-
-        </div>
+        </section>
 
 
     </div>
 
-
-    <!-- LOGIN BANNER -->
-
-    <div class="login-banner">
+</main>
 
 
-        <div>
 
-            <div class="banner-label">
-                COMMUNITY VERIFIED
-            </div>
-
-
-            <h2>
-                Already Registered?
-            </h2>
-
-
-            <p>
-                Sign in using your college register
-                number and date of birth.
-            </p>
-
-        </div>
-
-
-        <a
-            href="{% url 'login' %}"
-            class="banner-button"
-        >
-            Go To Login →
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-<!-- =========================================================
+<!-- =====================================================
      FOOTER
-     ========================================================= -->
+===================================================== -->
 
 <footer>
 
@@ -2530,86 +2251,141 @@ footer {
     <div class="footer-grid">
 
 
+        <!-- BRAND -->
+
         <div>
 
-            <div class="footer-brand">
-                🎓 AlumniPortal
+
+            <div class="footer-logo">
+
+                🎓 Alumni<span>Portal</span>
+
             </div>
+
 
             <p class="footer-description">
 
-                Connecting graduates, fostering
-                growth and building a lifelong
-                community of excellence.
+                Connecting graduates,
+                building relationships and
+                creating opportunities for the
+                Sacred Heart College alumni
+                community.
 
             </p>
+
 
         </div>
 
 
-        <div class="footer-column">
+
+        <!-- QUICK LINKS -->
+
+        <div>
+
 
             <h3>
                 Quick Links
             </h3>
 
+
             <a href="{% url 'home' %}">
                 Home
             </a>
 
+
             <a href="{% url 'about' %}">
-                About Us
+                About
             </a>
+
 
             <a href="{% url 'directory' %}">
                 Alumni Directory
             </a>
 
+
             <a href="{% url 'events' %}">
                 Upcoming Events
             </a>
 
+
         </div>
 
 
-        <div class="footer-column">
+
+        <!-- OPPORTUNITIES -->
+
+        <div>
+
 
             <h3>
                 Opportunities
             </h3>
 
+
             <a href="{% url 'jobs' %}">
                 Job Board
             </a>
+
 
             <a href="{% url 'mentorship' %}">
                 Mentorship Program
             </a>
 
-            <a href="{% url 'scholarships' %}">
-                Scholarships
+
             </a>
+
 
             <a href="{% url 'events' %}">
                 Events
             </a>
 
+
         </div>
 
 
-        <div class="footer-column">
+
+        <!-- CONTACT -->
+
+        <div>
+
 
             <h3>
                 Contact Us
             </h3>
 
-            <a href="mailto:jnvfarrukhabad.alumni@gmail.com">
-                ✉ jnvfarrukhabad.alumni@gmail.com
-            </a>
 
-            <a href="{% url 'login' %}">
-                Alumni Login
-            </a>
+            <div class="contact-info">
+
+
+                ✉
+
+                alumni@sacredheartcollege.edu.in
+
+                <br>
+
+
+                ☎
+
+                +91 4179 220103
+
+                <br>
+
+
+                📍
+
+                Sacred Heart College,
+                Tirupattur,
+                Tamil Nadu, India
+
+                <br>
+
+
+                Department of Artificial Intelligence
+                & Machine Learning
+
+
+            </div>
+
 
         </div>
 
@@ -2617,15 +2393,25 @@ footer {
     </div>
 
 
-    <div class="footer-bottom">
+
+    <div class="copyright">
+
 
         <span>
-            © 2026 Alumni Portal. All rights reserved.
+
+            © 2026 AlumniPortal.
+            All rights reserved.
+
         </span>
 
+
         <span>
-            Built for the Alumni Community
+
+            Sacred Heart College ·
+            Tirupattur, Tamil Nadu
+
         </span>
+
 
     </div>
 
@@ -2633,525 +2419,261 @@ footer {
 </footer>
 
 
-{% endif %}
 
-
-<!-- =========================================================
+<!-- =====================================================
      JAVASCRIPT
-     ========================================================= -->
-
-{% if not logged_in_student %}
+===================================================== -->
 
 <script>
 
-/* =========================================================
-   GET ELEMENTS
-   ========================================================= */
 
-const emailInput =
-    document.getElementById("email");
+    // =====================================================
+    // PASSWORD SHOW / HIDE
+    // =====================================================
 
-const otpInput =
-    document.getElementById("otp");
+    function togglePassword(
+        inputId,
+        button
+    ) {
 
-const sendOtpButton =
-    document.getElementById("sendOtpButton");
-
-const verifyOtpButton =
-    document.getElementById("verifyOtpButton");
-
-const submitButton =
-    document.getElementById("submitButton");
-
-const otpStatus =
-    document.getElementById("otpStatus");
-
-const registrationForm =
-    document.getElementById("registrationForm");
+        const input =
+            document.getElementById(inputId);
 
 
-/* =========================================================
-   CSRF TOKEN
-   ========================================================= */
+        if (
+            input.type === "password"
+        ) {
 
-function getCSRFToken() {
+            input.type = "text";
 
-    const csrfInput =
-        document.querySelector(
-            "[name=csrfmiddlewaretoken]"
-        );
+            button.innerHTML = "🙈";
 
-    if (!csrfInput) {
+        } else {
 
-        return "";
+            input.type = "password";
+
+            button.innerHTML = "👁";
+
+        }
 
     }
 
-    return csrfInput.value;
-}
 
 
-/* =========================================================
-   OTP STATUS
-   ========================================================= */
+    // =====================================================
+    // EMAIL CHECK
+    // =====================================================
 
-function showOtpStatus(message, type) {
+    function checkEmail() {
 
-    if (!otpStatus) {
+        const email =
+            document.getElementById("email").value.trim();
 
-        return;
 
-    }
+        if (!email) {
 
-    otpStatus.textContent = message;
-
-    otpStatus.className =
-        "otp-status " + type;
-}
-
-
-/* =========================================================
-   SEND OTP
-   ========================================================= */
-
-if (sendOtpButton) {
-
-    sendOtpButton.addEventListener(
-        "click",
-        async function() {
-
-            const email =
-                emailInput.value.trim();
-
-
-            if (!email) {
-
-                showOtpStatus(
-                    "Please enter your email address.",
-                    "otp-error"
-                );
-
-                emailInput.focus();
-
-                return;
-
-            }
-
-
-            const emailPattern =
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-            if (!emailPattern.test(email)) {
-
-                showOtpStatus(
-                    "Please enter a valid email address.",
-                    "otp-error"
-                );
-
-                emailInput.focus();
-
-                return;
-
-            }
-
-
-            sendOtpButton.disabled =
-                true;
-
-            verifyOtpButton.disabled =
-                true;
-
-            sendOtpButton.textContent =
-                "Sending...";
-
-
-            try {
-
-                const response =
-                    await fetch(
-                        "{% url 'send_otp' %}",
-                        {
-
-                            method: "POST",
-
-                            headers: {
-
-                                "X-CSRFToken":
-                                    getCSRFToken(),
-
-                                "Content-Type":
-                                    "application/x-www-form-urlencoded"
-
-                            },
-
-                            body:
-                                new URLSearchParams({
-
-                                    email: email
-
-                                })
-
-                        }
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Server error"
-                    );
-
-                }
-
-
-                const data =
-                    await response.json();
-
-
-                if (data.success) {
-
-                    showOtpStatus(
-                        "✓ " + data.message,
-                        "otp-success"
-                    );
-
-
-                    sendOtpButton.textContent =
-                        "OTP Sent";
-
-
-                    sendOtpButton.disabled =
-                        true;
-
-
-                    verifyOtpButton.disabled =
-                        false;
-
-
-                    otpInput.focus();
-
-                }
-
-                else {
-
-                    showOtpStatus(
-                        data.message,
-                        "otp-error"
-                    );
-
-
-                    sendOtpButton.disabled =
-                        false;
-
-
-                    sendOtpButton.textContent =
-                        "Send OTP";
-
-                }
-
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "SEND OTP ERROR:",
-                    error
-                );
-
-
-                showOtpStatus(
-                    "Unable to send OTP. Please try again.",
-                    "otp-error"
-                );
-
-
-                sendOtpButton.disabled =
-                    false;
-
-
-                sendOtpButton.textContent =
-                    "Send OTP";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   VERIFY OTP
-   ========================================================= */
-
-if (verifyOtpButton) {
-
-    verifyOtpButton.addEventListener(
-        "click",
-        async function() {
-
-            const otp =
-                otpInput.value.trim();
-
-
-            if (!otp) {
-
-                showOtpStatus(
-                    "Please enter the OTP.",
-                    "otp-error"
-                );
-
-                otpInput.focus();
-
-                return;
-
-            }
-
-
-            if (!/^\d{6}$/.test(otp)) {
-
-                showOtpStatus(
-                    "Please enter a valid 6-digit OTP.",
-                    "otp-error"
-                );
-
-                otpInput.focus();
-
-                return;
-
-            }
-
-
-            verifyOtpButton.disabled =
-                true;
-
-            verifyOtpButton.textContent =
-                "Checking...";
-
-
-            try {
-
-                const response =
-                    await fetch(
-                        "{% url 'verify_otp' %}",
-                        {
-
-                            method: "POST",
-
-                            headers: {
-
-                                "X-CSRFToken":
-                                    getCSRFToken(),
-
-                                "Content-Type":
-                                    "application/x-www-form-urlencoded"
-
-                            },
-
-                            body:
-                                new URLSearchParams({
-
-                                    otp: otp
-
-                                })
-
-                        }
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Server error"
-                    );
-
-                }
-
-
-                const data =
-                    await response.json();
-
-
-                if (data.success) {
-
-                    showOtpStatus(
-                        "✓ Email verified successfully!",
-                        "otp-success"
-                    );
-
-
-                    verifyOtpButton.textContent =
-                        "Verified";
-
-
-                    verifyOtpButton.disabled =
-                        true;
-
-
-                    submitButton.disabled =
-                        false;
-
-
-                    submitButton.textContent =
-                        "Submit Registration →";
-
-
-                    /*
-                     * Prevent changing the email after
-                     * successful OTP verification.
-                     */
-
-                    emailInput.readOnly =
-                        true;
-
-                }
-
-                else {
-
-                    showOtpStatus(
-                        data.message,
-                        "otp-error"
-                    );
-
-
-                    verifyOtpButton.disabled =
-                        false;
-
-
-                    verifyOtpButton.textContent =
-                        "Verify";
-
-                }
-
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "VERIFY OTP ERROR:",
-                    error
-                );
-
-
-                showOtpStatus(
-                    "Unable to verify OTP. Please try again.",
-                    "otp-error"
-                );
-
-
-                verifyOtpButton.disabled =
-                    false;
-
-
-                verifyOtpButton.textContent =
-                    "Verify";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   OTP INPUT
-   ========================================================= */
-
-if (otpInput) {
-
-    otpInput.addEventListener(
-        "input",
-        function() {
-
-            this.value =
-                this.value
-                    .replace(/\D/g, "")
-                    .slice(0, 6);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FORM SUBMIT
-   ========================================================= */
-
-if (registrationForm) {
-
-    registrationForm.addEventListener(
-        "submit",
-        function(event) {
-
-            /*
-             * Check required fields.
-             */
-
-            if (!registrationForm.checkValidity()) {
-
-                event.preventDefault();
-
-                registrationForm.reportValidity();
-
-                return;
-
-            }
-
-
-            /*
-             * OTP must be verified.
-             */
-
-            if (submitButton.disabled) {
-
-                event.preventDefault();
-
-                showOtpStatus(
-                    "Please verify your email using OTP first.",
-                    "otp-error"
-                );
-
-                return;
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   AUTO SCROLL TO REGISTRATION FORM
-   ========================================================= */
-
-window.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const registrationSection =
-            document.getElementById(
-                "registration-form"
+            alert(
+                "Please enter your email address first."
             );
 
+            return false;
+        }
 
-        /*
-         * We intentionally do not automatically scroll
-         * here. Django validation messages are shown at
-         * the top of the page.
-         */
+
+        return true;
+    }
+
+
+
+    // =====================================================
+    // OTP CHECK
+    // =====================================================
+
+    function checkOTP() {
+
+        const otp =
+            document.querySelector(
+                'input[name="otp"]'
+            ).value.trim();
+
+
+        if (!otp) {
+
+            alert(
+                "Please enter the OTP."
+            );
+
+            return false;
+        }
+
+
+        if (!/^\d{6}$/.test(otp)) {
+
+            alert(
+                "OTP must contain exactly 6 digits."
+            );
+
+            return false;
+        }
+
+
+        return true;
+    }
+
+
+
+    // =====================================================
+    // PHONE VALIDATION
+    // =====================================================
+
+    const phoneInput =
+        document.querySelector(
+            'input[name="phone"]'
+        );
+
+
+    if (phoneInput) {
+
+        phoneInput.addEventListener(
+            "input",
+            function() {
+
+                this.value =
+                    this.value.replace(
+                        /[^0-9+]/g,
+                        ""
+                    );
+
+            }
+        );
 
     }
-);
+
+
+
+    // =====================================================
+    // OTP ONLY NUMBERS
+    // =====================================================
+
+    const otpInput =
+        document.querySelector(
+            'input[name="otp"]'
+        );
+
+
+    if (otpInput) {
+
+        otpInput.addEventListener(
+            "input",
+            function() {
+
+                this.value =
+                    this.value.replace(
+                        /[^0-9]/g,
+                        ""
+                    );
+
+            }
+        );
+
+    }
+
+
+
+    // =====================================================
+    // CONFIRM PASSWORD CHECK
+    // =====================================================
+
+    const registrationForm =
+        document.querySelector(
+            "form"
+        );
+
+
+    if (registrationForm) {
+
+        registrationForm.addEventListener(
+            "submit",
+            function(event) {
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                const confirmPassword =
+                    document.getElementById(
+                        "confirm_password"
+                    ).value;
+
+
+                const submitter =
+                    event.submitter;
+
+
+                /*
+                 * Don't perform password/terms
+                 * validation when Send OTP
+                 * or Verify is clicked.
+                 */
+
+                if (
+                    submitter &&
+                    (
+                        submitter.classList.contains(
+                            "otp-button"
+                        ) ||
+                        submitter.classList.contains(
+                            "verify-button"
+                        )
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    password !== confirmPassword
+                ) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+                    return;
+                }
+
+
+                const terms =
+                    document.getElementById(
+                        "terms"
+                    );
+
+
+                if (
+                    !terms.checked
+                ) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Please accept the Terms & Conditions."
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
 
 </script>
-
-{% endif %}
 
 
 </body>

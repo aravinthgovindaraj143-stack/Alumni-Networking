@@ -85,7 +85,7 @@ def run_knn():
                 continue
 
             similar_alumni.append(
-                alumni[j].full_name
+                alumni[j].register_number
             )
 
             if len(similar_alumni) == 5:

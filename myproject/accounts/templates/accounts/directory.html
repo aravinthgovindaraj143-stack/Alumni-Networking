@@ -5,587 +5,2233 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Alumni Directory | AlumniPortal</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Alumni Directory | Sacred Heart College</title>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
 
-body {
-    font-family: "Inter", Arial, sans-serif;
-    background: #f5f7fb;
-    color: #172033;
-}
+       
 
-/* ================= NAVBAR ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.navbar {
-    height: 78px;
-    background: rgba(255,255,255,0.95);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5%;
-    border-bottom: 1px solid #e5e7eb;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 22px;
-    font-weight: 800;
-}
+        body {
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
 
-.logo-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+            background: #f7f9f5;
+            color: #18372d;
+        }
 
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.nav-links a {
-    text-decoration: none;
-    color: #374151;
-    padding: 11px 15px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.25s;
-}
 
-.nav-links a:hover,
-.nav-links a.active {
-    background: #667eea;
-    color: white;
-}
 
-/* ================= HEADER ================= */
+        .navbar {
+            width: 100%;
+            height: 76px;
 
-.page-header {
-    text-align: center;
-    padding: 70px 20px 45px;
-    background:
-        radial-gradient(circle at top left, rgba(102,126,234,.15), transparent 35%),
-        radial-gradient(circle at top right, rgba(118,75,162,.13), transparent 35%),
-        #f8f9ff;
-}
+            background: #ffffff;
 
-.page-header h1 {
-    font-size: 42px;
-    margin-bottom: 12px;
-    font-weight: 800;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-.page-header h1 span {
-    color: #667eea;
-}
+            padding: 0 5%;
 
-.page-header p {
-    color: #6b7280;
-    font-size: 17px;
-}
+            border-bottom: 1px solid #e8eee9;
 
-/* ================= SEARCH ================= */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
 
-.search-area {
-    max-width: 850px;
-    margin: -25px auto 45px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 5;
-}
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
 
-.search-box {
-    background: white;
-    padding: 12px;
-    border-radius: 18px;
-    box-shadow: 0 12px 35px rgba(0,0,0,.08);
-    display: flex;
-    align-items: center;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.search-box input {
-    width: 100%;
-    border: none;
-    outline: none;
-    padding: 15px;
-    font-size: 15px;
-}
+        .brand-logo {
+            width: 46px;
+            height: 46px;
 
-/* ================= DIRECTORY ================= */
+            border-radius: 50%;
 
-.directory-container {
-    max-width: 1250px;
-    margin: auto;
-    padding: 0 25px 80px;
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f6b4f,
+                    #174f3d
+                );
 
-.result-info {
-    margin-bottom: 22px;
-    color: #6b7280;
-    font-size: 14px;
-}
+            color: white;
 
-.alumni-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 25px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-/* ================= CARD ================= */
+            font-size: 18px;
+            font-weight: 800;
+        }
 
-.alumni-card {
-    background: white;
-    border-radius: 24px;
-    overflow: hidden;
-    border: 1px solid #e8eaf0;
-    box-shadow: 0 8px 25px rgba(0,0,0,.05);
-    transition: .3s ease;
-}
+        .brand-text h2 {
+            color: #0f6b4f;
+            font-size: 18px;
+            font-weight: 800;
+        }
 
-.alumni-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 18px 40px rgba(0,0,0,.11);
-}
+        .brand-text p {
+            font-size: 11px;
+            color: #777;
+            margin-top: 2px;
+        }
 
-.card-top {
-    height: 105px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    position: relative;
-}
 
-.avatar {
-    position: absolute;
-    bottom: -35px;
-    left: 25px;
+        /* NAV LINKS */
 
-    width: 72px;
-    height: 72px;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
 
-    border-radius: 50%;
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
 
-    background: white;
+            color: #52645d;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            transition: 0.25s;
+        }
 
-    font-size: 27px;
-    font-weight: 800;
+        .nav-links a:hover {
+            color: #0f6b4f;
+        }
 
-    color: #667eea;
+        .nav-links a.active {
+            color: #0f6b4f;
+            position: relative;
+        }
 
-    border: 5px solid white;
+        .nav-links a.active::after {
+            content: "";
 
-    box-shadow: 0 5px 15px rgba(0,0,0,.15);
-}
+            position: absolute;
 
-.card-body {
-    padding: 50px 25px 25px;
-}
+            left: 0;
+            right: 0;
+            bottom: -10px;
 
-.alumni-name {
-    font-size: 21px;
-    font-weight: 800;
-    margin-bottom: 5px;
-}
+            height: 3px;
 
-.alumni-position {
-    color: #667eea;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 22px;
-}
+            background: #f1b928;
 
-.info-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0;
-    color: #6b7280;
-    font-size: 14px;
-}
+            border-radius: 10px;
+        }
 
-.info-row strong {
-    color: #374151;
-}
 
-/* ================= BUTTONS ================= */
+        /* USER */
 
-.card-actions {
-    margin-top: 22px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.btn {
-    text-decoration: none;
-    text-align: center;
-    padding: 12px 8px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 700;
-    transition: .25s;
-}
+        .notification {
+            width: 38px;
+            height: 38px;
 
-.btn-profile {
-    background: #667eea;
-    color: white;
-    grid-column: span 2;
-}
+            border: 1px solid #e5ebe7;
 
-.btn-profile:hover {
-    background: #5367d8;
-}
+            border-radius: 50%;
 
-.btn-similar {
-    background: #eef2ff;
-    color: #5367d8;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.btn-recommended {
-    background: #fff7ed;
-    color: #c76a13;
-}
+            font-size: 17px;
+        }
 
-.btn-similar:hover,
-.btn-recommended:hover {
-    transform: translateY(-2px);
-}
+        .user-avatar {
+            width: 40px;
+            height: 40px;
 
-/* ================= EMPTY ================= */
+            border-radius: 50%;
 
-.empty {
-    text-align: center;
-    padding: 70px 20px;
-    color: #6b7280;
-}
+            background: #f2c443;
 
-.empty-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-/* ================= FOOTER ================= */
+            color: #17382d;
+            font-size: 13px;
+            font-weight: 800;
+        }
 
-footer {
-    background: #111827;
-    color: white;
-    padding: 35px 20px;
-    text-align: center;
-}
 
-footer p {
-    color: #9ca3af;
-    margin-top: 8px;
-    font-size: 14px;
-}
+       
 
-/* ================= RESPONSIVE ================= */
+        .hero {
+            min-height: 330px;
 
-@media(max-width: 800px) {
+            position: relative;
 
-    .nav-links {
-        display: none;
-    }
+            display: flex;
+            align-items: center;
 
-    .page-header h1 {
-        font-size: 32px;
-    }
+            background:
+                linear-gradient(
+                    rgba(8, 62, 45, 0.82),
+                    rgba(8, 62, 45, 0.82)
+                ),
+                url("{% static 'images/shc6.jpg' %}");
 
-    .alumni-grid {
-        grid-template-columns: 1fr;
-    }
-}
+            background-size: cover;
+            background-position: center;
 
-</style>
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: rgba(242,196,67,0.15);
+
+            right: -80px;
+            top: -130px;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            background: rgba(239,125,33,0.12);
+
+            left: -100px;
+            bottom: -120px;
+        }
+
+        .hero-content {
+            width: 90%;
+            max-width: 1250px;
+
+            margin: auto;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(242,196,67,0.18);
+
+            border: 1px solid rgba(242,196,67,0.45);
+
+            color: #ffd95e;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            color: white;
+
+            font-size: 48px;
+
+            line-height: 1.1;
+
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            color: #dcebe4;
+
+            font-size: 17px;
+
+            max-width: 650px;
+
+            line-height: 1.7;
+        }
+
+
+
+        .main-container {
+            width: 90%;
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 45px 0 70px;
+        }
+
+
+        .search-section {
+            background: white;
+
+            padding: 24px;
+
+            border-radius: 18px;
+
+            margin-top: -55px;
+
+            position: relative;
+            z-index: 5;
+
+            box-shadow:
+                0 12px 40px rgba(22,65,48,0.10);
+
+            border: 1px solid #e9eee9;
+        }
+
+        .search-form {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .search-box {
+            flex: 1;
+
+            position: relative;
+        }
+
+        .search-box span {
+            position: absolute;
+
+            left: 17px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #8a9892;
+
+            font-size: 17px;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            height: 52px;
+
+            border: 1px solid #dce5df;
+
+            border-radius: 12px;
+
+            padding: 0 18px 0 48px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            color: #263c34;
+
+            transition: 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: #0f6b4f;
+
+            box-shadow:
+                0 0 0 3px rgba(15,107,79,0.08);
+        }
+
+        .search-btn {
+            height: 52px;
+
+            padding: 0 28px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #0f6b4f;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .search-btn:hover {
+            background: #0a523c;
+
+            transform: translateY(-1px);
+        }
+
+        .reset-btn {
+            height: 52px;
+
+            padding: 0 22px;
+
+            border-radius: 12px;
+
+            border: 1px solid #d9e2dc;
+
+            background: white;
+
+            color: #53655e;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+        .reset-btn:hover {
+            background: #f5f8f5;
+        }
+
+
+       
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e7ede8;
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(24,55,45,0.04);
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+
+            background: #e8f3ee;
+
+            flex-shrink: 0;
+        }
+
+        .stat-card:nth-child(2)
+        .stat-icon {
+            background: #fff5d8;
+        }
+
+        .stat-card:nth-child(3)
+        .stat-icon {
+            background: #fff0e5;
+        }
+
+        .stat-card:nth-child(4)
+        .stat-icon {
+            background: #e9eefb;
+        }
+
+        .stat-info span {
+            display: block;
+
+            color: #84918b;
+
+            font-size: 12px;
+
+            margin-bottom: 4px;
+        }
+
+        .stat-info strong {
+            display: block;
+
+            color: #17382d;
+
+            font-size: 25px;
+        }
+
+
+        .section-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin: 32px 0 16px;
+        }
+
+        .section-header h2 {
+            color: #17382d;
+
+            font-size: 23px;
+        }
+
+        .section-header p {
+            color: #7d8984;
+
+            font-size: 13px;
+        }
+
+
+
+        .table-wrapper {
+            background: white;
+
+            border-radius: 18px;
+
+            border: 1px solid #e5ebe7;
+
+            overflow-x: auto;
+
+            box-shadow:
+                0 7px 25px rgba(24,55,45,0.05);
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 950px;
+        }
+
+        thead {
+            background: #f0f5f1;
+        }
+
+        th {
+            padding: 17px 18px;
+
+            text-align: left;
+
+            color: #52645d;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            font-weight: 800;
+        }
+
+        td {
+            padding: 17px 18px;
+
+            border-top: 1px solid #edf1ee;
+
+            color: #52635c;
+
+            font-size: 13px;
+
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            transition: 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #fbfdfb;
+        }
+
+
+        
+
+        .alumni-person {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .person-avatar {
+            width: 39px;
+            height: 39px;
+
+            border-radius: 50%;
+
+            background: #dfeee7;
+
+            color: #0f6b4f;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            flex-shrink: 0;
+        }
+
+        .person-name {
+            color: #193c30;
+
+            font-weight: 750;
+
+            font-size: 13px;
+        }
+
+        .person-email {
+            color: #919c97;
+
+            font-size: 11px;
+
+            margin-top: 3px;
+        }
+
+
+        
+
+        .batch-badge {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #fff5d6;
+
+            color: #9a7110;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .company-name {
+            color: #253d34;
+
+            font-weight: 650;
+        }
+
+        .position-name {
+            color: #68766f;
+        }
+
+
+      
+
+        .actions {
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 7px 11px;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+
+            white-space: nowrap;
+        }
+
+        .view-btn {
+            background: #e7f3ed;
+
+            color: #0f6b4f;
+        }
+
+        .view-btn:hover {
+            background: #d5eae0;
+        }
+
+        .similar-btn {
+            background: #fff4d4;
+
+            color: #966d08;
+        }
+
+        .similar-btn:hover {
+            background: #ffebad;
+        }
+
+        .recommend-btn {
+            background: #ffeadc;
+
+            color: #c25e1b;
+        }
+
+        .recommend-btn:hover {
+            background: #ffdcc8;
+        }
+
+        .chat-btn {
+            background: #00a884;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        .chat-btn:hover {
+            background: #008069;
+            transform: translateY(-1px);
+        }
+
+        /* WHATSAPP MODAL STYLES */
+        .wa-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(11, 20, 26, 0.82);
+            backdrop-filter: blur(6px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .wa-modal-overlay.active {
+            display: flex;
+        }
+        .wa-modal-container {
+            width: 95vw;
+            max-width: 1280px;
+            height: 90vh;
+            max-height: 850px;
+            background: #ffffff;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .wa-modal-header {
+            background: #008069;
+            padding: 12px 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .wa-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .wa-logo-icon {
+            width: 38px;
+            height: 38px;
+            background: white;
+            color: #008069;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffcc00;
+            display: inline-block;
+        }
+        .status-dot.online {
+            background: #25d366;
+            box-shadow: 0 0 8px #25d366;
+        }
+        .wa-header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .wa-close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 26px;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.85;
+            transition: 0.2s;
+        }
+        .wa-close-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .wa-modal-body {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        .wa-sidebar {
+            width: 350px;
+            background: #ffffff;
+            border-right: 1px solid #e9edef;
+            display: flex;
+            flex-direction: column;
+        }
+        .wa-sidebar-header {
+            padding: 10px 14px;
+            background: #f0f2f5;
+            border-bottom: 1px solid #e9edef;
+        }
+        .wa-search-input {
+            width: 100%;
+            padding: 9px 14px;
+            border-radius: 8px;
+            border: 1px solid #dce5df;
+            background: #ffffff;
+            font-size: 13px;
+            outline: none;
+            color: #111b21;
+        }
+        .wa-filter-chips {
+            display: flex;
+            gap: 6px;
+            padding: 8px 12px;
+            background: #ffffff;
+            border-bottom: 1px solid #e9edef;
+            overflow-x: auto;
+        }
+        .wa-chip {
+            padding: 5px 11px;
+            border-radius: 16px;
+            border: 1px solid #e9edef;
+            background: #f0f2f5;
+            color: #54656f;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+        .wa-chip.active, .wa-chip:hover {
+            background: #e7fce3;
+            color: #008069;
+            border-color: #008069;
+        }
+        .wa-contacts-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .wa-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-bottom: 1px solid #f5f6f6;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .wa-contact-item:hover, .wa-contact-item.active {
+            background: #f0f2f5;
+        }
+        .wa-contact-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #00a884;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .wa-contact-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .wa-contact-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111b21;
+            display: flex;
+            justify-content: space-between;
+        }
+        .wa-contact-desc {
+            font-size: 12px;
+            color: #667781;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+        .wa-ml-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #d1e7dd;
+            color: #0f5132;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        .wa-chat-area {
+            flex: 1;
+            background: #efeae2;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 0);
+            background-size: 24px 24px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .wa-chat-header {
+            background: #f0f2f5;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e9edef;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .wa-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .wa-system-message {
+            align-self: center;
+            background: #ffeebd;
+            color: #54656f;
+            font-size: 11px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .wa-bubble {
+            max-width: 65%;
+            padding: 8px 12px 6px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.45;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(11,20,26,0.12);
+            word-break: break-word;
+        }
+        .wa-bubble.sent {
+            align-self: flex-end;
+            background: #d9fdd3;
+            color: #111b21;
+            border-top-right-radius: 0;
+        }
+        .wa-bubble.received {
+            align-self: flex-start;
+            background: #ffffff;
+            color: #111b21;
+            border-top-left-radius: 0;
+        }
+        .wa-bubble-time {
+            font-size: 10px;
+            color: #667781;
+            float: right;
+            margin-left: 12px;
+            margin-top: 4px;
+        }
+        .wa-suggestions-bar {
+            background: #ffffff;
+            padding: 8px 16px;
+            border-top: 1px solid #e9edef;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+        }
+        .wa-suggestions-bar button {
+            padding: 5px 12px;
+            border-radius: 14px;
+            border: 1px solid #008069;
+            background: #f0faf7;
+            color: #008069;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+        .wa-suggestions-bar button:hover {
+            background: #008069;
+            color: white;
+        }
+        .wa-input-bar {
+            background: #f0f2f5;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #e9edef;
+        }
+        .wa-input-bar input {
+            flex: 1;
+            padding: 11px 16px;
+            border-radius: 8px;
+            border: none;
+            background: #ffffff;
+            font-size: 14px;
+            outline: none;
+            color: #111b21;
+        }
+        .wa-send-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #008069;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .wa-send-btn:hover {
+            background: #006e5a;
+            transform: scale(1.05);
+        }
+        .wa-icon-btn {
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #54656f;
+        }
+
+
+
+        .empty-state {
+            text-align: center;
+
+            padding: 70px 20px;
+        }
+
+        .empty-icon {
+            font-size: 50px;
+
+            margin-bottom: 15px;
+        }
+
+        .empty-state h3 {
+            color: #254439;
+
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: #82908a;
+
+            font-size: 14px;
+        }
+
+
+     
+
+        footer {
+            background: #103f30;
+
+            color: #dcebe4;
+
+            padding: 45px 5% 25px;
+        }
+
+        .footer-content {
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1.3fr;
+
+            gap: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+
+            margin-bottom: 12px;
+
+            font-size: 19px;
+        }
+
+        .footer-brand p {
+            color: #b9cec5;
+
+            line-height: 1.7;
+
+            font-size: 13px;
+
+            max-width: 390px;
+        }
+
+        .footer-column h4 {
+            color: #f5c84b;
+
+            margin-bottom: 15px;
+
+            font-size: 14px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            color: #b9cec5;
+
+            font-size: 13px;
+
+            margin-bottom: 9px;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1250px;
+
+            margin: 35px auto 0;
+
+            padding-top: 20px;
+
+            border-top: 1px solid rgba(255,255,255,0.12);
+
+            text-align: center;
+
+            color: #9bb5aa;
+
+            font-size: 12px;
+        }
+
+
+        
+
+        @media(max-width: 1100px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 800px) {
+
+            .navbar {
+                height: auto;
+
+                padding: 14px 5%;
+
+                flex-wrap: wrap;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+                order: 3;
+
+                width: 100%;
+
+                overflow-x: auto;
+
+                padding-bottom: 5px;
+
+                justify-content: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-btn,
+            .reset-btn {
+                width: 100%;
+
+                justify-content: center;
+            }
+        }
+
+
+        @media(max-width: 550px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 31px;
+            }
+
+            .main-container {
+                width: 94%;
+            }
+
+            .nav-user {
+                margin-left: auto;
+            }
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<!-- ================= NAVBAR ================= -->
+
+
 
 <nav class="navbar">
 
-    <div class="logo">
-        <div class="logo-icon">A</div>
-        AlumniPortal
-    </div>
+    <a href="{% url 'home' %}" class="brand">
+
+        <div class="brand-logo">
+            SHC
+        </div>
+
+        <div class="brand-text">
+            <h2>Sacred Heart College</h2>
+            <p>Alumni Network</p>
+        </div>
+
+    </a>
+
 
     <div class="nav-links">
 
         <a href="{% url 'home' %}">
-            🏠 Home
+            Home
         </a>
 
         <a href="{% url 'about' %}">
-            ✨ About
+            About
         </a>
 
         <a href="{% url 'directory' %}" class="active">
-            👥 Alumni
+            Directory
         </a>
 
-        <a href="{% url 'scholarships' %}">
-            🎓 Scholarships
         </a>
 
         <a href="{% url 'events' %}">
-            📅 Events
+            Events
         </a>
 
         <a href="{% url 'jobs' %}">
-            💼 Careers
+            Jobs
         </a>
 
         <a href="{% url 'mentorship' %}">
-            🤝 Mentorship
+            Mentorship
         </a>
+
+    </div>
+
+
+    <div class="nav-user">
+
+        <div class="notification">
+            🔔
+        </div>
+
+        <div class="user-avatar">
+
+            {% if request.session.alumni_name %}
+
+                {{ request.session.alumni_name|slice:":2"|upper }}
+
+            {% else %}
+
+                SH
+
+            {% endif %}
+
+        </div>
 
     </div>
 
 </nav>
 
 
-<!-- ================= HEADER ================= -->
 
-<section class="page-header">
 
-    <h1>
-        Alumni <span>Directory</span>
-    </h1>
 
-    <p>
-        Connect with our alumni community and discover valuable professional connections.
-    </p>
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            SACRED HEART ALUMNI COMMUNITY
+        </div>
+
+        <h1>
+            Alumni Directory
+        </h1>
+
+        <p>
+            Connect with our global alumni network,
+            discover professional connections and
+            build meaningful relationships beyond campus.
+        </p>
+
+        <div style="margin-top: 22px;">
+            <button onclick="openWhatsAppChat()" style="background: #00a884; color: white; border: none; padding: 12px 26px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; box-shadow: 0 4px 15px rgba(0,168,132,0.3); transition: 0.25s;">
+                💬 Open WhatsApp Real-Time Chat
+            </button>
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= SEARCH ================= -->
 
-<div class="search-area">
 
-    <div class="search-box">
+<main class="main-container">
 
-        🔍
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search by name, company, position or batch..."
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <form
+            method="GET"
+            action="{% url 'directory' %}"
+            class="search-form"
         >
 
-    </div>
+            <div class="search-box">
 
-</div>
+                <span>🔍</span>
 
-
-<!-- ================= ALUMNI ================= -->
-
-<section class="directory-container">
-
-    <div class="result-info">
-        <span id="resultCount">
-            {{ alumni|length }} alumni found
-        </span>
-    </div>
-
-
-    <div class="alumni-grid" id="alumniGrid">
-
-        {% for alumnus in alumni %}
-
-        <div
-            class="alumni-card"
-            data-search="
-                {{ alumnus.full_name }}
-                {{ alumnus.company }}
-                {{ alumnus.position }}
-                {{ alumnus.batch }}
-                {{ alumnus.register_number }}
-            "
-        >
-
-            <div class="card-top">
-
-                <div class="avatar">
-                    {{ alumnus.full_name|first|upper }}
-                </div>
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ search }}"
+                    placeholder="Search by name, register number, email, company, position, or batch..."
+                >
 
             </div>
 
 
-            <div class="card-body">
-
-                <div class="alumni-name">
-                    {{ alumnus.full_name }}
-                </div>
-
-                <div class="alumni-position">
-                    {{ alumnus.position }}
-                </div>
+            <button
+                type="submit"
+                class="search-btn"
+            >
+                Search
+            </button>
 
 
-                <div class="info-row">
-                    🏢
-                    <span>
-                        <strong>{{ alumnus.company }}</strong>
-                    </span>
-                </div>
+            <a
+                href="{% url 'directory' %}"
+                class="reset-btn"
+            >
+                Reset
+            </a>
+
+        </form>
+
+    </section>
 
 
-                <div class="info-row">
-                    🎓
-                    <span>
-                        Batch <strong>{{ alumnus.batch }}</strong>
-                    </span>
-                </div>
+
+  
+
+    <section class="stats">
 
 
-                <div class="info-row">
-                    🆔
-                    <span>
-                        {{ alumnus.register_number }}
-                    </span>
-                </div>
+        <div class="stat-card">
 
+            <div class="stat-icon">
+                👥
+            </div>
 
-                <div class="card-actions">
+            <div class="stat-info">
 
-                    <!-- PROFILE -->
+                <span>
+                    Total Alumni
+                </span>
 
-                    <a
-                        href="{% url 'alumni_profile' alumnus.register_number %}"
-                        class="btn btn-profile"
-                    >
-                        View Profile →
-                    </a>
-
-
-                    <!-- SIMILAR -->
-
-                    <a
-                        href="{% url 'similar_alumni' alumnus.register_number %}"
-                        class="btn btn-similar"
-                    >
-                        👥 Similar Alumni
-                    </a>
-
-
-                    <!-- RECOMMENDED -->
-
-                    <a
-                        href="{% url 'recommended_alumni' alumnus.register_number %}"
-                        class="btn btn-recommended"
-                    >
-                        ⭐ Recommended
-                    </a>
-
-                </div>
+                <strong>
+                    {{ total_alumni }}
+                </strong>
 
             </div>
 
         </div>
 
-        {% empty %}
 
-        <div class="empty">
 
-            <div class="empty-icon">
-                👥
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
             </div>
 
-            <h2>No alumni found</h2>
+            <div class="stat-info">
+
+                <span>
+                    Active Alumni
+                </span>
+
+                <strong>
+                    {{ active_alumni }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎓
+            </div>
+
+            <div class="stat-info">
+
+                <span>
+                    Batches
+                </span>
+
+                <strong>
+                    {{ total_batches }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏢
+            </div>
+
+            <div class="stat-info">
+
+                <span>
+                    Companies
+                </span>
+
+                <strong>
+                    {{ total_companies }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Alumni Members
+            </h2>
 
             <p>
-                Alumni records will appear here once they are added.
+                {% if search %}
+                    Search results for "{{ search }}"
+                {% else %}
+                    Explore the Sacred Heart alumni community
+                {% endif %}
             </p>
 
         </div>
 
-        {% endfor %}
+    </div>
+
+
+
+
+
+    <div class="table-wrapper">
+
+        {% if alumni_list %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Alumni
+                    </th>
+
+                    <th>
+                        Register Number
+                    </th>
+
+                    <th>
+                        Batch
+                    </th>
+
+                    <th>
+                        Company
+                    </th>
+
+                    <th>
+                        Position
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for alumnus in alumni_list %}
+
+                <tr>
+
+
+                    <!-- ALUMNI -->
+
+                    <td>
+
+                        <div class="alumni-person">
+
+                            <div class="person-avatar">
+
+                                {{ alumnus.full_name|slice:":2"|upper }}
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="person-name">
+
+                                    {{ alumnus.full_name }}
+
+                                </div>
+
+                                <div class="person-email">
+
+                                    {{ alumnus.email }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+
+
+                    <!-- REGISTER NUMBER -->
+
+                    <td>
+
+                        {{ alumnus.register_number }}
+
+                    </td>
+
+
+
+                    <!-- BATCH -->
+
+                    <td>
+
+                        <span class="batch-badge">
+
+                            {{ alumnus.batch }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- COMPANY -->
+
+                    <td>
+
+                        <span class="company-name">
+
+                            {{ alumnus.company }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- POSITION -->
+
+                    <td>
+
+                        <span class="position-name">
+
+                            {{ alumnus.position }}
+
+                        </span>
+
+                    </td>
+
+
+
+                    <!-- ACTIONS -->
+
+                    <td>
+
+                        <div class="actions">
+
+
+                            <button
+                                type="button"
+                                onclick="openWhatsAppChat({{ alumnus.id }})"
+                                class="action-btn chat-btn"
+                            >
+                                💬 Chat
+                            </button>
+
+
+                            <a
+                                href="{% url 'alumni_profile' alumnus.register_number %}"
+                                class="action-btn view-btn"
+                            >
+                                View Profile
+                            </a>
+
+
+                            <a
+                                href="{% url 'similar_alumni' alumnus.register_number %}"
+                                class="action-btn similar-btn"
+                            >
+                                Similar
+                            </a>
+
+
+                            <a
+                                href="{% url 'recommended_alumni' alumnus.register_number %}"
+                                class="action-btn recommend-btn"
+                            >
+                                Recommended
+                            </a>
+
+
+                        </div>
+
+                    </td>
+
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+
+        {% else %}
+
+        <!-- EMPTY -->
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                🔎
+            </div>
+
+            <h3>
+                No Alumni Found
+            </h3>
+
+            <p>
+                Try searching with another name,
+                register number, company or batch.
+            </p>
+
+        </div>
+
+        {% endif %}
 
     </div>
 
-</section>
 
+</main>
+
+
+
+ 
 
 <footer>
 
-    <h3>AlumniPortal</h3>
+    <div class="footer-content">
 
-    <p>
-        Sacred Heart College · Tirupattur · Tamil Nadu
-    </p>
 
-    <p>
-        Connecting alumni, creating opportunities.
-    </p>
+        <div class="footer-brand">
+
+            <h3>
+                Sacred Heart College
+            </h3>
+
+            <p>
+                Connecting Heartians beyond campus,
+                building professional relationships and
+                creating opportunities for our alumni
+                community.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'about' %}">
+                About
+            </a>
+
+            <a href="{% url 'directory' %}">
+                Directory
+            </a>
+
+            <a href="{% url 'events' %}">
+                Events
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Community
+            </h4>
+
+            <a href="{% url 'jobs' %}">
+                Jobs
+            </a>
+
+            <a href="{% url 'mentorship' %}">
+                Mentorship
+            </a>
+
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                College
+            </h4>
+
+            <a href="{% url 'directory' %}">
+                Sacred Heart College
+            </a>
+
+            <a href="{% url 'directory' %}">
+                Tirupattur
+            </a>
+
+            <a href="{% url 'directory' %}">
+                Tamil Nadu, India
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Sacred Heart College Alumni Network.
+        All Rights Reserved.
+
+    </div>
 
 </footer>
 
 
-<!-- ================= SEARCH SCRIPT ================= -->
+<!-- WHATSAPP CHAT MODAL OVERLAY -->
+<div id="whatsappModal" class="wa-modal-overlay">
+    <div class="wa-modal-container">
+        <!-- HEADER -->
+        <div class="wa-modal-header">
+            <div class="wa-header-left">
+                <div class="wa-logo-icon">💬</div>
+                <div>
+                    <h3 style="margin: 0; font-size: 16px; color: white;">Alumni WhatsApp Portal</h3>
+                    <div style="font-size: 11px; color: #e1f5fe; display: flex; align-items: center; gap: 6px; margin-top: 2px;">
+                        <span id="wsStatusDot" class="status-dot"></span>
+                        <span id="wsStatusText">Connecting WebSocket...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wa-header-right">
+                <!-- Profile Switcher for Testing -->
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: white;">
+                    <span>Chat identity:</span>
+                    <select id="userIdentitySelect" onchange="switchUserIdentity(this.value)" style="padding: 5px 10px; border-radius: 6px; border: none; font-size: 12px; background: #005c4b; color: white; cursor: pointer; outline: none;">
+                    </select>
+                </div>
+                <button onclick="closeWhatsAppChat()" class="wa-close-btn">&times;</button>
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="wa-modal-body">
+            <!-- SIDEBAR -->
+            <div class="wa-sidebar">
+                <div class="wa-sidebar-header">
+                    <input type="text" id="contactSearchInput" placeholder="Search contacts or ML matches..." oninput="filterContacts(this.value)" class="wa-search-input">
+                </div>
+                
+                <div class="wa-filter-chips">
+                    <button class="wa-chip active" onclick="setContactFilter('all', this)">All</button>
+                    <button class="wa-chip" onclick="setContactFilter('recommended', this)">⭐ ML Recs</button>
+                    <button class="wa-chip" onclick="setContactFilter('similar', this)">🤝 Similar</button>
+                </div>
+
+                <div id="contactsList" class="wa-contacts-list">
+                    <!-- Dynamic contact items -->
+                </div>
+            </div>
+
+            <!-- CHAT MAIN -->
+            <div class="wa-chat-area">
+                <!-- ACTIVE CHAT HEADER -->
+                <div id="chatHeader" class="wa-chat-header">
+                    <div id="activeContactAvatar" class="person-avatar" style="background:#00a884; color:white;">--</div>
+                    <div>
+                        <div id="activeContactName" style="font-weight: 700; font-size: 15px; color: #111b21;">Select a contact to start chatting</div>
+                        <div id="activeContactSubtitle" style="font-size: 12px; color: #667781;">WhatsApp WebSocket Enabled • End-to-end synced</div>
+                    </div>
+                    <div id="activeContactMLBadge" style="margin-left: auto;"></div>
+                </div>
+
+                <!-- CHAT MESSAGES STREAM -->
+                <div id="chatMessages" class="wa-chat-messages">
+                    <div class="wa-system-message">
+                        🔒 Messages are encrypted & delivered real-time over WebSocket.
+                    </div>
+                </div>
+
+                <!-- ML SMART SUGGESTION CHIPS -->
+                <div id="mlSuggestionsBar" class="wa-suggestions-bar" style="display:none;">
+                    <span style="font-size: 11px; font-weight:700; color:#54656f;">AI Prompt Suggestions:</span>
+                    <button onclick="useSuggestion('Hi! I saw your profile in the alumni directory and would love to connect.')">👋 Say Hello</button>
+                    <button onclick="useSuggestion('Hi! Are there any career or job referral opportunities at your company?')">💼 Job Inquiry</button>
+                    <button onclick="useSuggestion('Hello! I would love your advice as a mentor.')">🎓 Mentorship</button>
+                </div>
+
+                <!-- INPUT BAR -->
+                <div class="wa-input-bar">
+                    <button type="button" class="wa-icon-btn" onclick="toggleSuggestionBar()">💡</button>
+                    <input type="text" id="chatMessageInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChatMessage()">
+                    <button type="button" onclick="sendChatMessage()" class="wa-send-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="white">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
+    const alumniList = JSON.parse('{{ alumni_json|escapejs }}');
+    const currentAlumni = JSON.parse('{{ current_json|escapejs }}');
+    
+    let currentAlumniId = currentAlumni.id || (alumniList.length > 0 ? alumniList[0].id : 1);
+    let activeRecipientId = null;
+    let wsSocket = null;
+    let activeFilter = 'all';
 
-const searchInput = document.getElementById("searchInput");
-const cards = document.querySelectorAll(".alumni-card");
-const resultCount = document.getElementById("resultCount");
+    function initProfileSwitcher() {
+        const select = document.getElementById('userIdentitySelect');
+        if (!select) return;
+        select.innerHTML = '';
+        alumniList.slice(0, 50).forEach(a => {
+            const opt = document.createElement('option');
+            opt.value = a.id;
+            opt.textContent = `${a.full_name} (${a.company || 'Alumni'})`;
+            if (a.id === currentAlumniId) opt.selected = true;
+            select.appendChild(opt);
+        });
+    }
 
-searchInput.addEventListener("input", function () {
+    function switchUserIdentity(newId) {
+        currentAlumniId = parseInt(newId);
+        if (wsSocket) {
+            wsSocket.close();
+        }
+        initWebSocket();
+        if (activeRecipientId) {
+            loadHistory(activeRecipientId);
+        }
+    }
 
-    const searchValue = this.value.toLowerCase().trim();
+    function initWebSocket() {
+        const statusDot = document.getElementById('wsStatusDot');
+        const statusText = document.getElementById('wsStatusText');
+        
+        const loc = window.location;
+        const wsProtocol = loc.protocol === 'https:' ? 'wss://' : 'ws://';
+        const wsUrl = `${wsProtocol}${loc.host}/ws/accounts/?alumni_id=${currentAlumniId}`;
+        
+        if (statusText) statusText.textContent = "Connecting...";
+        
+        try {
+            wsSocket = new WebSocket(wsUrl);
 
-    let visible = 0;
+            wsSocket.onopen = function() {
+                if (statusDot) statusDot.classList.add('online');
+                if (statusText) statusText.textContent = `WebSocket Active (ID #${currentAlumniId})`;
+            };
 
-    cards.forEach(card => {
+            wsSocket.onmessage = function(e) {
+                try {
+                    const data = JSON.parse(e.data);
+                    if (data.type === 'message') {
+                        handleIncomingMessage(data);
+                    } else if (data.type === 'history') {
+                        renderHistoryMessages(data.messages);
+                    }
+                } catch(err) {
+                    console.error("WebSocket message parse error:", err);
+                }
+            };
 
-        const content =
-            card.dataset.search.toLowerCase();
+            wsSocket.onclose = function() {
+                if (statusDot) statusDot.classList.remove('online');
+                if (statusText) statusText.textContent = "Reconnecting...";
+                setTimeout(initWebSocket, 4000);
+            };
 
-        if (content.includes(searchValue)) {
+            wsSocket.onerror = function(err) {
+                console.error("WebSocket Error:", err);
+            };
+        } catch(e) {
+            console.error("Failed to connect WebSocket:", e);
+        }
+    }
 
-            card.style.display = "block";
-            visible++;
+    function renderContacts(filter = 'all', searchQuery = '') {
+        const listContainer = document.getElementById('contactsList');
+        if (!listContainer) return;
+        listContainer.innerHTML = '';
 
-        } else {
+        let filtered = alumniList.filter(a => a.id !== currentAlumniId);
 
-            card.style.display = "none";
-
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            filtered = filtered.filter(a => 
+                a.full_name.toLowerCase().includes(q) || 
+                a.company.toLowerCase().includes(q) ||
+                a.position.toLowerCase().includes(q)
+            );
         }
 
-    });
+        if (filter === 'recommended') {
+            filtered = filtered.filter(a => a.recommended_alumni && a.recommended_alumni.length > 0);
+        } else if (filter === 'similar') {
+            filtered = filtered.filter(a => a.knn_similar_alumni && a.knn_similar_alumni.length > 0);
+        }
 
-    resultCount.innerText =
-        visible + " alumni found";
+        filtered.slice(0, 60).forEach(a => {
+            const item = document.createElement('div');
+            item.className = `wa-contact-item ${a.id === activeRecipientId ? 'active' : ''}`;
+            item.onclick = () => selectContact(a.id);
+            
+            const initials = a.full_name.substring(0, 2).toUpperCase();
+            let mlTag = '';
+            if (a.kmeans_cluster !== null && a.kmeans_cluster !== undefined) {
+                mlTag = `<span class="wa-ml-badge">Cluster #${a.kmeans_cluster}</span>`;
+            }
 
-});
+            item.innerHTML = `
+                <div class="wa-contact-avatar">${initials}</div>
+                <div class="wa-contact-info">
+                    <div class="wa-contact-name">
+                        <span>${a.full_name}</span>
+                        <span style="font-size: 10px; color: #8696a0; font-weight: normal;">${a.batch}</span>
+                    </div>
+                    <div class="wa-contact-desc">${a.position} at ${a.company} ${mlTag}</div>
+                </div>
+            `;
+            listContainer.appendChild(item);
+        });
+    }
 
+    function setContactFilter(filterName, btnElement) {
+        activeFilter = filterName;
+        document.querySelectorAll('.wa-chip').forEach(c => c.classList.remove('active'));
+        if (btnElement) btnElement.classList.add('active');
+        const searchInput = document.getElementById('contactSearchInput');
+        renderContacts(filterName, searchInput ? searchInput.value : '');
+    }
+
+    function filterContacts(query) {
+        renderContacts(activeFilter, query);
+    }
+
+    function selectContact(recipientId) {
+        activeRecipientId = recipientId;
+        const target = alumniList.find(a => a.id === recipientId);
+        if (!target) return;
+
+        renderContacts(activeFilter, document.getElementById('contactSearchInput')?.value || '');
+
+        document.getElementById('activeContactAvatar').textContent = target.full_name.substring(0, 2).toUpperCase();
+        document.getElementById('activeContactName').textContent = target.full_name;
+        document.getElementById('activeContactSubtitle').textContent = `${target.position} at ${target.company} (${target.batch} Batch)`;
+        
+        let mlBadge = '';
+        if (target.kmeans_cluster !== null && target.kmeans_cluster !== undefined) {
+            mlBadge = `<span class="wa-ml-badge" style="font-size: 11px; padding: 4px 8px;">ML Cluster #${target.kmeans_cluster} Match</span>`;
+        }
+        document.getElementById('activeContactMLBadge').innerHTML = mlBadge;
+
+        loadHistory(recipientId);
+    }
+
+    function loadHistory(recipientId) {
+        if (wsSocket && wsSocket.readyState === WebSocket.OPEN) {
+            wsSocket.send(JSON.stringify({
+                type: 'history',
+                recipient_id: recipientId
+            }));
+        }
+    }
+
+    function handleIncomingMessage(msg) {
+        if (activeRecipientId && (msg.sender_id === activeRecipientId || msg.recipient_id === activeRecipientId)) {
+            appendMessageBubble(msg);
+        }
+    }
+
+    function renderHistoryMessages(messages) {
+        const container = document.getElementById('chatMessages');
+        container.innerHTML = `<div class="wa-system-message">🔒 Messages are encrypted & delivered real-time over WebSocket.</div>`;
+        if (messages && messages.length > 0) {
+            messages.forEach(m => appendMessageBubble(m));
+        } else {
+            container.innerHTML += `<div style="text-align: center; color: #8696a0; font-size: 12px; margin-top: 30px;">No previous messages with this alumnus. Send a message to start chatting!</div>`;
+        }
+        scrollToBottom();
+    }
+
+    function appendMessageBubble(msg) {
+        const container = document.getElementById('chatMessages');
+        const isSent = msg.sender_id === currentAlumniId;
+        const bubble = document.createElement('div');
+        bubble.className = `wa-bubble ${isSent ? 'sent' : 'received'}`;
+        
+        const timeStr = msg.time_str || new Date(msg.created_at || Date.now()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        const checkmarks = isSent ? `<span style="color:#53bdeb; margin-left:4px;">✓✓</span>` : '';
+
+        bubble.innerHTML = `
+            <div>${escapeHtml(msg.message)}</div>
+            <div class="wa-bubble-time">${timeStr} ${checkmarks}</div>
+        `;
+        container.appendChild(bubble);
+        scrollToBottom();
+    }
+
+    function sendChatMessage() {
+        const input = document.getElementById('chatMessageInput');
+        const text = input ? input.value.trim() : '';
+        if (!text || !activeRecipientId) return;
+
+        if (!wsSocket || wsSocket.readyState !== WebSocket.OPEN) {
+            alert("WebSocket is connecting... Please wait a moment.");
+            return;
+        }
+
+        wsSocket.send(JSON.stringify({
+            type: 'message',
+            recipient_id: activeRecipientId,
+            message: text
+        }));
+
+        input.value = '';
+    }
+
+    function useSuggestion(text) {
+        const input = document.getElementById('chatMessageInput');
+        if (input) {
+            input.value = text;
+            input.focus();
+        }
+    }
+
+    function toggleSuggestionBar() {
+        const bar = document.getElementById('mlSuggestionsBar');
+        if (bar) {
+            bar.style.display = bar.style.display === 'none' ? 'flex' : 'none';
+        }
+    }
+
+    function openWhatsAppChat(targetId = null) {
+        const modal = document.getElementById('whatsappModal');
+        if (modal) modal.classList.add('active');
+        
+        if (!wsSocket) {
+            initWebSocket();
+        }
+
+        initProfileSwitcher();
+        renderContacts();
+
+        if (targetId) {
+            selectContact(targetId);
+        } else if (!activeRecipientId) {
+            const firstOther = alumniList.find(a => a.id !== currentAlumniId);
+            if (firstOther) selectContact(firstOther.id);
+        }
+    }
+
+    function closeWhatsAppChat() {
+        const modal = document.getElementById('whatsappModal');
+        if (modal) modal.classList.remove('active');
+    }
+
+    function scrollToBottom() {
+        const container = document.getElementById('chatMessages');
+        if (container) container.scrollTop = container.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
 </script>
 
 </body>

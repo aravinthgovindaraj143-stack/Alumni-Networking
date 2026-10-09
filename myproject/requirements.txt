@@ -4,3 +4,4 @@ whitenoise
 scikit-learn
 pandas
 numpy
+daphne

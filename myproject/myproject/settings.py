@@ -30,9 +30,20 @@ import os
 
 ALLOWED_HOSTS = [
     "alumni-networking-4.onrender.com",
+    ".onrender.com",
     "localhost",
     "127.0.0.1",
+    "*",
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+    "https://alumni-networking-4.onrender.com",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
@@ -51,7 +62,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,6 +69,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+try:
+    import whitenoise  # noqa: F401
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+except ImportError:
+    pass
 
 ROOT_URLCONF = 'myproject.urls'
 
@@ -148,18 +164,41 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    "default": {
-        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
-        "OPTIONS": {
-            "host": "smtp.gmail.com",
-            "port": 587,
-            "use_tls": True,
-            "username": "aravinthgovindaraj143@gmail.com",
-            "password": "xihxltdplkdfjfgf",
+import django
+
+_email_host = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
+_email_port = int(os.environ.get("EMAIL_PORT", 587))
+_email_user = os.environ.get("EMAIL_HOST_USER", "aravinthgovindaraj143@gmail.com")
+_email_password = os.environ.get("EMAIL_HOST_PASSWORD", "xihxltdplkdfjfgf")
+_email_use_tls = os.environ.get("EMAIL_USE_TLS", "True").lower() == "true"
+
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", _email_user)
+
+if django.VERSION >= (6, 0):
+    MAILERS = {
+        "default": {
+            "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+            "OPTIONS": {
+                "host": _email_host,
+                "port": _email_port,
+                "use_tls": _email_use_tls,
+                "username": _email_user,
+                "password": _email_password,
+                "timeout": 4,  # Fast 4s timeout so Render never hangs for 60 seconds
+            },
         },
-    },
-}
+    }
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = _email_host
+    EMAIL_PORT = _email_port
+    EMAIL_HOST_USER = _email_user
+    EMAIL_HOST_PASSWORD = _email_password
+    EMAIL_USE_TLS = _email_use_tls
+    EMAIL_TIMEOUT = 4
 
-
-DEFAULT_FROM_EMAIL = "aravinthgovindaraj143@gmail.com"
+# Optional HTTP-based email APIs (for Render Free Tier where SMTP ports 25, 465, 587 are blocked)
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "")
+EMAIL_WEBHOOK_URL = os.environ.get("EMAIL_WEBHOOK_URL", "")

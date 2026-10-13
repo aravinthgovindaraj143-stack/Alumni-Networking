@@ -2046,6 +2046,7 @@
 
                             <input
                                 type="text"
+                                id="otpInput"
                                 name="otp"
                                 maxlength="6"
                                 placeholder="Enter 6-digit OTP"
@@ -2055,16 +2056,13 @@
                         </div>
 
 
-                        {% if request.session.registration_otp_verified %}
+                        <div id="otpVerifiedBadge" class="verified" style="display: {% if request.session.registration_otp_verified %}inline-flex{% else %}none{% endif %};">
 
-                            <div class="verified">
+                            ✓ Email verified successfully
 
-                                ✓ Email verified successfully
+                        </div>
 
-                            </div>
-
-                        {% endif %}
-
+                        <div id="otpNoticeBanner" style="display:none; margin-top:10px; padding:12px 16px; border-radius:8px; font-size:13px; font-weight:600; line-height:1.5;"></div>
 
                     </div>
 
@@ -2130,11 +2128,10 @@
 
 
                     <button
-                        type="submit"
-                        formaction="{% url 'send_registration_otp' %}"
-                        formmethod="POST"
+                        type="button"
+                        id="sendOtpBtn"
                         class="otp-button"
-                        onclick="return checkEmail()"
+                        onclick="handleSendOTP(event)"
                     >
 
                         Send OTP
@@ -2143,11 +2140,10 @@
 
 
                     <button
-                        type="submit"
-                        formaction="{% url 'verify_registration_otp' %}"
-                        formmethod="POST"
+                        type="button"
+                        id="verifyOtpBtn"
                         class="verify-button"
-                        onclick="return checkOTP()"
+                        onclick="handleVerifyOTP(event)"
                     >
 
                         Verify
@@ -2463,61 +2459,216 @@
     // =====================================================
     // EMAIL CHECK
     // =====================================================
+    // OTP SEND & VERIFY HANDLERS
+    // =====================================================
 
-    function checkEmail() {
+    async function handleSendOTP(event) {
+        if (event) event.preventDefault();
 
-        const email =
-            document.getElementById("email").value.trim();
-
+        const emailInput = document.getElementById("email");
+        const email = emailInput ? emailInput.value.trim() : "";
 
         if (!email) {
-
-            alert(
-                "Please enter your email address first."
-            );
-
+            alert("Please enter your email address first.");
+            if (emailInput) emailInput.focus();
             return false;
         }
 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            if (emailInput) emailInput.focus();
+            return false;
+        }
 
-        return true;
+        const sendBtn = document.getElementById("sendOtpBtn");
+        const origText = sendBtn ? sendBtn.textContent : "Send OTP";
+        if (sendBtn) {
+            sendBtn.disabled = true;
+            sendBtn.textContent = "Sending OTP...";
+            sendBtn.style.opacity = "0.7";
+        }
+
+        try {
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("csrfmiddlewaretoken", csrfToken);
+
+            const resp = await fetch("{% url 'send_registration_otp' %}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            });
+
+            const data = await resp.json();
+            const noticeBanner = document.getElementById("otpNoticeBanner");
+            const otpInp = document.getElementById("otpInput") || document.querySelector('input[name="otp"]');
+
+            if (data.success) {
+                if (data.otp_hint) {
+                    if (otpInp) {
+                        otpInp.value = data.otp_hint;
+                    }
+                    if (noticeBanner) {
+                        noticeBanner.style.display = "block";
+                        noticeBanner.style.background = "#fff3cd";
+                        noticeBanner.style.color = "#856404";
+                        noticeBanner.style.border = "1px solid #ffeeba";
+                        noticeBanner.innerHTML = `⚠️ <strong>Render Free Tier Notice:</strong> Outbound SMTP port 587 is blocked on Render free tier. Your OTP has been auto-filled: <strong>${data.otp_hint}</strong>. Click <strong>"Verify"</strong> to confirm!`;
+                    }
+                    alert(data.message || `OTP is ${data.otp_hint}. It has been auto-filled into the OTP box.`);
+                } else {
+                    if (noticeBanner) {
+                        noticeBanner.style.display = "block";
+                        noticeBanner.style.background = "#d4edda";
+                        noticeBanner.style.color = "#155724";
+                        noticeBanner.style.border = "1px solid #c3e6cb";
+                        noticeBanner.innerHTML = `✉️ OTP sent to <strong>${email}</strong>! Please check your inbox or spam folder.`;
+                    }
+                    alert(data.message || `OTP sent to ${email}. Please check your inbox!`);
+                }
+
+                if (otpInp) otpInp.focus();
+
+                let countdown = 60;
+                if (sendBtn) {
+                    sendBtn.textContent = `Resend in ${countdown}s`;
+                    const timer = setInterval(() => {
+                        countdown--;
+                        if (countdown <= 0) {
+                            clearInterval(timer);
+                            sendBtn.disabled = false;
+                            sendBtn.textContent = "Send OTP";
+                            sendBtn.style.opacity = "1";
+                        } else {
+                            sendBtn.textContent = `Resend in ${countdown}s`;
+                        }
+                    }, 1000);
+                }
+            } else {
+                if (noticeBanner) {
+                    noticeBanner.style.display = "block";
+                    noticeBanner.style.background = "#f8d7da";
+                    noticeBanner.style.color = "#721c24";
+                    noticeBanner.style.border = "1px solid #f5c6cb";
+                    noticeBanner.innerHTML = `❌ ${data.message || "Failed to send OTP. Please try again."}`;
+                }
+                alert(data.message || "Failed to send OTP. Please try again.");
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = origText;
+                    sendBtn.style.opacity = "1";
+                }
+            }
+        } catch (err) {
+            console.error("Error sending OTP:", err);
+            alert("Network error sending OTP. Please check your connection and try again.");
+            if (sendBtn) {
+                sendBtn.disabled = false;
+                sendBtn.textContent = origText;
+                sendBtn.style.opacity = "1";
+            }
+        }
+        return false;
     }
 
+    async function handleVerifyOTP(event) {
+        if (event) event.preventDefault();
 
-
-    // =====================================================
-    // OTP CHECK
-    // =====================================================
-
-    function checkOTP() {
-
-        const otp =
-            document.querySelector(
-                'input[name="otp"]'
-            ).value.trim();
-
+        const otpInp = document.getElementById("otpInput") || document.querySelector('input[name="otp"]');
+        const otp = otpInp ? otpInp.value.trim() : "";
 
         if (!otp) {
-
-            alert(
-                "Please enter the OTP."
-            );
-
+            alert("Please enter the 6-digit OTP.");
+            if (otpInp) otpInp.focus();
             return false;
         }
-
 
         if (!/^\d{6}$/.test(otp)) {
-
-            alert(
-                "OTP must contain exactly 6 digits."
-            );
-
+            alert("OTP must contain exactly 6 digits.");
+            if (otpInp) otpInp.focus();
             return false;
         }
 
+        const verifyBtn = document.getElementById("verifyOtpBtn");
+        const origText = verifyBtn ? verifyBtn.textContent : "Verify";
+        if (verifyBtn) {
+            verifyBtn.disabled = true;
+            verifyBtn.textContent = "Verifying...";
+            verifyBtn.style.opacity = "0.7";
+        }
 
-        return true;
+        try {
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
+            const formData = new FormData();
+            formData.append("otp", otp);
+            formData.append("csrfmiddlewaretoken", csrfToken);
+
+            const resp = await fetch("{% url 'verify_registration_otp' %}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            });
+
+            const data = await resp.json();
+            const noticeBanner = document.getElementById("otpNoticeBanner");
+            if (data.success && data.verified) {
+                if (noticeBanner) {
+                    noticeBanner.style.display = "block";
+                    noticeBanner.style.background = "#d4edda";
+                    noticeBanner.style.color = "#155724";
+                    noticeBanner.style.border = "1px solid #c3e6cb";
+                    noticeBanner.innerHTML = "✓ Email verified successfully! You can now complete your registration.";
+                }
+                alert(data.message || "Email verified successfully!");
+                const badge = document.getElementById("otpVerifiedBadge");
+                if (badge) {
+                    badge.style.display = "inline-flex";
+                }
+                if (verifyBtn) {
+                    verifyBtn.textContent = "Verified ✓";
+                    verifyBtn.style.background = "#18814f";
+                    verifyBtn.style.opacity = "1";
+                    verifyBtn.disabled = true;
+                }
+            } else {
+                if (noticeBanner) {
+                    noticeBanner.style.display = "block";
+                    noticeBanner.style.background = "#f8d7da";
+                    noticeBanner.style.color = "#721c24";
+                    noticeBanner.style.border = "1px solid #f5c6cb";
+                    noticeBanner.innerHTML = `❌ ${data.message || "Invalid or expired OTP. Please try again."}`;
+                }
+                alert(data.message || "Invalid or expired OTP. Please try again.");
+                if (verifyBtn) {
+                    verifyBtn.disabled = false;
+                    verifyBtn.textContent = origText;
+                    verifyBtn.style.opacity = "1";
+                }
+            }
+        } catch (err) {
+            console.error("Error verifying OTP:", err);
+            alert("Network error verifying OTP. Please try again.");
+            if (verifyBtn) {
+                verifyBtn.disabled = false;
+                verifyBtn.textContent = origText;
+                verifyBtn.style.opacity = "1";
+            }
+        }
+        return false;
+    }
+
+    function checkEmail() {
+        return handleSendOTP();
+    }
+
+    function checkOTP() {
+        return handleVerifyOTP();
     }
 
 

@@ -37,6 +37,18 @@ urlpatterns = [
         name="directory"
     ),
 
+    path(
+        "directory/chat/history/",
+        views.chat_history_api,
+        name="chat_history_api"
+    ),
+
+    path(
+        "directory/chat/send/",
+        views.chat_send_api,
+        name="chat_send_api"
+    ),
+
 
 
     path(

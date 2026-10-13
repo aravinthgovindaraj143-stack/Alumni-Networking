@@ -747,6 +747,45 @@
             transform: translateY(-1px);
         }
 
+        .chat-btn .badge-pill {
+            background: #25d366;
+            color: #075e54;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 8px;
+            margin-left: 5px;
+        }
+        .wa-contact-time {
+            font-size: 11px;
+            color: #667781;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+        .wa-unread-badge {
+            background: #25d366;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+            margin-left: 6px;
+        }
+        .wa-last-msg {
+            color: #667781;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            max-width: 190px;
+        }
+
         /* WHATSAPP MODAL STYLES */
         .wa-modal-overlay {
             position: fixed;
@@ -1381,6 +1420,9 @@
         <div style="margin-top: 22px;">
             <button onclick="openWhatsAppChat()" style="background: #00a884; color: white; border: none; padding: 12px 26px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; box-shadow: 0 4px 15px rgba(0,168,132,0.3); transition: 0.25s;">
                 💬 Open WhatsApp Real-Time Chat
+                {% if conversations_count %}
+                <span style="background: #25d366; color: #075e54; font-size: 12px; font-weight: 800; padding: 2px 9px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">{{ conversations_count }} Active</span>
+                {% endif %}
             </button>
         </div>
 
@@ -1706,6 +1748,9 @@
                                 class="action-btn chat-btn"
                             >
                                 💬 Chat
+                                {% if alumnus.chat_info %}
+                                <span class="badge-pill">Active</span>
+                                {% endif %}
                             </button>
 
 
@@ -1969,11 +2014,44 @@
 <script>
     const alumniList = JSON.parse('{{ alumni_json|escapejs }}');
     const currentAlumni = JSON.parse('{{ current_json|escapejs }}');
-    
+    let conversationsMap = JSON.parse('{{ conversations_json|escapejs|default:"{}" }}');
+
     let currentAlumniId = currentAlumni.id || (alumniList.length > 0 ? alumniList[0].id : 1);
     let activeRecipientId = null;
     let wsSocket = null;
+    let wsConnecting = false;
+    let wsPingInterval = null;
+    let wsReconnectTimeout = null;
     let activeFilter = 'all';
+
+    function updateConversationRecord(otherId, msgText, isFromMe, timeStr, isoTime) {
+        if (!conversationsMap[otherId]) {
+            conversationsMap[otherId] = {
+                last_message: msgText,
+                last_message_time: timeStr || new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+                last_message_iso: isoTime || new Date().toISOString(),
+                total_messages: 0,
+                unread_from_them: 0
+            };
+        }
+        const record = conversationsMap[otherId];
+        record.last_message = msgText;
+        record.last_message_time = timeStr || new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        record.last_message_iso = isoTime || new Date().toISOString();
+        record.total_messages += 1;
+        if (!isFromMe) {
+            record.unread_from_them += 1;
+        }
+
+        const al = alumniList.find(a => a.id === otherId);
+        if (al) {
+            al.has_chat = true;
+            al.last_message = record.last_message;
+            al.last_message_time = record.last_message_time;
+            al.last_message_iso = record.last_message_iso;
+            al.unread_count = record.unread_from_them;
+        }
+    }
 
     function initProfileSwitcher() {
         const select = document.getElementById('userIdentitySelect');
@@ -1990,31 +2068,72 @@
 
     function switchUserIdentity(newId) {
         currentAlumniId = parseInt(newId);
-        if (wsSocket) {
-            wsSocket.close();
-        }
+        cleanupWebSocket();
         initWebSocket();
+        renderContacts(activeFilter, document.getElementById('contactSearchInput')?.value || '');
         if (activeRecipientId) {
             loadHistory(activeRecipientId);
         }
     }
 
+    function cleanupWebSocket() {
+        if (wsPingInterval) {
+            clearInterval(wsPingInterval);
+            wsPingInterval = null;
+        }
+        if (wsReconnectTimeout) {
+            clearTimeout(wsReconnectTimeout);
+            wsReconnectTimeout = null;
+        }
+        if (wsSocket) {
+            try {
+                wsSocket.onclose = null;
+                wsSocket.onerror = null;
+                wsSocket.close();
+            } catch(e) {}
+            wsSocket = null;
+        }
+        wsConnecting = false;
+    }
+
     function initWebSocket() {
+        if (wsSocket && (wsSocket.readyState === WebSocket.OPEN || wsSocket.readyState === WebSocket.CONNECTING)) {
+            return;
+        }
+
         const statusDot = document.getElementById('wsStatusDot');
         const statusText = document.getElementById('wsStatusText');
-        
+
         const loc = window.location;
         const wsProtocol = loc.protocol === 'https:' ? 'wss://' : 'ws://';
         const wsUrl = `${wsProtocol}${loc.host}/ws/accounts/?alumni_id=${currentAlumniId}`;
-        
-        if (statusText) statusText.textContent = "Connecting...";
-        
+
+        if (statusText) statusText.textContent = "Connecting to WhatsApp...";
+        wsConnecting = true;
+
         try {
             wsSocket = new WebSocket(wsUrl);
 
             wsSocket.onopen = function() {
-                if (statusDot) statusDot.classList.add('online');
-                if (statusText) statusText.textContent = `WebSocket Active (ID #${currentAlumniId})`;
+                wsConnecting = false;
+                if (statusDot) {
+                    statusDot.classList.add('online');
+                    statusDot.style.background = '#25d366';
+                }
+                const activeAlumnus = alumniList.find(a => a.id === currentAlumniId);
+                const alumniLabel = activeAlumnus ? activeAlumnus.full_name : `ID #${currentAlumniId}`;
+                if (statusText) statusText.textContent = `Online • ${alumniLabel}`;
+
+                if (wsPingInterval) clearInterval(wsPingInterval);
+                wsPingInterval = setInterval(() => {
+                    if (wsSocket && wsSocket.readyState === WebSocket.OPEN) {
+                        wsSocket.send(JSON.stringify({ type: 'ping' }));
+                    }
+                }, 20000);
+
+                if (activeRecipientId) {
+                    loadHistory(activeRecipientId);
+                }
             };
 
             wsSocket.onmessage = function(e) {
@@ -2024,6 +2143,13 @@
                         handleIncomingMessage(data);
                     } else if (data.type === 'history') {
                         renderHistoryMessages(data.messages);
+                    } else if (data.type === 'recent') {
+                        if (data.conversations && Array.isArray(data.conversations)) {
+                            data.conversations.forEach(c => {
+                                updateConversationRecord(c.other_id, c.last_message, false, c.time_str, c.created_at);
+                            });
+                            renderContacts(activeFilter, document.getElementById('contactSearchInput')?.value || '');
+                        }
                     }
                 } catch(err) {
                     console.error("WebSocket message parse error:", err);
@@ -2031,15 +2157,29 @@
             };
 
             wsSocket.onclose = function() {
-                if (statusDot) statusDot.classList.remove('online');
-                if (statusText) statusText.textContent = "Reconnecting...";
-                setTimeout(initWebSocket, 4000);
+                wsConnecting = false;
+                if (statusDot) {
+                    statusDot.classList.remove('online');
+                    statusDot.style.background = '#eab308';
+                }
+                if (statusText) statusText.textContent = "Live Synced (Auto-reconnecting)";
+
+                if (wsPingInterval) {
+                    clearInterval(wsPingInterval);
+                    wsPingInterval = null;
+                }
+
+                if (wsReconnectTimeout) clearTimeout(wsReconnectTimeout);
+                wsReconnectTimeout = setTimeout(() => {
+                    initWebSocket();
+                }, 4000);
             };
 
             wsSocket.onerror = function(err) {
-                console.error("WebSocket Error:", err);
+                console.warn("WebSocket status note:", err);
             };
         } catch(e) {
+            wsConnecting = false;
             console.error("Failed to connect WebSocket:", e);
         }
     }
@@ -2054,9 +2194,9 @@
         if (searchQuery) {
             const q = searchQuery.toLowerCase();
             filtered = filtered.filter(a => 
-                a.full_name.toLowerCase().includes(q) || 
-                a.company.toLowerCase().includes(q) ||
-                a.position.toLowerCase().includes(q)
+                (a.full_name && a.full_name.toLowerCase().includes(q)) || 
+                (a.company && a.company.toLowerCase().includes(q)) ||
+                (a.position && a.position.toLowerCase().includes(q))
             );
         }
 
@@ -2066,25 +2206,52 @@
             filtered = filtered.filter(a => a.knn_similar_alumni && a.knn_similar_alumni.length > 0);
         }
 
-        filtered.slice(0, 60).forEach(a => {
+        filtered.sort((a, b) => {
+            const aConv = conversationsMap[a.id];
+            const bConv = conversationsMap[b.id];
+            if (aConv && bConv) {
+                return (bConv.last_message_iso || '').localeCompare(aConv.last_message_iso || '');
+            }
+            if (aConv) return -1;
+            if (bConv) return 1;
+            return (a.full_name || '').localeCompare(b.full_name || '');
+        });
+
+        filtered.slice(0, 80).forEach(a => {
+            const conv = conversationsMap[a.id];
             const item = document.createElement('div');
             item.className = `wa-contact-item ${a.id === activeRecipientId ? 'active' : ''}`;
             item.onclick = () => selectContact(a.id);
-            
-            const initials = a.full_name.substring(0, 2).toUpperCase();
+
+            const initials = a.full_name ? a.full_name.substring(0, 2).toUpperCase() : 'AL';
             let mlTag = '';
             if (a.kmeans_cluster !== null && a.kmeans_cluster !== undefined) {
                 mlTag = `<span class="wa-ml-badge">Cluster #${a.kmeans_cluster}</span>`;
             }
 
+            let previewText = `${a.position || 'Alumni'} at ${a.company || 'Member'}`;
+            let timeDisplay = '';
+            let unreadBadge = '';
+
+            if (conv) {
+                previewText = conv.last_message;
+                timeDisplay = `<span class="wa-contact-time">${conv.last_message_time || ''}</span>`;
+                if (conv.unread_from_them > 0) {
+                    unreadBadge = `<span class="wa-unread-badge">${conv.unread_from_them}</span>`;
+                }
+            }
+
             item.innerHTML = `
                 <div class="wa-contact-avatar">${initials}</div>
-                <div class="wa-contact-info">
-                    <div class="wa-contact-name">
-                        <span>${a.full_name}</span>
-                        <span style="font-size: 10px; color: #8696a0; font-weight: normal;">${a.batch}</span>
+                <div class="wa-contact-info" style="flex:1; min-width:0;">
+                    <div class="wa-contact-name" style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(a.full_name)}</span>
+                        ${timeDisplay}
                     </div>
-                    <div class="wa-contact-desc">${a.position} at ${a.company} ${mlTag}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                        <span class="wa-last-msg">${conv ? '💬 ' : ''}${escapeHtml(previewText)}</span>
+                        ${unreadBadge}
+                    </div>
                 </div>
             `;
             listContainer.appendChild(item);
@@ -2108,43 +2275,81 @@
         const target = alumniList.find(a => a.id === recipientId);
         if (!target) return;
 
+        if (conversationsMap[recipientId]) {
+            conversationsMap[recipientId].unread_from_them = 0;
+        }
+
         renderContacts(activeFilter, document.getElementById('contactSearchInput')?.value || '');
 
-        document.getElementById('activeContactAvatar').textContent = target.full_name.substring(0, 2).toUpperCase();
-        document.getElementById('activeContactName').textContent = target.full_name;
-        document.getElementById('activeContactSubtitle').textContent = `${target.position} at ${target.company} (${target.batch} Batch)`;
-        
+        const avatarEl = document.getElementById('activeContactAvatar');
+        if (avatarEl) avatarEl.textContent = target.full_name ? target.full_name.substring(0, 2).toUpperCase() : 'AL';
+
+        const nameEl = document.getElementById('activeContactName');
+        if (nameEl) nameEl.textContent = target.full_name;
+
+        const subEl = document.getElementById('activeContactSubtitle');
+        if (subEl) subEl.textContent = `${target.position || 'Alumni'} at ${target.company || 'Member'} (${target.batch} Batch)`;
+
         let mlBadge = '';
         if (target.kmeans_cluster !== null && target.kmeans_cluster !== undefined) {
             mlBadge = `<span class="wa-ml-badge" style="font-size: 11px; padding: 4px 8px;">ML Cluster #${target.kmeans_cluster} Match</span>`;
         }
-        document.getElementById('activeContactMLBadge').innerHTML = mlBadge;
+        const badgeEl = document.getElementById('activeContactMLBadge');
+        if (badgeEl) badgeEl.innerHTML = mlBadge;
 
         loadHistory(recipientId);
+
+        setTimeout(() => {
+            const inp = document.getElementById('chatMessageInput');
+            if (inp) inp.focus();
+        }, 100);
     }
 
     function loadHistory(recipientId) {
+        const container = document.getElementById('chatMessages');
+        container.innerHTML = `<div class="wa-system-message">🔒 Loading WhatsApp messages...</div>`;
+
         if (wsSocket && wsSocket.readyState === WebSocket.OPEN) {
             wsSocket.send(JSON.stringify({
                 type: 'history',
                 recipient_id: recipientId
             }));
         }
+
+        fetch(`/directory/chat/history/?sender_id=${currentAlumniId}&recipient_id=${recipientId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'ok' && activeRecipientId === recipientId) {
+                    renderHistoryMessages(data.messages);
+                }
+            })
+            .catch(err => {
+                console.warn("HTTP history fallback note:", err);
+            });
     }
 
     function handleIncomingMessage(msg) {
-        if (activeRecipientId && (msg.sender_id === activeRecipientId || msg.recipient_id === activeRecipientId)) {
+        const otherId = msg.sender_id === currentAlumniId ? msg.recipient_id : msg.sender_id;
+        const isFromMe = msg.sender_id === currentAlumniId;
+
+        updateConversationRecord(otherId, msg.message, isFromMe, msg.time_str, msg.created_at);
+        renderContacts(activeFilter, document.getElementById('contactSearchInput')?.value || '');
+
+        if (activeRecipientId && (msg.sender_id === activeRecipientId || (isFromMe && msg.recipient_id === activeRecipientId))) {
             appendMessageBubble(msg);
         }
     }
 
     function renderHistoryMessages(messages) {
         const container = document.getElementById('chatMessages');
-        container.innerHTML = `<div class="wa-system-message">🔒 Messages are encrypted & delivered real-time over WebSocket.</div>`;
+        container.innerHTML = `<div class="wa-system-message">🔒 Messages are end-to-end synced with Alumni Database.</div>`;
         if (messages && messages.length > 0) {
             messages.forEach(m => appendMessageBubble(m));
         } else {
-            container.innerHTML += `<div style="text-align: center; color: #8696a0; font-size: 12px; margin-top: 30px;">No previous messages with this alumnus. Send a message to start chatting!</div>`;
+            container.innerHTML += `<div style="text-align: center; color: #8696a0; font-size: 13px; margin-top: 40px; padding: 20px;">
+                <div style="font-size: 28px; margin-bottom: 8px;">👋</div>
+                No previous messages with this alumnus yet.<br>Send a message below to start chatting!
+            </div>`;
         }
         scrollToBottom();
     }
@@ -2154,13 +2359,13 @@
         const isSent = msg.sender_id === currentAlumniId;
         const bubble = document.createElement('div');
         bubble.className = `wa-bubble ${isSent ? 'sent' : 'received'}`;
-        
+
         const timeStr = msg.time_str || new Date(msg.created_at || Date.now()).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         const checkmarks = isSent ? `<span style="color:#53bdeb; margin-left:4px;">✓✓</span>` : '';
 
         bubble.innerHTML = `
             <div>${escapeHtml(msg.message)}</div>
-            <div class="wa-bubble-time">${timeStr} ${checkmarks}</div>
+            <div class="wa-bubble-time">${escapeHtml(timeStr)} ${checkmarks}</div>
         `;
         container.appendChild(bubble);
         scrollToBottom();
@@ -2171,18 +2376,48 @@
         const text = input ? input.value.trim() : '';
         if (!text || !activeRecipientId) return;
 
-        if (!wsSocket || wsSocket.readyState !== WebSocket.OPEN) {
-            alert("WebSocket is connecting... Please wait a moment.");
-            return;
-        }
-
-        wsSocket.send(JSON.stringify({
-            type: 'message',
-            recipient_id: activeRecipientId,
-            message: text
-        }));
-
         input.value = '';
+
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+        const optimisticMsg = {
+            id: 'temp_' + Date.now(),
+            sender_id: currentAlumniId,
+            recipient_id: activeRecipientId,
+            message: text,
+            created_at: now.toISOString(),
+            time_str: timeStr
+        };
+        appendMessageBubble(optimisticMsg);
+
+        updateConversationRecord(activeRecipientId, text, true, timeStr, now.toISOString());
+        renderContacts(activeFilter, document.getElementById('contactSearchInput')?.value || '');
+
+        if (wsSocket && wsSocket.readyState === WebSocket.OPEN) {
+            wsSocket.send(JSON.stringify({
+                type: 'message',
+                recipient_id: activeRecipientId,
+                message: text
+            }));
+        } else {
+            fetch('/directory/chat/send/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sender_id: currentAlumniId,
+                    recipient_id: activeRecipientId,
+                    message: text
+                })
+            })
+            .then(res => res.json())
+            .then(data => {})
+            .catch(err => {
+                console.error("HTTP chat send note:", err);
+            });
+        }
     }
 
     function useSuggestion(text) {
@@ -2203,19 +2438,18 @@
     function openWhatsAppChat(targetId = null) {
         const modal = document.getElementById('whatsappModal');
         if (modal) modal.classList.add('active');
-        
-        if (!wsSocket) {
-            initWebSocket();
-        }
 
+        initWebSocket();
         initProfileSwitcher();
         renderContacts();
 
         if (targetId) {
             selectContact(targetId);
         } else if (!activeRecipientId) {
+            const firstWithChat = alumniList.find(a => a.id !== currentAlumniId && conversationsMap[a.id]);
             const firstOther = alumniList.find(a => a.id !== currentAlumniId);
-            if (firstOther) selectContact(firstOther.id);
+            const toSelect = firstWithChat || firstOther;
+            if (toSelect) selectContact(toSelect.id);
         }
     }
 
@@ -2226,12 +2460,19 @@
 
     function scrollToBottom() {
         const container = document.getElementById('chatMessages');
-        if (container) container.scrollTop = container.scrollHeight;
+        if (container) {
+            container.scrollTop = container.scrollHeight;
+        }
     }
 
     function escapeHtml(str) {
-        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        if (!str) return '';
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initWebSocket();
+    });
 </script>
 
 </body>
